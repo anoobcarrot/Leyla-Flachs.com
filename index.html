@@ -1053,7 +1053,7 @@ const games = [
     ["Journal & Objectives","I created journal pages for diary entries and objectives.","assets/journal-mechanic.mp4","https://drive.google.com/file/d/1FI0RfzvWQkGporhpOQXsKHkTMcfHxsQ6/view?usp=sharing"],
     ["Inventory & Item Interactions","I created an inventory system for players to manage items.","assets/inventory-system.mp4","https://drive.google.com/file/d/1kQWBMCNIg0-7QZ8u0ix-XBqk23JRAdkj/view?usp=sharing"],
     ["Survival & Progression","Oxygen, stamina and sleep mechanics.",null,"https://drive.google.com/file/d/1CeVL4Z057KV0_OFsExfOEYbwJ3GNe9ct/view?usp=sharing"],
-    ["Onboarding & Player Experience","Tips, customizable keybinds and level progression.",null,null]
+    ["Onboarding & Player Experience","Tips, customisable keybinds and level progression.",null,null]
   ],
   technical:[
     ["Menus & settings","I added a dialogue speed option and worked on keybind settings.","assets/settings.png","https://drive.google.com/file/d/1JpI4oQdFGcfGHNJ2Kz-zdhpOMWM2hjtX/view?usp=sharing"],
@@ -1116,7 +1116,7 @@ function openModal(kind){
  };
  const galleries={
    "Survival & Progression":[["Oxygen & Stamina UI","assets/oxygen-stamina-ui.mp4"],["Oxygen Depletion","assets/oxygen-draining.mp4"],["Sleep Mechanic","assets/sleep-mechanic.mp4"]],
-   "Onboarding & Player Experience":[["Tips Mechanic","assets/tips-mechanic.mp4"],["Customizable Keybinds","assets/changing-keybinds.mp4"],["Level Progression","assets/level-progression.mp4"]]
+   "Onboarding & Player Experience":[["Tips Mechanic","assets/tips-mechanic.mp4"],["Customisable Keybinds","assets/changing-keybinds.mp4"],["Level Progression","assets/level-progression.mp4"]]
  };
  const clipGallery=(name)=>{
    const clips=galleries[name];
@@ -1130,7 +1130,7 @@ document.getElementById('game-modal-content').addEventListener('click',e=>{
  const section=tab.closest('.game-evidence'),heading=section.querySelector('h3')?.textContent;
  const sources={
    "Survival & Progression":[['Oxygen & Stamina UI','assets/oxygen-stamina-ui.mp4'],['Oxygen Depletion','assets/oxygen-draining.mp4'],['Sleep Mechanic','assets/sleep-mechanic.mp4']],
-   "Onboarding & Player Experience":[['Tips Mechanic','assets/tips-mechanic.mp4'],['Customizable Keybinds','assets/changing-keybinds.mp4'],['Level Progression','assets/level-progression.mp4']]
+   "Onboarding & Player Experience":[['Tips Mechanic','assets/tips-mechanic.mp4'],['Customisable Keybinds','assets/changing-keybinds.mp4'],['Level Progression','assets/level-progression.mp4']]
  }[heading];
  const i=Number(tab.dataset.clipTab),video=section.querySelector('.survival-player video');
  if(!video||!sources?.[i]||tab.getAttribute('aria-selected')==='true')return;
