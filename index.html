@@ -634,6 +634,8 @@ html{scroll-padding-top:100px}
 #game-modal .game-modal-panel{width:min(820px,calc(100vw - 30px));padding:clamp(20px,3vw,38px);background:radial-gradient(ellipse at 90% 0%,rgba(130,65,96,.2),transparent 48%),#21121c;border:1px solid #8e5971;border-radius:14px;box-shadow:0 32px 100px #000c}
 #game-modal #game-modal-content>h2{font-size:clamp(30px,4vw,44px);text-align:center;margin:14px 35px 32px;line-height:1.1}
 #game-modal .game-modal-close{border-radius:50%;background:#5a2b43;transition:background .2s,transform .2s}
+/* Precisely centre the close glyph within its circular button. */
+#game-modal .game-modal-close{display:flex;align-items:center;justify-content:center;line-height:1;padding:0;font-family:Arial,sans-serif;font-weight:400;text-align:center;float:right;flex-shrink:0}
 #game-modal .game-modal-close:hover{background:#9b5575;transform:rotate(90deg)}
 #game-modal .game-evidence--visual{width:100%;box-sizing:border-box;margin:0 auto 19px;padding:23px 22px 26px;background:linear-gradient(150deg,#36202e,#261722);border:1px solid #654055;border-radius:12px;box-shadow:0 8px 24px #10081144;transition:border-color .25s}
 #game-modal .game-evidence--visual:hover{border-color:#ad708c}
@@ -689,6 +691,11 @@ html{scroll-padding-top:100px}
 .floating-socials a:hover,.floating-socials a:focus-visible{color:#fff;background:#8b3455;transform:translateY(-3px);outline-offset:3px}
 .floating-socials svg{display:block;width:23px;height:23px;fill:currentColor}
 @media(max-width:600px){.floating-socials{right:12px;bottom:12px;gap:5px;padding:6px;border-radius:12px}.floating-socials a{width:38px;height:38px}.floating-socials svg{width:21px;height:21px}}
+
+/* August In Maplewood: preserve the full illustrated title art while matching the Breaking Point drawer. */
+.game-detail-banner--maplewood{height:auto!important;aspect-ratio:auto!important;display:flex!important;flex-direction:column;overflow:visible!important;background:#100e10}
+.game-detail-banner--maplewood>img{position:relative!important;inset:auto!important;display:block;width:100%;height:auto!important;object-fit:contain!important}
+.game-detail-banner--maplewood .game-detail-intro{position:relative!important;inset:auto!important;bottom:auto!important;background:#21121b!important;padding:22px 25px 25px!important}
 </style>
 </head>
 <body>
@@ -776,7 +783,7 @@ html{scroll-padding-top:100px}
             </div><div class="game-slide-visual"><img src="assets/BP_poster_final.png" alt="Breaking Point poster"></div>
           </article>
           <article class="game-slide" aria-label="August In Maplewood">
-            <div class="game-slide-copy"><span class="game-slide-num">02 / 03</span><h2>August In Maplewood</h2><p class="game-date">University proof of concept · Date to confirm</p>
+            <div class="game-slide-copy"><span class="game-slide-num">02 / 03</span><h2>August In Maplewood</h2><p class="game-date">University proof of concept · 2024</p>
               <p class="game-blurb">A 2.5D murder mystery set in a small town. Players track clues and investigate what happened to uncover the truth.</p>
               <h3>My main contributions</h3><p>Mechanics, narrative, user interface, and overall game design.</p>
               <button class="button game-open" type="button" data-game="1">Explore project <span class="game-open-arrow" aria-hidden="true"><span class="arrow-default">↗</span><span class="arrow-hover">→</span></span></button>
@@ -1068,17 +1075,44 @@ const games = [
   link:"https://bun-bao.itch.io/breaking-point"
  },
  {title:"August In Maplewood",role:"Mechanics · Narrative · UI · Design",
-  short:"A 2.5D small-town murder mystery where players collect and track clues to discover what happened.",
-  banner:"assets/august-in-maplewood-poster.png",trailer:null,
-  contributions:["Contributed to the core game mechanics and investigative gameplay concept.","Worked on the narrative direction and mystery premise.","Designed user interface elements and overall player experience.","Helped shape the project's proof-of-concept design during university studies."],
-  gameplay:[["Investigation mechanics","Clue tracking and murder-mystery gameplay design. Add screenshots or footage when available.",null],["Narrative design","Small-town mystery and story structure. Add evidence when available.",null]],
-  technical:[["Interface design","UI planning and implementation details can be added here with screenshots.",null]],
-  meta:[["Genre","2.5D murder mystery"],["Platform","To confirm"],["Duration","To confirm"],["Team size","To confirm"],["Engine","To confirm"],["Tools","To confirm"]],link:null
+  short:"Can you uncover the truth before the shadows of Maplewood swallow it forever?",
+  banner:"assets/august-in-maplewood-banner.png",trailer:"assets/august-in-maplewood-trailer.mp4",
+  contributionGroups:[
+    {title:"Dialogue & Narrative Events",items:[
+      "I implemented NPC dialogue interactions, player choices, and conversation triggers.",
+      "I added conditional dialogue and events that unlock after speaking to certain NPCs.",
+      "I wrote and implemented dialogue across the town, apartment, and dream sequences."
+    ]},
+    {title:"Phone, Clues & Objectives",items:[
+      "I built the in-game phone with messaging, NPC contacts, replies, and notifications.",
+      "I created the Notes app to collect clues and the Reminders app to track quests.",
+      "I connected clues and objectives to game events and made them persist between scenes."
+    ]},
+    {title:"Investigation, Puzzles & Level Design",items:[
+      "I implemented dream investigation sequences with clickable clues and progression checks.",
+      "I created interactive puzzles, including a torn map, alarm, and locker puzzle.",
+      "I built Day 2 scenes and added clue discovery, NPC following, and scene transitions."
+    ]},
+    {title:"UI & Player Experience",items:[
+      "I designed and implemented phone app interfaces, interaction prompts, and dialogue UI.",
+      "I added camera zooms, scene fades, notifications, and a phone settings menu.",
+      "I refined dialogue controls and fixed issues with repeated inputs and scene changes."
+    ]},
+    {title:"Game Systems & Persistence",items:[
+      "I implemented a Bool Manager to control dialogue, events, and quest progression.",
+      "I added persistent NPC positions, object states, and dialogue progress across scenes.",
+      "I connected NPC movement and camera behaviour to dialogue events."
+    ]}
+  ],
+  gameplay:[["Investigation Mechanics","Clue tracking and murder-mystery gameplay design.",null],["Narrative Design","Small-town mystery and story structure.",null]],
+  technical:[["Interface Design","UI planning and implementation.",null]],
+  meta:[["Genre","2.5D murder mystery"],["Platform","Windows · macOS (Apple Silicon)"],["Duration","12 weeks"],["Team size","2"],["Engine","Unity"],["Tools","Unity · C#"]],
+  link:"https://anoobcarrot.itch.io/august-in-maplewood"
  },
  {title:"Carlos The Penguin!",role:"Mechanics · Level Design",
   short:"A 2D platformer where players must reach the igloo within ten seconds to unlock the next level.",
   banner:"assets/carlos-the-penguin.png",trailer:null,
-  contributions:["Designed the core ten-second level-completion mechanic.","Contributed to platforming mechanics and gameplay pacing.","Designed levels around reaching the igloo before the timer expires.","Worked on an early university project exploring short, repeatable gameplay challenges."],
+  contributionGroups:[{title:"Core Gameplay Mechanics",items:["Designed the core ten-second level-completion mechanic.","Contributed to platforming mechanics and gameplay pacing."]},{title:"Level Design & Pacing",items:["Designed levels around reaching the igloo before the timer expires.","Worked on an early university project exploring short, repeatable gameplay challenges."]}],
   gameplay:[["Timed platforming","Ten-second timer and igloo goal mechanic. Add gameplay screenshots when available.",null],["Level design","Level layouts and pacing around the countdown challenge. Add evidence when available.",null]],
   technical:[["Gameplay implementation","Add implementation footage or screenshots and specific tools when confirmed.",null]],
   meta:[["Genre","2D platformer"],["Platform","To confirm"],["Duration","To confirm"],["Team size","To confirm"],["Engine","To confirm"],["Tools","To confirm"]],link:null
@@ -1099,7 +1133,7 @@ const escapeHTML=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>'
 function openDrawer(i){
  const g=games[i];lastFocus=document.activeElement;
  document.getElementById('game-drawer-content').innerHTML=`
- <div class="game-detail-banner ${i===0?'game-detail-banner--artwork':''}"><img src="${g.banner}" alt="${i===0?'Breaking Point illustrated mountain banner with the game title':'Project banner'}">${i===0?`<div class="game-detail-intro"><p class="game-detail-role">${escapeHTML(g.role)}</p><p class="game-detail-tagline">${escapeHTML(g.short)}</p></div>`:`<div class="game-detail-banner-content"><p>${escapeHTML(g.role)}</p><h2>${escapeHTML(g.title)}</h2><p>${escapeHTML(g.short)}</p></div>`}</div>${g.trailer?'<div class="game-trailer-action"><button type="button" class="button game-trailer-btn" data-trailer>▶ View Trailer</button></div>':''}
+ <div class="game-detail-banner ${i===0||i===1?'game-detail-banner--artwork':''} ${i===1?'game-detail-banner--maplewood':''}"><img src="${g.banner}" alt="${i===0?'Breaking Point illustrated mountain banner with the game title':i===1?'August In Maplewood illustrated forest banner with the game title':'Project banner'}">${i===0||i===1?`<div class="game-detail-intro"><p class="game-detail-role">${escapeHTML(g.role)}</p><p class="game-detail-tagline">${escapeHTML(g.short)}</p></div>`:`<div class="game-detail-banner-content"><p>${escapeHTML(g.role)}</p><h2>${escapeHTML(g.title)}</h2><p>${escapeHTML(g.short)}</p></div>`}</div>${g.trailer?'<div class="game-trailer-action"><button type="button" class="button game-trailer-btn" data-trailer>▶ View Trailer</button></div>':''}
  <div class="game-detail-body"><h3>My Contributions</h3>${g.contributionGroups?`<div class="game-contrib-groups">${g.contributionGroups.map((group,i)=>`<section class="game-contrib-group"><div class="game-contrib-heading"><span>${String(i+1).padStart(2,'0')}</span><h4>${escapeHTML(group.title)}</h4></div><ul>${group.items.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></section>`).join('')}</div>`:`<ul>${g.contributions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul>`}
  <div class="game-detail-actions"><button type="button" data-evidence="gameplay">Gameplay Design Contributions ↗</button><button type="button" data-evidence="technical">Technical Design Contributions ↗</button></div>
  <h3>Project Details</h3><dl class="game-detail-meta">${g.meta.map(([a,b])=>`<div><dt>${escapeHTML(a)}</dt><dd>${escapeHTML(b)}</dd></div>`).join('')}</dl>${g.link?`<p style="margin-top:28px"><a class="button secondary" href="${g.link}" target="_blank" rel="noopener noreferrer">View playable project ↗</a></p>`:''}</div>`;
