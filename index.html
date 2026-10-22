@@ -318,6 +318,269 @@ h1 em { color: #d99aaa; font-weight: 400; }
   position:relative; z-index:5;
 }
 .work-project-grid .project:has(.project-toggle) .project-panel{bottom:48px!important}
+
+/* Editorial skills layout: burgundy panels, typographic hierarchy, responsive chips. */
+.skills-section{position:relative}
+.skills-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;border-bottom:1px solid #653344;padding-bottom:25px}
+.skills-heading h2{margin:0;font-family:var(--site-font-heading);font-size:clamp(42px,5.6vw,72px);font-weight:400;line-height:1.04;letter-spacing:-.035em}
+.skills-heading-dot{color:#d99aaa}
+.skills-heading-aside{color:#ad7e8d;font-size:10px;letter-spacing:.19em;white-space:nowrap;padding-bottom:9px}
+.skills-section .skills-grid{gap:18px;margin-top:24px;align-items:stretch}
+.skills-section .skill-card{position:relative;display:flex;flex-direction:column;min-width:0;min-height:390px;padding:29px 30px 25px;overflow:hidden;border:1px solid #673548;background:linear-gradient(145deg,#361623 0%,#210f18 70%);transition:border-color .25s ease,transform .25s ease}
+.skills-section .skill-card:nth-child(2){background:linear-gradient(145deg,#441a2a 0%,#240f1a 75%)}
+.skills-section .skill-card:hover{border-color:#c17e96;transform:translateY(-3px)}
+.skills-section .skill-card:before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#d99aaa,#800f2f,transparent)}
+.skills-section .skill-card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.skills-section .skill-card-number,.skills-section .skill-card-footer{color:#c996a7;font-size:10px;font-weight:700;letter-spacing:.18em}
+.skills-section .skill-card-symbol{color:#d99aaa;font-size:26px;line-height:1}
+.skills-section .skill-card h3{font-family:var(--site-font-heading);font-size:clamp(34px,3.7vw,48px);line-height:1.1;font-weight:500;margin:23px 0 25px;color:#fff2ee}
+.skills-section .skill-card h3 em{font-weight:400;color:#d99aaa}
+.skills-section .skill-list{display:flex;align-content:start;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.skills-section .skill-list span{border:1px solid #784252;background:rgba(130,46,76,.2);color:#f3dfe4;padding:10px 13px;font-size:12px;line-height:1.45;transition:background .2s ease,border-color .2s ease}
+.skills-section .skill-list span:hover{background:rgba(164,71,101,.38);border-color:#d99aaa}
+.skills-section .skill-card-footer{margin-top:auto;padding-top:18px;border-top:1px solid #653344;color:#a77d8a}
+@media(max-width:700px){.skills-heading{align-items:start;flex-direction:column;gap:10px}.skills-heading-aside{white-space:normal}.skills-section .skill-card{min-height:0;padding:24px}.skills-section .skill-card h3{margin:18px 0 22px}}
+
+.creative-gallery .hobby{min-height:260px;display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease}
+.creative-gallery .hobby:hover{transform:translateY(-5px);border-color:#a75a75}
+.creative-icon{font-size:30px;color:#d99aaa;margin-bottom:26px}
+.creative-gallery .hobby strong{font-size:27px}
+.creative-note{margin-top:auto;padding-top:25px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#bd8798}
+
+/* Keep the name and main navigation visible on every page while scrolling. */
+.site-root{padding-top:78px}
+.topbar{
+  position:fixed!important;
+  top:0;left:0;right:0;
+  width:100%;max-width:none!important;
+  margin:0!important;
+  min-height:78px;
+  padding:17px max(6vw, calc((100vw - 1160px)/2))!important;
+  align-items:center;
+  z-index:1000!important;
+  background:rgba(24,11,19,.96);
+  border-bottom:1px solid rgba(217,154,170,.22);
+  box-shadow:0 6px 22px rgba(0,0,0,.18);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+html{scroll-padding-top:100px}
+.section{scroll-margin-top:100px}
+@media(max-width:700px){
+  .site-root{padding-top:112px}
+  .topbar{min-height:112px;padding:13px 5vw!important;align-items:center;gap:12px}
+  .topbar .nav{flex-wrap:wrap;justify-content:center;gap:10px 16px}
+  .topbar .wordmark{white-space:nowrap}
+}
+/* Footer social navigation */
+.footer-inner{align-items:center;flex-wrap:wrap;row-gap:14px}
+.footer-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px 19px}
+.footer-links a{color:#e2b7c4;text-decoration:none;transition:color .2s ease}
+.footer-links a:hover,.footer-links a:focus-visible{color:#fff;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:700px){.footer-inner{align-items:flex-start}.footer-links{gap:12px 16px}}
+
+/* Icon-only social links in footer */
+.footer-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.footer-links a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(224,170,190,.36);border-radius:10px;background:rgba(91,35,55,.32);color:#eac2ce;text-decoration:none;transition:background .2s ease,transform .2s ease,color .2s ease}
+.footer-links a:hover,.footer-links a:focus-visible{background:#78334b;color:#fff;transform:translateY(-2px);text-decoration:none}
+.footer-links svg{width:20px;height:20px;display:block;fill:currentColor}
+
+/* Footer extras: understated availability, playful pixel-heart Easter egg and top link. */
+.footer-inner{column-gap:22px}
+.footer-extras{display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.footer-availability{display:inline-flex;align-items:center;gap:8px;color:#e9c6d0;font-size:12px;white-space:nowrap}
+.footer-availability::before{content:"";width:7px;height:7px;border-radius:50%;background:#a4c9a7;box-shadow:0 0 0 3px rgba(164,201,167,.12)}
+.footer-back-top{background:none;border:0;padding:7px 0;color:#eac2ce;font:inherit;font-size:12px;cursor:pointer;white-space:nowrap}
+.footer-back-top:hover,.footer-back-top:focus-visible{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.pixel-heart{display:inline-flex;align-items:center;justify-content:center;width:31px;height:31px;border:1px solid rgba(224,170,190,.24);border-radius:7px;background:rgba(91,35,55,.23);color:#dba6b6;cursor:pointer;transition:transform .18s,background .18s,color .18s}
+.pixel-heart svg{width:19px;height:19px;image-rendering:pixelated;shape-rendering:crispEdges;fill:currentColor}
+.pixel-heart:hover,.pixel-heart:focus-visible,.pixel-heart.is-loved{color:#ffb0c7;background:#683047;transform:scale(1.13)}
+.pixel-heart.is-loved{animation:heart-pop .38s ease}
+@keyframes heart-pop{50%{transform:scale(1.35) rotate(-8deg)}}
+@media(max-width:700px){.footer-inner{gap:16px}.footer-extras{width:100%;justify-content:space-between}}
+@media(prefers-reduced-motion:reduce){.pixel-heart,.pixel-heart.is-loved{animation:none;transition:none}}
+
+/* Footer: separate the copyright, social icons and playful extras into distinct rows. */
+.footer .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center}
+.footer .footer-links{justify-content:center;gap:12px}
+.footer .footer-extras{width:100%;max-width:650px;display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:16px;border-top:1px solid rgba(224,170,190,.22)}
+@media(max-width:520px){.footer .footer-extras{flex-wrap:wrap;justify-content:center;gap:14px 22px}.footer .footer-back-top{margin-left:auto}}
+
+/* Three-column footer grid keeps the Easter egg mathematically centered. */
+.footer .footer-extras{display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;width:100%;max-width:650px}
+.footer .footer-availability{justify-self:start}
+.footer .pixel-heart{justify-self:center}
+.footer .footer-back-top{justify-self:end}
+@media(max-width:520px){
+ .footer .footer-extras{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px!important}
+ .footer .footer-availability{white-space:normal;text-align:left;font-size:11px}
+ .footer .footer-back-top{margin-left:0!important;font-size:11px}
+}
+.pixel-heart{position:relative;z-index:2}
+.heart-spark{position:fixed;left:0;top:0;pointer-events:none;z-index:99999;font-size:18px;line-height:1;will-change:transform,opacity;animation:heart-spark-fly 1200ms cubic-bezier(.15,.65,.2,1) forwards;text-shadow:0 0 9px rgba(245,145,180,.4)}
+@keyframes heart-spark-fly{
+  0%{transform:translate(-50%,-50%) scale(.35) rotate(0deg);opacity:0}
+  12%{opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(var(--scale)) rotate(var(--rot));opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.heart-spark{animation:none;display:none}}
+
+/* Location and direct-email strip immediately before the footer. */
+.contact-strip{background:#24121d;border-top:1px solid rgba(224,170,190,.17);border-bottom:1px solid rgba(224,170,190,.22);padding:28px clamp(20px,5vw,72px)}
+.contact-strip-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-strip-link{display:flex;align-items:center;gap:16px;min-width:0;text-decoration:none;color:#f5dce4;padding:14px 18px;border:1px solid rgba(224,170,190,.18);border-radius:12px;background:rgba(98,41,65,.13);transition:background .2s,border-color .2s,transform .2s}
+.contact-strip-link:hover,.contact-strip-link:focus-visible{background:rgba(134,60,87,.28);border-color:rgba(236,177,198,.6);transform:translateY(-2px)}
+.contact-strip-link:last-child{justify-self:stretch}
+.contact-strip-icon{display:grid;place-items:center;flex:none;width:42px;height:42px;border:1px solid rgba(235,175,196,.35);border-radius:50%;color:#e7b0c2}
+.contact-strip-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-strip-text{display:flex;flex-direction:column;gap:5px;min-width:0}
+.contact-strip-label{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#c69caa}
+.contact-strip-value{font-size:clamp(13px,1.3vw,16px);overflow-wrap:anywhere;color:#f8e2e9}
+.contact-strip-arrow{margin-left:auto;color:#d9a7b8;font-size:18px}
+@media(max-width:690px){.contact-strip-inner{grid-template-columns:1fr;gap:12px}.contact-strip{padding:22px 18px}}
+
+/* Character-by-character typewriter; JS changes the text, not a clipping mask. */
+.portfolio-type-title{margin:0;min-height:1.3em;text-transform:uppercase}
+.portfolio-type-title span{white-space:pre-wrap;overflow-wrap:normal}
+.portfolio-type-title span::after{content:"";display:inline-block;height:.85em;vertical-align:-.08em;border-right:2px solid #df9bb3;margin-left:3px;animation:portfolio-caret .7s step-end infinite}
+@keyframes portfolio-caret{50%{border-color:transparent}}
+@media(max-width:600px){.portfolio-type-title{font-size:clamp(19px,5vw,34px)}}
+@media(prefers-reduced-motion:reduce){.portfolio-type-title span::after{animation:none}}
+
+/* Category cards: whole card navigates; independent + button reveals description. */
+.category-card{position:relative;min-width:0;overflow:hidden;border:1px solid #4b2632;background:#1d0e14;transition:border-color .25s ease,transform .25s ease}
+.category-card:hover{border-color:#b75b75;transform:translateY(-5px)}
+.category-card .poster-card{border:0;transform:none!important;height:100%;display:flex;flex-direction:column}
+.category-card .poster-art{flex:1}
+.category-card .poster-caption{min-height:82px;display:flex;align-items:center;padding:20px 65px 20px 22px}
+.category-card .poster-caption h3{margin:0}
+.category-reveal{position:absolute;left:0;right:0;bottom:0;z-index:2;box-sizing:border-box;padding:22px 68px 22px 22px;min-height:132px;background:linear-gradient(0deg,#371826 75%,rgba(55,24,38,.97));transform:translateY(105%);opacity:0;pointer-events:none;transition:transform .35s ease,opacity .25s ease}
+.category-reveal p{margin:0;color:#f0dce0;font-size:13px;line-height:1.7}
+.category-expand{position:absolute;right:16px;bottom:19px;z-index:4;width:42px;height:42px;border:1px solid #b77b8f;background:#4c2334;color:#ffe5ed;border-radius:50%;font-size:27px;font-weight:300;line-height:1;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.category-expand:hover,.category-expand:focus-visible{background:#823f57;transform:scale(1.08)}
+.category-card.is-expanded .category-reveal{transform:translateY(0);opacity:1;pointer-events:auto}
+@media(hover:hover) and (pointer:fine){.category-card:hover .category-reveal{transform:translateY(0);opacity:1;pointer-events:auto}}
+@media(max-width:680px){.category-reveal{min-height:120px;padding:16px 65px 16px 18px}.category-card .poster-caption{min-height:76px}}
+@media(prefers-reduced-motion:reduce){.category-reveal,.category-card{transition:none}}
+
+/* Overlay itself is a link; the + button remains an independent action. */
+.category-reveal{display:flex;flex-direction:column;justify-content:center;text-decoration:none;min-height:156px;gap:8px}
+.category-reveal h3{margin:0;color:#fff0f3;font-size:22px;line-height:1.15}
+.category-reveal:hover h3{text-decoration:underline;text-decoration-color:#d7a3b6;text-underline-offset:4px}
+.category-expand{display:flex;align-items:center;justify-content:center;padding:0;text-align:center;line-height:1;appearance:none}
+
+/* Draw + and − with centered CSS strokes instead of off-center font glyphs. */
+.category-expand{display:grid!important;place-items:center!important;position:absolute;font-size:0!important;line-height:0!important;padding:0!important;box-sizing:border-box!important}
+.category-expand::before,.category-expand::after{content:"";position:absolute;top:50%;left:50%;background:currentColor;border-radius:2px;transform:translate(-50%,-50%);pointer-events:none}
+.category-expand::before{width:15px;height:2px}
+.category-expand::after{width:2px;height:15px;transition:opacity .18s ease}
+.category-card.is-expanded .category-expand::after{opacity:0}
+
+/* Game archive — editorial horizontal carousel and slide-in case study */
+.game-archive{padding-top:110px;overflow:hidden}
+.game-carousel{display:grid;grid-template-columns:175px minmax(0,1fr);gap:clamp(18px,4vw,65px);max-width:1350px;margin:auto}
+.game-index{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding-top:28px}
+.game-index-label,.game-index-count,.game-slide-num{font-size:11px;letter-spacing:.19em;color:#c78da4}
+.game-index-label{margin-bottom:23px}
+.game-index-btn{border:0;border-left:2px solid #603b4b;background:transparent;color:#a98997;text-align:left;padding:14px 8px 14px 15px;font:600 18px Inter,sans-serif;cursor:pointer;transition:.3s}
+.game-index-btn span{display:block;font-size:10px;font-weight:400;line-height:1.5;margin-top:6px;letter-spacing:.02em}
+.game-index-btn.active{color:#ffe6ee;border-color:#e8adc0;background:linear-gradient(90deg,#54233a88,transparent)}
+.game-index-count{margin-top:28px}
+.game-window{min-width:0;overflow:hidden;outline:none}
+.game-track{display:flex;transition:transform .65s cubic-bezier(.22,1,.36,1);will-change:transform}
+.game-slide{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(220px,.8fr);gap:clamp(20px,4vw,65px);align-items:center;min-width:100%;box-sizing:border-box;padding:20px 0 10px}
+.game-slide-copy h2{font-family:"Cormorant Garamond",serif;font-size:clamp(48px,6vw,90px);line-height:.98;color:#f6e4e8;margin:20px 0 10px}
+.game-date{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#d9a5b8;margin-bottom:26px}
+.game-blurb{font-size:15px;line-height:1.9;color:#e0c8d0;max-width:540px}
+.game-slide-copy h3{font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:#e8b5c7;margin:28px 0 8px}
+.game-slide-copy h3+p{color:#c7adb8;font-size:14px;line-height:1.75;margin:0 0 27px}
+.game-slide-visual{display:flex;justify-content:center;align-items:center;min-height:460px;background:#291722;border:1px solid #593444;overflow:hidden}
+.game-slide-visual img{width:100%;height:100%;max-height:530px;object-fit:contain;display:block}
+.game-controls{display:flex;align-items:center;justify-content:flex-end;gap:25px;padding:15px 0 8px;color:#e9b9c8;font-size:12px;letter-spacing:.15em}
+.game-controls button{width:44px;height:44px;border:1px solid #754357;border-radius:50%;background:#361a29;color:#f8dce5;font-size:23px;cursor:pointer}
+.game-controls button:hover{background:#72364d}
+.game-drawer-scrim{position:fixed;inset:0;background:#0a0509b9;z-index:1090;opacity:0;transition:opacity .4s}
+.game-drawer-scrim.visible{opacity:1}
+.game-drawer{position:fixed;inset:0 auto 0 0;width:min(900px,92vw);background:#1e1019;z-index:1100;overflow-y:auto;box-shadow:20px 0 65px #0009;transform:translateX(-105%);transition:transform .55s cubic-bezier(.22,1,.36,1);visibility:hidden}
+.game-drawer.open{transform:translateX(0);visibility:visible}
+.game-drawer-close{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;width:100%;padding:19px 35px;background:#291420;color:#f6d9e4;border:0;border-bottom:1px solid #573040;cursor:pointer;text-align:left;letter-spacing:.15em;font-size:11px}
+.game-detail-banner{min-height:315px;position:relative;display:grid;place-items:center;isolation:isolate;overflow:hidden;background:#422539}
+.game-detail-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.37;z-index:-1;filter:brightness(.65)}
+.game-detail-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1e1019b0,transparent 70%);z-index:-1}
+.game-detail-banner-content{text-align:center;padding:50px 25px;color:#fff0f4}
+.game-detail-banner h2{font:500 clamp(45px,6vw,80px)/1 "Cormorant Garamond",serif;margin:10px 0}
+.game-detail-banner p{max-width:580px;margin:10px auto;color:#f3dce5;line-height:1.7}
+.game-detail-banner .game-trailer-btn{margin:16px auto 0}
+.game-detail-body{padding:clamp(24px,5vw,55px)}
+.game-detail-body h3{font:500 clamp(30px,4vw,46px) "Cormorant Garamond",serif;color:#f4dce5;margin:20px 0}
+.game-detail-body ul{padding-left:22px;line-height:1.85;color:#dfc7d1}
+.game-detail-body li{margin-bottom:10px}
+.game-detail-actions{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0}
+.game-detail-actions button{border:1px solid #b97d94;background:#4c2638;color:#fff0f4;padding:13px 17px;cursor:pointer;font-size:12px}
+.game-detail-actions button:hover{background:#753c55}
+.game-detail-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;border-top:1px solid #654052;padding-top:22px}
+.game-detail-meta dt{color:#bf8da2;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.game-detail-meta dd{margin:5px 0 0;color:#f0d8e2;line-height:1.5}
+.game-modal{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;padding:22px}
+.game-modal[hidden],.game-drawer-scrim[hidden]{display:none!important}
+.game-modal-backdrop{position:absolute;inset:0;background:#090509d9}
+.game-modal-panel{position:relative;width:min(850px,100%);max-height:85vh;overflow:auto;background:#281621;border:1px solid #86516a;padding:clamp(22px,4vw,42px);box-shadow:0 30px 90px #000b}
+.game-modal-close{position:sticky;top:0;float:right;background:#623047;color:#fff;border:0;width:40px;height:40px;font-size:28px;cursor:pointer;z-index:1}
+.game-modal-panel h2{font:500 42px "Cormorant Garamond",serif;color:#fff0f4}
+.game-evidence{margin:22px 0 34px;border-bottom:1px solid #573646;padding-bottom:25px}
+.game-evidence h3{color:#eac0d0;font-size:17px}
+.game-evidence img{max-width:100%;max-height:410px;object-fit:contain;border:1px solid #593a4b;margin-top:10px}
+.game-evidence p{color:#c8aebb;line-height:1.7}
+@media(max-width:800px){.game-carousel{grid-template-columns:1fr}.game-index{flex-direction:row;flex-wrap:wrap;padding-top:0;gap:5px}.game-index-label,.game-index-count{width:100%;margin:0 0 5px}.game-index-btn{flex:1;min-width:90px;font-size:15px;padding:9px;border-left:0;border-bottom:2px solid #603b4b}.game-index-btn span{font-size:9px}.game-slide{grid-template-columns:1fr;gap:20px}.game-slide-visual{min-height:0;max-height:390px}.game-slide-visual img{max-height:390px}.game-slide-copy h2{font-size:clamp(43px,10vw,68px)}}
+@media(prefers-reduced-motion:reduce){.game-track,.game-drawer,.game-drawer-scrim{transition:none!important}}
+
+/* Documents: game collections with multiple document cards per slide */
+.docs-archive{padding-top:110px;overflow:hidden}
+.docs-carousel{display:grid;grid-template-columns:175px minmax(0,1fr);gap:clamp(18px,4vw,65px);max-width:1350px;margin:auto}
+.docs-index{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding-top:28px}
+.docs-index-label,.docs-index-count,.docs-eyebrow{font-size:11px;letter-spacing:.17em;color:#c78da4}
+.docs-index-label{margin-bottom:23px}
+.docs-index-btn{border:0;border-left:2px solid #603b4b;background:transparent;color:#a98997;text-align:left;padding:14px 8px 14px 15px;font:600 18px Inter,sans-serif;cursor:pointer;transition:.3s}
+.docs-index-btn span{display:block;font-size:10px;font-weight:400;line-height:1.5;margin-top:6px;letter-spacing:.02em}
+.docs-index-btn.active{color:#ffe6ee;border-color:#e8adc0;background:linear-gradient(90deg,#54233a88,transparent)}
+.docs-index-count{margin-top:28px}
+.docs-window{min-width:0;overflow:hidden;outline:none}
+.docs-track{display:flex;transition:transform .65s cubic-bezier(.22,1,.36,1);will-change:transform}
+.docs-slide{min-width:100%;box-sizing:border-box;padding:20px 0 10px}
+.docs-slide-head{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #603b4b;padding-bottom:24px;margin-bottom:24px;min-height:180px}
+.docs-slide-head h2{font:500 clamp(45px,5.5vw,78px)/1.04 'Cormorant Garamond',serif;color:#f7e2e9;margin:12px 0}
+.docs-slide-head p{font-size:14px;color:#d6b7c4;line-height:1.7;max-width:550px}
+.docs-slide-head img{height:175px;width:125px;object-fit:cover;flex:none;opacity:.9;border:1px solid #704357}
+.docs-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.docs-card{min-height:275px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:12px;padding:23px 20px;background:linear-gradient(150deg,#452236,#25141f);border:1px solid #684055;color:#f6e4ec;cursor:pointer;transition:transform .25s,border-color .25s,background .25s}
+.docs-card:hover,.docs-card:focus-visible{transform:translateY(-6px);border-color:#e3a9bd;background:linear-gradient(150deg,#633047,#2d1825)}
+.docs-card-type{color:#d8a5b8;font-size:10px;letter-spacing:.13em}
+.docs-card-symbol{font:normal 35px 'Cormorant Garamond',serif;color:#f2c5d4;margin:12px 0 4px}
+.docs-card strong{font:500 26px/1.1 'Cormorant Garamond',serif}
+.docs-card>span:nth-last-child(2){font-size:12px;line-height:1.65;color:#d0b1be}
+.docs-card-bottom{margin-top:auto;padding-top:15px;font-size:11px;color:#f0bfd0;letter-spacing:.03em}
+.docs-controls{display:flex;align-items:center;justify-content:flex-end;gap:25px;padding:25px 0 8px;color:#e9b9c8;font-size:12px;letter-spacing:.15em}
+.docs-controls button{width:44px;height:44px;border:1px solid #754357;border-radius:50%;background:#361a29;color:#f8dce5;font-size:23px;cursor:pointer}
+.docs-controls button:hover{background:#72364d}
+.docs-modal{position:fixed;inset:0;z-index:1300;display:grid;place-items:center;padding:20px}
+.docs-modal[hidden]{display:none!important}
+.docs-modal-shade{position:absolute;inset:0;background:#080409dd}
+.docs-modal-panel{position:relative;width:min(700px,100%);max-height:88vh;overflow:auto;background:#281621;border:1px solid #86516a;padding:clamp(24px,5vw,45px);box-shadow:0 30px 90px #000b}
+.docs-modal-close{position:sticky;top:0;float:right;background:#623047;color:#fff;border:0;width:40px;height:40px;font-size:28px;cursor:pointer}
+.docs-modal-panel h2{font:500 clamp(35px,5vw,55px) 'Cormorant Garamond',serif;color:#fff0f4;margin:16px 0}
+.docs-modal-panel p{color:#d7bdc8;line-height:1.8}
+.docs-pending{border:1px dashed #85566c;padding:22px;color:#edbfd0;margin-top:25px;background:#3a2030}
+@media(max-width:900px){.docs-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.docs-carousel{grid-template-columns:1fr}.docs-index{flex-direction:row;flex-wrap:wrap;padding-top:0;gap:5px}.docs-index-label,.docs-index-count{width:100%;margin:0 0 5px}.docs-index-btn{flex:1;min-width:90px;font-size:15px;padding:9px;border-left:0;border-bottom:2px solid #603b4b}.docs-index-btn span{font-size:9px}}
+@media(max-width:520px){.docs-slide-head img{width:85px;height:120px}.docs-slide-head{min-height:140px}.docs-card-grid{grid-template-columns:1fr}.docs-card{min-height:210px}}
+@media(prefers-reduced-motion:reduce){.docs-track,.docs-card{transition:none!important}}
+
+/* Change the Explore Project arrow on hover or keyboard focus. */
+.game-open .game-open-arrow{display:inline-grid;place-items:center;min-width:1.2em;margin-left:.3em;vertical-align:baseline}
+.game-open .game-open-arrow span{grid-area:1/1;transition:opacity .2s ease,transform .2s ease}
+.game-open .arrow-hover{opacity:0;transform:translateX(-5px)}
+.game-open:hover .arrow-default,.game-open:focus-visible .arrow-default{opacity:0;transform:translateX(5px)}
+.game-open:hover .arrow-hover,.game-open:focus-visible .arrow-hover{opacity:1;transform:translateX(0)}
 </style>
 
 <style>
@@ -346,12 +609,21 @@ h1 em { color: #d99aaa; font-weight: 400; }
 @media(prefers-reduced-motion:reduce){.mouse-wheel,.scroll-chevron{animation:none}}
 @media(max-width:600px){.hero.hero-intro{min-height:calc(100svh - 70px);padding-bottom:120px}.hero.hero-intro h1{font-size:clamp(48px,12vw,76px)}.hero-role{font-size:clamp(24px,5.5vw,32px);letter-spacing:.015em}}
 </style>
+<style>
+
+/* Persistent social profile links */
+.floating-socials{position:fixed;right:clamp(14px,2.6vw,38px);bottom:clamp(16px,3vw,34px);z-index:999;display:flex;flex-direction:column;align-items:center;gap:9px;padding:9px;border:1px solid rgba(220,158,178,.35);border-radius:16px;background:rgba(29,13,23,.91);box-shadow:0 10px 32px rgba(0,0,0,.34);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.floating-socials a{width:42px;height:42px;display:flex;align-items:center;justify-content:center;color:#efc5d0;background:#4a1d30;border:1px solid rgba(234,170,190,.24);border-radius:11px;transition:background .2s,color .2s,transform .2s}
+.floating-socials a:hover,.floating-socials a:focus-visible{color:#fff;background:#8b3455;transform:translateY(-3px);outline-offset:3px}
+.floating-socials svg{display:block;width:23px;height:23px;fill:currentColor}
+@media(max-width:600px){.floating-socials{right:12px;bottom:12px;gap:5px;padding:6px;border-radius:12px}.floating-socials a{width:38px;height:38px}.floating-socials svg{width:21px;height:21px}}
+</style>
 </head>
 <body>
 <div class="site-root" data-sites-preview-theme>
   <header class="topbar">
     <a class="wordmark" href="#home" style="text-decoration:none">Leyla Flachs</a>
-    <nav class="nav" aria-label="Main navigation"><a href="#/home">Home</a><a href="#about">About</a><a href="#/portfolio">Portfolio</a><a href="#/showreel">Showreel</a><a href="#hobbies">Hobbies</a><a href="#/contact">Contact</a></nav>
+    <nav class="nav" aria-label="Main navigation"><a href="#/home">Home</a><a href="#/home/about">About</a><a href="#/portfolio">Portfolio</a><a href="#/showreel">Showreel</a><a href="#/hobbies">Hobbies</a><a href="#/contact">Contact</a></nav>
   </header>
   <main>
     <section class="hero hero-intro" id="home">
@@ -379,11 +651,20 @@ h1 em { color: #d99aaa; font-weight: 400; }
         </div>
       </div>
     </section>
-    <section class="section" id="skills"><p class="section-kicker">What I bring to a team</p><h2>Technical & design skills</h2><p class="section-copy">A growing toolkit for taking ideas from concept to playable experience. Replace or refine these examples to reflect your current skills.</p><div class="skills-grid"><div class="skill-card"><h3>Technical skills</h3><div class="skill-list"><span>Unity</span><span>C#</span><span>Prototyping</span><span>UI implementation</span><span>Version control</span><span>Documentation</span></div></div><div class="skill-card"><h3>Design skills</h3><div class="skill-list"><span>Game mechanics</span><span>Narrative design</span><span>Level design</span><span>UI/UX design</span><span>Player experience</span><span>Team collaboration</span></div></div></div></section>
-    <section class="showreel-section" id="showreel"><p class="section-kicker">A look in motion</p><h2 class="section-title" style="font-family:var(--site-font-heading);font-size:clamp(36px,5vw,62px);font-weight:400;margin:0">Showreel</h2><p class="section-copy" style="margin:18px auto 0">A short showcase of my projects, process, and design work.</p><div class="showreel-frame"><div><div class="play-mark" aria-hidden="true">▶</div><p>Showreel video placeholder · Add your video here</p></div></div><a class="more-projects" href="#portfolio">More projects <span aria-hidden="true">↓</span></a></section>
+    <section class="section skills-section" id="skills"><div class="skills-heading"><div><p class="section-kicker">What I bring to a team</p><h2>Technical &amp; Design Skills<span class="skills-heading-dot">.</span></h2></div></div><div class="skills-grid"><div class="skill-card"><div class="skill-card-top"><span class="skill-card-symbol" aria-hidden="true">&lt;/&gt;</span></div><h3>Technical <em>Skills</em></h3><div class="skill-list"><span>Unity</span><span>Unreal Engine</span><span>C#</span><span>Google Docs</span><span>Visual Studio</span><span>Excel &amp; Spreadsheets</span><span>Aseprite</span><span>Version Control</span></div><span class="skill-card-footer">DEVELOPMENT &amp; PRODUCTION</span></div><div class="skill-card"><div class="skill-card-top"><span class="skill-card-symbol" aria-hidden="true">✎</span></div><h3>Design <em>Skills</em></h3><div class="skill-list"><span>Prototyping</span><span>UI &amp; UX Design</span><span>Level Design</span><span>Narrative Design</span><span>Detailed Documentation</span><span>Menu layout design &amp; implementation</span><span>Dialogue Systems</span><span>Mechanics &amp; gameplay design</span><span>2D Pixel Art Assets</span></div><span class="skill-card-footer">EXPERIENCE &amp; INTERACTION</span></div></div></section>
+    <section class="showreel-section" id="showreel"><p class="section-kicker">A look in motion</p><h2 class="section-title" style="font-family:var(--site-font-heading);font-size:clamp(36px,5vw,62px);font-weight:400;margin:0">Showreel</h2><p class="section-copy" style="margin:18px auto 0">A short showcase of my projects, process, and design work.</p><div class="showreel-frame"><div><div class="play-mark" aria-hidden="true">▶</div><p>Showreel video placeholder · Add your video here</p></div></div><a class="more-projects" href="#portfolio-cta">More projects <span aria-hidden="true">↓</span></a></section>
     <section class="section portfolio-cta" id="portfolio-cta"><div><p class="section-kicker">Keep exploring</p><h2>There's more to discover.</h2><p class="section-copy">Take a closer look at my portfolio for more projects, design breakdowns, and the thinking behind each experience.</p></div><a class="button" href="#/portfolio">Explore the projects <span aria-hidden="true">↗</span></a></section>
-    <section class="section" id="hobbies"><p class="section-kicker">Outside of game design</p><h2>Hobbies & inspirations</h2><p class="section-copy">The interests and creative rabbit holes that keep me curious and influence the way I think about games.</p><div class="hobbies-grid"><div class="hobby"><strong>Gaming</strong><span>Exploring different genres, systems, stories, and player experiences.</span></div><div class="hobby"><strong>Storytelling</strong><span>Enjoying character-driven stories, worldbuilding, and narrative choices.</span></div><div class="hobby"><strong>Creative projects</strong><span>Experimenting with ideas, learning new tools, and making things just for fun.</span></div></div></section>
+    <section class="section" id="hobbies"><p class="section-kicker">Outside of game design</p><h2>Hobbies & Inspirations</h2><p class="section-copy">The interests and creative rabbit holes that keep me curious and influence the way I think about games.</p><div class="hobbies-grid"><div class="hobby"><strong>Gaming</strong><span>Exploring different genres, systems, stories, and player experiences.</span></div><div class="hobby"><strong>Storytelling</strong><span>Enjoying character-driven stories, worldbuilding, and narrative choices.</span></div><div class="hobby"><strong>Creative projects</strong><span>Experimenting with ideas, learning new tools, and making things just for fun.</span></div></div><div class="button-row" style="margin-top:30px"><a class="button" href="#/hobbies">Explore My Creative Projects <span aria-hidden="true">↗</span></a></div></section>
   </main>
+  <section class="section route-page" id="hobbies-page">
+    <a class="route-back" href="#/home">← Back to home</a>
+    <div class="route-head"><p class="section-kicker">Beyond game design</p><h2>Hobbies &amp; Inspirations</h2><p class="section-copy">A space for creative projects outside of game design, from video editing to digital assets and 3D models.</p></div>
+    <div class="hobbies-grid creative-gallery">
+      <article class="hobby"><div class="creative-icon" aria-hidden="true">▶</div><strong>Video Editing</strong><span>Edits, storytelling through motion, and other video experiments.</span><p class="creative-note">Projects coming soon</p></article>
+      <article class="hobby"><div class="creative-icon" aria-hidden="true">✦</div><strong>Digital Assets</strong><span>2D art, pixel assets, and visual experiments made outside my game projects.</span><p class="creative-note">Projects coming soon</p></article>
+      <article class="hobby"><div class="creative-icon" aria-hidden="true">⬡</div><strong>3D Models</strong><span>Models, objects, and other explorations in 3D creation.</span><p class="creative-note">Projects coming soon</p></article>
+    </div>
+  </section>
   <section class="section route-page" id="contact-page">
     <a class="route-back" href="#/home">← Back to home</a>
     <div class="contact-page-layout">
@@ -399,9 +680,99 @@ h1 em { color: #d99aaa; font-weight: 400; }
       </form>
     </div>
   </section>
-  <section class="section route-page" id="portfolio-page"><a class="route-back" href="#/home">← Back to home</a><div class="route-head"><p class="section-kicker">Portfolio archive</p><h2>Explore my work</h2><p class="section-copy">Choose a collection to explore. Each area can hold detailed project pages, images, documents, development notes, and links to playable builds or published games.</p></div><div class="poster-grid"><a class="poster-card" href="#/portfolio/games"><div class="poster-art"><div><strong>Games</strong><span>Projects · Prototypes · Releases</span></div></div><div class="poster-caption"><h3>Games I've worked on</h3><p>Game projects, your role and contributions, screenshots, trailers, and links to play or learn more.</p></div></a><a class="poster-card" href="#/portfolio/documents"><div class="poster-art documents"><div><strong>Documents</strong><span>Design · Systems · Process</span></div></div><div class="poster-caption"><h3>Design documents</h3><p>Game design documents, mechanics breakdowns, UI flows, level design work, and other selected documentation.</p></div></a></div></section>
-  <section class="section route-page" id="games-page"><a class="route-back" href="#/portfolio">← Back to portfolio</a><div class="route-head"><p class="section-kicker">Portfolio / Games</p><h2>Games & projects</h2><p class="section-copy">Each project can open a dedicated detail page with its poster, overview, your contribution, tools used, images, and relevant external links. These are starter entries to customise.</p></div><div class="detail-list"><article class="detail-card"><div class="detail-art">BREAKING POINT</div><div><p class="section-kicker">Final major project · 3D narrative game</p><h3>Breaking Point</h3><p>A story-driven game about climbing Mount Everest, created as the proof of concept for your Bachelor's Degree in Game Design. Add your responsibilities, design challenges, screenshots, trailer, and any playable build or project page.</p><a class="button secondary" href="#/project/breaking-point">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art" style="padding:0;overflow:hidden;background:#171a19"><img src="assets/august-in-maplewood-poster.png" alt="August In Maplewood poster" loading="lazy" style="width:100%;height:100%;max-height:340px;object-fit:contain"></div><div><p class="section-kicker">Study project · 2.5D murder mystery</p><h3>August In Maplewood</h3><p>This was a small project proof of concept during the course of my studies. August In Maplewood is a 2.5D murder mystery game where players keep track of clues to figure out what happened in their small town.</p><a class="button secondary" href="#/project/two">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art" style="padding:0;overflow:hidden;background:#9eafc0"><img src="assets/carlos-the-penguin.png" alt="Carlos The Penguin! poster" loading="lazy" style="width:100%;height:100%;max-height:340px;object-fit:contain"></div><div><p class="section-kicker">Study project · 2D platformer</p><h3>Carlos The Penguin!</h3><p>This was one of my first projects during the course of my studies. Carlos The Penguin! is a 2D platformer where you must reach the igloo before the 10 second timer reaches 0 to go to the next level.</p></div></article></div></section>
-  <section class="section route-page" id="documents-page"><a class="route-back" href="#/portfolio">← Back to portfolio</a><div class="route-head"><p class="section-kicker">Portfolio / Documents</p><h2>Design documents</h2><p class="section-copy">A curated collection of design work. For each item, you can add a cover image, document summary, your role, and a link to a public PDF or project file.</p></div><div class="detail-list"><article class="detail-card"><div class="detail-art">GAME DESIGN<br>DOCUMENT</div><div><p class="section-kicker">Document type · Add year</p><h3>Game Design Document</h3><p>Add a short description of the document, the game it supports, and the parts you authored. Link to a PDF or a public repository when you are ready.</p><a class="button secondary" href="#/contact">Add document link ↗</a></div></article><article class="detail-card"><div class="detail-art">SYSTEM DESIGN</div><div><p class="section-kicker">Mechanics · Systems</p><h3>Systems & mechanics breakdown</h3><p>Show how you communicate rules, player feedback, progression, balancing, or implementation details.</p><a class="button secondary" href="#/contact">Add document link ↗</a></div></article></div></section>
+  <section class="section route-page" id="portfolio-page"><a class="route-back" href="#/home">← Back to home</a><div class="route-head"><p class="section-kicker">Portfolio archive</p><h2 class="portfolio-type-title"><span>CHOOSE A CATEGORY</span></h2></div><div class="poster-grid">
+<div class="category-card"><a class="poster-card" href="#/portfolio/games" aria-label="Explore Games"><div class="poster-art"><div><strong>Games</strong><span>Projects · Prototypes · Releases</span></div></div><div class="poster-caption"><h3>Games</h3></div></a><a class="category-reveal" href="#/portfolio/games" id="games-category-description" aria-label="Open Games category"><h3>Games</h3><p>Game projects, your role and contributions, screenshots, trailers, and links to play or learn more.</p></a><button type="button" class="category-expand" aria-label="Show Games description" aria-expanded="false" aria-controls="games-category-description"></button></div>
+<div class="category-card"><a class="poster-card" href="#/portfolio/documents" aria-label="Explore Documents"><div class="poster-art documents"><div><strong>Documents</strong><span>Design · Systems · Process</span></div></div><div class="poster-caption"><h3>Documents</h3></div></a><a class="category-reveal" href="#/portfolio/documents" id="documents-category-description" aria-label="Open Documents category"><h3>Documents</h3><p>Game design documents, mechanics breakdowns, UI flows, level design work, and other selected documentation.</p></a><button type="button" class="category-expand" aria-label="Show Documents description" aria-expanded="false" aria-controls="documents-category-description"></button></div>
+</div></section>
+  <section class="section route-page game-archive" id="games-page" aria-label="Games portfolio carousel">
+    <a class="route-back" href="#/portfolio">← Back to portfolio</a>
+    <div class="game-carousel">
+      <nav class="game-index" aria-label="Select game">
+        <span class="game-index-label">SELECT PROJECT</span>
+        <button type="button" class="game-index-btn active" data-game="0" aria-label="Show Breaking Point">01 <span>Breaking Point</span></button>
+        <button type="button" class="game-index-btn" data-game="1" aria-label="Show August In Maplewood">02 <span>August In Maplewood</span></button>
+        <button type="button" class="game-index-btn" data-game="2" aria-label="Show Carlos The Penguin!">03 <span>Carlos The Penguin!</span></button>
+        <span class="game-index-count">01 / 03</span>
+      </nav>
+      <div class="game-window" tabindex="0" aria-label="Game showcase. Use arrow keys to change slides">
+        <div class="game-track">
+          <article class="game-slide" aria-label="Breaking Point">
+            <div class="game-slide-copy"><span class="game-slide-num">01 / 03</span><h2>Breaking Point</h2><p class="game-date">Final major university project · 2025</p>
+              <p class="game-blurb">A narrative-driven 3D game following Alice and Phillip as they climb Mount Everest. The experience combines character-driven storytelling with survival-inspired gameplay.</p>
+              <h3>My main contributions</h3><p>UI and UX design, narrative and dialogue systems, gameplay mechanics, level design, programming, and team coordination.</p>
+              <button class="button game-open" type="button" data-game="0">Explore project <span class="game-open-arrow" aria-hidden="true"><span class="arrow-default">↗</span><span class="arrow-hover">→</span></span></button>
+            </div><div class="game-slide-visual"><img src="assets/BP_poster_final.png" alt="Breaking Point poster"></div>
+          </article>
+          <article class="game-slide" aria-label="August In Maplewood">
+            <div class="game-slide-copy"><span class="game-slide-num">02 / 03</span><h2>August In Maplewood</h2><p class="game-date">University proof of concept · Date to confirm</p>
+              <p class="game-blurb">A 2.5D murder mystery set in a small town. Players track clues and investigate what happened to uncover the truth.</p>
+              <h3>My main contributions</h3><p>Mechanics, narrative, user interface, and overall game design.</p>
+              <button class="button game-open" type="button" data-game="1">Explore project <span class="game-open-arrow" aria-hidden="true"><span class="arrow-default">↗</span><span class="arrow-hover">→</span></span></button>
+            </div><div class="game-slide-visual"><img src="assets/august-in-maplewood-poster.png" alt="August In Maplewood poster"></div>
+          </article>
+          <article class="game-slide" aria-label="Carlos The Penguin!">
+            <div class="game-slide-copy"><span class="game-slide-num">03 / 03</span><h2>Carlos The Penguin!</h2><p class="game-date">Early university project · Date to confirm</p>
+              <p class="game-blurb">A fast-paced 2D platformer where players race to reach an igloo. Every level must be completed before the ten-second timer runs out.</p>
+              <h3>My main contributions</h3><p>Core gameplay mechanics and level design, including the timed platforming challenge.</p>
+              <button class="button game-open" type="button" data-game="2">Explore project <span class="game-open-arrow" aria-hidden="true"><span class="arrow-default">↗</span><span class="arrow-hover">→</span></span></button>
+            </div><div class="game-slide-visual"><img src="assets/carlos-the-penguin.png" alt="Carlos The Penguin! thumbnail"></div>
+          </article>
+        </div>
+        <div class="game-controls"><button type="button" id="game-prev" aria-label="Previous game">←</button><span id="game-progress">01 — 03</span><button type="button" id="game-next" aria-label="Next game">→</button></div>
+      </div>
+    </div>
+  </section>
+  <div class="game-drawer-scrim" id="game-drawer-scrim" hidden></div>
+  <aside class="game-drawer" id="game-drawer" role="dialog" aria-modal="true" aria-label="Project details" aria-hidden="true" tabindex="-1">
+    <button class="game-drawer-close" id="game-drawer-close" aria-label="Close project details">← <span>BACK TO PROJECTS</span></button>
+    <div id="game-drawer-content"></div>
+  </aside>
+  <div class="game-modal" id="game-modal" role="dialog" aria-modal="true" aria-label="Contribution details" aria-hidden="true" hidden>
+    <div class="game-modal-backdrop" data-close-modal></div><div class="game-modal-panel" tabindex="-1"><button type="button" class="game-modal-close" aria-label="Close popup" data-close-modal>×</button><div id="game-modal-content"></div></div>
+  </div>
+  <section class="section route-page docs-archive" id="documents-page" aria-label="Design documents archive">
+    <a class="route-back" href="#/portfolio">← Back to portfolio</a>
+    <div class="docs-carousel">
+      <nav class="docs-index" aria-label="Select game documents">
+        <span class="docs-index-label">DOCUMENT COLLECTIONS</span>
+        <button class="docs-index-btn active" data-doc-slide="0" type="button">01 <span>Breaking Point</span></button>
+        <button class="docs-index-btn" data-doc-slide="1" type="button">02 <span>August In Maplewood</span></button>
+        <button class="docs-index-btn" data-doc-slide="2" type="button">03 <span>Carlos The Penguin!</span></button>
+        <span class="docs-index-count">01 / 03</span>
+      </nav>
+      <div class="docs-window" tabindex="0" aria-label="Document collections. Use left and right arrows to switch games">
+        <div class="docs-track">
+          <article class="docs-slide" aria-label="Breaking Point documents">
+            <div class="docs-slide-head"><div><span class="docs-eyebrow">COLLECTION 01 / 03</span><h2>Breaking Point</h2><p>Documentation, systems and interface work from my final major university project.</p></div><img src="assets/BP_poster_final.png" alt="Breaking Point poster"></div>
+            <div class="docs-card-grid">
+              <button type="button" class="docs-card" data-doc="bp-design"><span class="docs-card-type">01 · GAME DESIGN</span><span class="docs-card-symbol">▤</span><strong>Game Design Document</strong><span>Concept, mechanics and overall design direction.</span><span class="docs-card-bottom">View document details ↗</span></button>
+              <button type="button" class="docs-card" data-doc="bp-systems"><span class="docs-card-type">02 · SYSTEMS</span><span class="docs-card-symbol">◇</span><strong>Gameplay Systems</strong><span>Dialogue, inventory, survival and progression systems.</span><span class="docs-card-bottom">View document details ↗</span></button>
+              <button type="button" class="docs-card" data-doc="bp-ui"><span class="docs-card-type">03 · INTERFACE</span><span class="docs-card-symbol">▧</span><strong>UI / UX Design</strong><span>Menu, settings, journal and player-facing interface work.</span><span class="docs-card-bottom">View document details ↗</span></button>
+            </div>
+          </article>
+          <article class="docs-slide" aria-label="August In Maplewood documents">
+            <div class="docs-slide-head"><div><span class="docs-eyebrow">COLLECTION 02 / 03</span><h2>August In Maplewood</h2><p>Concept and design materials for a 2.5D small-town murder mystery.</p></div><img src="assets/august-in-maplewood-poster.png" alt="August In Maplewood poster"></div>
+            <div class="docs-card-grid">
+              <button type="button" class="docs-card" data-doc="aug-concept"><span class="docs-card-type">01 · CONCEPT</span><span class="docs-card-symbol">▤</span><strong>Game Concept</strong><span>Project premise, player experience and overall direction.</span><span class="docs-card-bottom">View document details ↗</span></button>
+              <button type="button" class="docs-card" data-doc="aug-narrative"><span class="docs-card-type">02 · NARRATIVE</span><span class="docs-card-symbol">✧</span><strong>Mystery & Narrative</strong><span>Story structure, investigation and clue-tracking concepts.</span><span class="docs-card-bottom">View document details ↗</span></button>
+              <button type="button" class="docs-card" data-doc="aug-ui"><span class="docs-card-type">03 · INTERFACE</span><span class="docs-card-symbol">▧</span><strong>UI Design</strong><span>Interface and investigation flow planning.</span><span class="docs-card-bottom">View document details ↗</span></button>
+            </div>
+          </article>
+          <article class="docs-slide" aria-label="Carlos The Penguin documents">
+            <div class="docs-slide-head"><div><span class="docs-eyebrow">COLLECTION 03 / 03</span><h2>Carlos The Penguin!</h2><p>Early platforming mechanics and level-design work from my studies.</p></div><img src="assets/carlos-the-penguin.png" alt="Carlos The Penguin! thumbnail"></div>
+            <div class="docs-card-grid">
+              <button type="button" class="docs-card" data-doc="car-mechanics"><span class="docs-card-type">01 · MECHANICS</span><span class="docs-card-symbol">◇</span><strong>Core Mechanics</strong><span>Timed platforming and the ten-second level objective.</span><span class="docs-card-bottom">View document details ↗</span></button>
+              <button type="button" class="docs-card" data-doc="car-levels"><span class="docs-card-type">02 · LEVEL DESIGN</span><span class="docs-card-symbol">▦</span><strong>Level Design</strong><span>Level layouts, timing and platforming challenges.</span><span class="docs-card-bottom">View document details ↗</span></button>
+            </div>
+          </article>
+        </div>
+        <div class="docs-controls"><button type="button" id="docs-prev" aria-label="Previous document collection">←</button><span id="docs-progress">01 — 03</span><button type="button" id="docs-next" aria-label="Next document collection">→</button></div>
+      </div>
+    </div>
+  </section>
+  <div class="docs-modal" id="docs-modal" hidden role="dialog" aria-modal="true" aria-label="Document details">
+    <div class="docs-modal-shade" data-close-doc></div><div class="docs-modal-panel" tabindex="-1"><button class="docs-modal-close" type="button" aria-label="Close document details" data-close-doc>×</button><div id="docs-modal-content"></div></div>
+  </div>
   <section class="section route-page" id="showreel-page"><a class="route-back" href="#/home">← Back to home</a><div class="route-head"><p class="section-kicker">Video showcase</p><h2>Showreel</h2><p class="section-copy">A dedicated page for your video reel, so visitors can watch your work without leaving the page. We can embed your YouTube, Vimeo, or hosted video once you have its link.</p></div><div class="showreel-frame"><div><div class="play-mark" aria-hidden="true">▶</div><p>Showreel video placeholder · Add your video link</p></div></div><div class="button-row" style="justify-content:center"><a class="button" href="#/portfolio">Explore my portfolio ↗</a></div></section>
   <section class="section route-page" id="project-page"><a class="route-back" href="#/portfolio/games">← Back to games</a><div class="project-hero"><div><p class="section-kicker">A story-driven climbing game · Unity</p><h2 id="project-title">Breaking Point</h2><p>Every step tests your strength. Every choice tests your trust.</p><a class="button" href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">Play on itch.io ↗</a></div></div><div class="case-layout"><article class="case-main"><p class="section-kicker">Overview</p><h2 style="font-size:clamp(32px,4vw,48px)">A promise at the top of the world.</h2><p>In <em>Breaking Point</em>, you step into the shoes of Alice, a serious, determined climber who wants to fulfill a promise with the person she loves most: her husband, Phillip, who is climbing alongside her. Witty and reassuring, Phillip brings lightness to even the harshest moments of their journey.</p><p>Together, they face the brutal beauty of the world's tallest mountain, where every step tests more than their physical limits.</p><p>As the altitude rises, so do the stakes. A past mistake has fractured Alice's confidence, leaving her dependent on Phillip's steady voice to guide her forward. Players must navigate both the treacherous path ahead and Alice's inner struggle with self-doubt and trust.</p><p><em>Breaking Point</em> is more than survival. It's a story about connection, resilience, and the unspoken battles we carry within us.</p><h3>Features & design focus</h3><ul class="case-list"><li>Story-driven 3D climbing experience set on Mount Everest</li><li>Character-focused narrative about connection, self-doubt, resilience, and trust</li><li>Gameplay and level design shaped around a dangerous mountain ascent</li><li>Player-facing interface and scripted narrative moments</li></ul><h3>My contributions</h3><p>I worked across design, implementation, UI, and team coordination, helping bring the game's mechanics and player-facing systems together into a cohesive experience.</p><h3>UI & interface design</h3><ul class="case-list"><li>Designed the game's UI, including the main menu and settings menus</li><li>Created dialogue UI, tips UI, keybinds, and settings for options such as volume</li><li>Designed UI animations and the journal / quest log</li><li>Built the oxygen and energy interface to communicate important player resources</li></ul><h3>Gameplay systems & programming</h3><ul class="case-list"><li>Worked on the dialogue system and branching dialogue trees</li><li>Implemented the quick-time event (QTE) system</li><li>Developed the inventory system, save/load mechanic, and level-loading flow</li><li>Worked on the day-and-night system and player-death flow</li><li>Helped connect the game's mechanics so the systems worked together</li><li>Synced player animations with movement</li></ul><h3>Audio, cinematics & level design</h3><ul class="case-list"><li>Implemented music and sound effects using FMOD</li><li>Worked on cinematic sequences and some level design</li><li>Contributed to bug fixing and overall polish</li></ul><h3>Writing & team collaboration</h3><ul class="case-list"><li>Contributed to script writing and narrative implementation</li><li>Helped manage the team and coordinate work across different areas of development</li></ul><p>These responsibilities span both creative design and technical implementation, from shaping the player experience through menus and feedback to connecting gameplay systems and supporting the final polish.</p>
 <section class="bp-showcase" aria-label="Breaking Point design and development showcase">
@@ -417,25 +788,86 @@ h1 em { color: #d99aaa; font-weight: 400; }
   </div>
 </section>
 <div class="case-cta"><p class="section-kicker">Ready to take the climb?</p><h3 style="margin-top:0">Play Breaking Point</h3><p>Check out the project on itch.io.</p><a class="button" href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">View game on itch.io ↗</a></div></article><aside class="case-sidebar"><p class="section-kicker">Project details</p><dl><dt>Project type</dt><dd>Game</dd><dt>Role</dt><dd>UI Design, Level Design, Script Writing, Programming, Game Design</dd><dt>Collaborators</dt><dd>Nathan, Kevin, Reala, Bill, Dylan</dd><dt>Development time</dt><dd>6 months</dd><dt>Game engine</dt><dd>Unity</dd><dt>Project links</dt><dd><a href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">Breaking Point on itch.io ↗</a></dd></dl></aside></div><div class="button-row"><a class="button secondary" href="#/portfolio/games">← Back to games</a><a class="button secondary" href="#/portfolio/documents">Explore documents ↗</a><a class="button" href="#/contact">Contact me ↗</a></div></section>
-  <footer class="footer"><div class="footer-inner"><span>© Game Design Portfolio</span><div class="socials" aria-label="Social links"><a href="#/contact" aria-label="Instagram — add your profile link">IG</a><a href="#/contact" aria-label="LinkedIn — add your profile link">in</a><a href="#/contact" aria-label="itch.io — add your profile link">it</a><a href="#/contact" aria-label="YouTube — add your profile link">YT</a></div><span>Designed with care · Burgundy edition</span></div></footer>
+  <section class="contact-strip" aria-label="Location and email">
+  <div class="contact-strip-inner">
+    <a class="contact-strip-link" href="https://www.google.com/maps/search/?api=1&amp;query=Michigan%2C%20USA" target="_blank" rel="noopener noreferrer" aria-label="View Michigan, United States on Google Maps">
+      <span class="contact-strip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+      <span class="contact-strip-text"><span class="contact-strip-label">Currently based in</span><span class="contact-strip-value">Michigan, US</span></span><span class="contact-strip-arrow" aria-hidden="true">↗</span>
+    </a>
+    <a class="contact-strip-link" href="mailto:leyla.erginli14@gmail.com" aria-label="Email Leyla at leyla.erginli14@gmail.com">
+      <span class="contact-strip-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+      <span class="contact-strip-text"><span class="contact-strip-label">Get in touch</span><span class="contact-strip-value">leyla.erginli14@gmail.com</span></span><span class="contact-strip-arrow" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</section>
+<footer class="footer"><div class="footer-inner"><span>© <span id="copyright-year">2026</span> Leyla Flachs. All rights reserved.</span><nav class="footer-links" aria-label="Social media links"><a href="https://anoobcarrot.itch.io" target="_blank" rel="noopener noreferrer" aria-label="itch.io" title="itch.io"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.2 5.1 5.7 2.5h12.6l2.5 2.6 2.1 5.4v2.1c0 1.3-1.1 2.4-2.4 2.4-.9 0-1.7-.5-2.1-1.2-.5.7-1.2 1.2-2.2 1.2s-1.8-.5-2.2-1.2c-.5.7-1.2 1.2-2.2 1.2s-1.7-.5-2.2-1.2c-.4.7-1.2 1.2-2.1 1.2-1.4 0-2.5-1.1-2.5-2.4v-2.1l2.2-5.4ZM5 15.9c.8.4 1.6.6 2.5.5.8 0 1.6-.2 2.3-.6.7.4 1.5.6 2.2.6.8 0 1.6-.2 2.3-.6.7.4 1.5.6 2.3.6.9.1 1.7-.1 2.5-.5v3.2c0 1.3-1 2.4-2.4 2.4H7.4C6 21.5 5 20.4 5 19.1v-3.2Zm4.1 1.2v2h5.8v-2H9.1Z"/></svg></a><a href="https://x.com/anoobcarrot" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" title="Twitter / X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.5L1.9 2h6.5l4.5 6.7L18.9 2Zm-1.1 18h1.7L7.4 3.9H5.6L17.8 20Z"/></svg></a><a href="https://www.instagram.com/leylaflachs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-2.8a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Z"/></svg></a><a href="https://www.youtube.com/@anoobcarrot" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.1a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.5A3 3 0 0 0 1 7.1 31 31 0 0 0 .5 12c0 1.6.2 3.3.5 4.9A3 3 0 0 0 3.1 19C5 19.5 12 19.5 12 19.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.3-1.6.5-3.3.5-4.9s-.2-3.3-.5-4.9ZM9.7 15.2V8.8l6.1 3.2-6.1 3.2Z"/></svg></a><a href="https://www.linkedin.com/in/leyla-flachs-1a1a4834a/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.46 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.29 10.85H15.8V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.51V9.2h2.83v1.3h.04c.39-.75 1.36-1.55 2.79-1.55 2.99 0 3.58 1.97 3.58 4.53v5.27Z"/></svg></a><a href="https://github.com/anoobcarrot" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.69.08-.69 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18A11 11 0 0 1 12 6.12c.98 0 1.97.13 2.89.39 2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.77 1.05.77 2.12 0 1.53-.02 2.77-.02 3.15 0 .3.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a></nav><div class="footer-extras"><span class="footer-availability">Open to opportunities</span><button class="pixel-heart" type="button" aria-label="A little pixel-heart Easter egg. Click to give it some love!" title="Psst… click me!" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h4v1h1v1h2V4h1V3h4v1h1v5h-1v1h-1v1h-1v1h-1v1h-1v1H6v-1H5v-1H4v-1H3v-1H2V9H1V4h1z"/></svg></button><button class="footer-back-top" type="button">↑ Back to Top</button></div></div></footer>
 </div>
 <script>
+document.getElementById("copyright-year").textContent = new Date().getFullYear();
 (() => {
-  const routeIds = { '/contact': 'contact-page', '/portfolio': 'portfolio-page', '/portfolio/games': 'games-page', '/portfolio/documents': 'documents-page', '/showreel': 'showreel-page', '/project/breaking-point': 'project-page', '/project/two': 'project-page', '/project/three': 'project-page' };
+  const routeIds = { '/hobbies': 'hobbies-page', '/contact': 'contact-page', '/portfolio': 'portfolio-page', '/portfolio/games': 'games-page', '/portfolio/documents': 'documents-page', '/showreel': 'showreel-page', '/project/breaking-point': 'project-page', '/project/two': 'project-page', '/project/three': 'project-page' };
   const homeSections = Array.from(document.querySelectorAll('main > section'));
   const pages = Array.from(document.querySelectorAll('.route-page'));
+  const typeTarget = document.querySelector('.portfolio-type-title span');
+  const typePhrase = 'CHOOSE A CATEGORY';
+  let typeTimer;
+  function stopTyping(){ clearTimeout(typeTimer); typeTimer = undefined; }
+  function startTyping(){
+    stopTyping();
+    if (!typeTarget) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){ typeTarget.textContent = typePhrase; return; }
+    let count = 0;
+    let deleting = false;
+    typeTarget.textContent = '';
+    function tick(){
+      if (!document.getElementById('portfolio-page').classList.contains('active')) return;
+      if (!deleting){
+        count++;
+        typeTarget.textContent = typePhrase.slice(0,count);
+        if (count === typePhrase.length){ deleting = true; typeTimer = setTimeout(tick,1450); return; }
+        typeTimer = setTimeout(tick,105);
+      }else{
+        count--;
+        typeTarget.textContent = typePhrase.slice(0,count);
+        if (count === 0){ deleting = false; typeTimer = setTimeout(tick,550); return; }
+        typeTimer = setTimeout(tick,55);
+      }
+    }
+    typeTimer = setTimeout(tick,350);
+  }
+
   function renderRoute() {
     const route = location.hash.startsWith('#/') ? location.hash.slice(1) : '/home';
+    const goToAbout = route === '/home/about' || location.hash === '#about';
     const targetId = routeIds[route];
     homeSections.forEach(section => section.style.display = targetId ? 'none' : '');
     pages.forEach(page => page.classList.toggle('active', page.id === targetId));
+    if (targetId === 'portfolio-page') startTyping(); else stopTyping();
     if (route.startsWith('/project/')) {
       const title = route.endsWith('breaking-point') ? 'Breaking Point' : route.endsWith('/two') ? 'Your second game' : 'Your third game';
       document.getElementById('project-title').textContent = title;
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (goToAbout) {
+      requestAnimationFrame(() => {
+        const about = document.getElementById('about');
+        const header = document.querySelector('.topbar');
+        if (!about) return;
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        const targetTop = about.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
   window.addEventListener('hashchange', renderRoute);
+  document.querySelector('.nav a[href="#/home/about"]')?.addEventListener('click', () => {
+    if (location.hash === '#/home/about') renderRoute();
+  });
+  document.querySelector('.more-projects')?.addEventListener('click', event => {
+    event.preventDefault();
+    document.getElementById('portfolio-cta')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
   const contactForm = document.getElementById('portfolio-contact-form');
   contactForm.addEventListener('submit', event => {
     if (contactForm.action.includes('REPLACE_WITH_YOUR_EMAIL')) {
@@ -444,6 +876,172 @@ h1 em { color: #d99aaa; font-weight: 400; }
     }
   });
   renderRoute();
+})();
+</script>
+<aside class="floating-socials" aria-label="Social profiles">
+  <a href="https://github.com/anoobcarrot" target="_blank" rel="noopener noreferrer" aria-label="GitHub — anoobcarrot" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.69.08-.69 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18A11 11 0 0 1 12 6.12c.98 0 1.97.13 2.89.39 2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.77 1.05.77 2.12 0 1.53-.02 2.77-.02 3.15 0 .3.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
+  <a href="https://anoobcarrot.itch.io" target="_blank" rel="noopener noreferrer" aria-label="itch.io — anoobcarrot" title="itch.io"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.2 5.1 5.7 2.5h12.6l2.5 2.6 2.1 5.4v2.1c0 1.3-1.1 2.4-2.4 2.4-.9 0-1.7-.5-2.1-1.2-.5.7-1.2 1.2-2.2 1.2s-1.8-.5-2.2-1.2c-.5.7-1.2 1.2-2.2 1.2s-1.7-.5-2.2-1.2c-.4.7-1.2 1.2-2.1 1.2-1.4 0-2.5-1.1-2.5-2.4v-2.1l2.2-5.4ZM5 15.9c.8.4 1.6.6 2.5.5.8 0 1.6-.2 2.3-.6.7.4 1.5.6 2.2.6.8 0 1.6-.2 2.3-.6.7.4 1.5.6 2.3.6.9.1 1.7-.1 2.5-.5v3.2c0 1.3-1 2.4-2.4 2.4H7.4C6 21.5 5 20.4 5 19.1v-3.2Zm4.1 1.2v2h5.8v-2H9.1Z"/></svg></a>
+  <a href="https://www.linkedin.com/in/leyla-flachs-1a1a4834a/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — Leyla Flachs" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.46 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.29 10.85H15.8V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.51V9.2h2.83v1.3h.04c.39-.75 1.36-1.55 2.79-1.55 2.99 0 3.58 1.97 3.58 4.53v5.27Z"/></svg></a>
+</aside>
+<script>
+  document.querySelector('.footer-back-top')?.addEventListener('click', () => {
+    if (location.hash !== '#/home') location.hash = '#/home';
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  document.querySelector('.pixel-heart')?.addEventListener('click', (event) => {
+    const heart = event.currentTarget;
+    const loved = heart.getAttribute('aria-pressed') !== 'true';
+    heart.setAttribute('aria-pressed', String(loved));
+    heart.classList.toggle('is-loved', loved);
+    heart.title = loved ? 'You found a little love! ♥' : 'Psst… click me!';
+    // A tiny burst of pixel hearts floats over the page when the Easter egg is found.
+    if (loved && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const bounds = heart.getBoundingClientRect();
+      const x = bounds.left + bounds.width / 2;
+      const y = bounds.top + bounds.height / 2;
+      const colors = ['#f4a7c2', '#eac2ce', '#fff0f5', '#cf7f9b', '#f6d5df'];
+      for (let i = 0; i < 22; i++) {
+        const spark = document.createElement('span');
+        spark.className = 'heart-spark';
+        spark.textContent = i % 3 === 0 ? '✦' : '♥';
+        spark.setAttribute('aria-hidden', 'true');
+        spark.style.left = x + 'px';
+        spark.style.top = y + 'px';
+        spark.style.color = colors[i % colors.length];
+        spark.style.setProperty('--dx', (Math.cos(i * 2.399) * (85 + (i % 5) * 24)) + 'px');
+        spark.style.setProperty('--dy', (-55 - (i % 7) * 27 + Math.sin(i * 2.399) * 55) + 'px');
+        spark.style.setProperty('--rot', ((i % 2 ? -1 : 1) * (25 + i * 19)) + 'deg');
+        spark.style.setProperty('--scale', String(.65 + (i % 4) * .24));
+        spark.style.animationDelay = (i % 5) * 28 + 'ms';
+        document.body.appendChild(spark);
+        spark.addEventListener('animationend', () => spark.remove(), {once:true});
+      }
+    }
+  });
+</script>
+<script>
+document.querySelectorAll('.category-expand').forEach(button => {
+  button.addEventListener('click', event => {
+    event.preventDefault();
+    event.stopPropagation();
+    const card = button.closest('.category-card');
+    const expanded = card.classList.toggle('is-expanded');
+    button.setAttribute('aria-expanded', String(expanded));
+    button.setAttribute('aria-label', (expanded ? 'Hide ' : 'Show ') + (card.querySelector('.poster-caption h3')?.textContent || 'category') + ' description');
+    button.textContent = '';
+  });
+});
+</script>
+
+<script>
+(() => {
+const games = [
+ {title:"Breaking Point",role:"UI Design · Level Design · Narrative · Programming · Team Management",
+  short:"Breaking Point is more than just survival. It's about connection, resilience & the unspoken battles we carry within us.",
+  banner:"assets/BP_poster_final.png", trailer:null,
+  contributions:[
+   "Designed and implemented the main menu, settings menus, keybind interface and player-facing UI animations.",
+   "Created the dialogue UI and worked on branching dialogue trees and narrative implementation.",
+   "Implemented quick-time events, player tips and interaction feedback.",
+   "Worked on inventory, journal and quest-log systems, save/load functionality and level loading.",
+   "Developed or integrated oxygen and energy indicators, day/night progression and player-death flow.",
+   "Synced movement animations and implemented music and sound effects using FMOD.",
+   "Contributed to level design, cinematic sequences, bug fixes and overall game polish.",
+   "Supported team management and coordinated tasks across the project."
+  ],
+  gameplay:[
+   ["Dialogue and narrative","Branching dialogue trees and character conversations.","assets/dialogue.png"],
+   ["Journal and quest tracking","Player-facing journal and quest-log design.","assets/journal.png"],
+   ["Inventory and survival feedback","Inventory, oxygen and energy systems.","assets/inventory.png"]
+  ],
+  technical:[
+   ["Main menu","Menu implementation and navigation.","assets/menu.png"],
+   ["Settings and controls","Settings UI, audio controls and keybind presentation.","assets/settings.png"],
+   ["Gameplay systems","Quick-time events, save/load, level transitions, day/night and player death.",null]
+  ],
+  meta:[["Genre","3D narrative adventure / climbing"],["Platform","PC (confirm final build)"],["Duration","6 months"],["Team size","6 (including me)"],["Engine","Unity"],["Tools","Unity · C# · FMOD"]],
+  link:"https://bun-bao.itch.io/breaking-point"
+ },
+ {title:"August In Maplewood",role:"Mechanics · Narrative · UI · Design",
+  short:"A 2.5D small-town murder mystery where players collect and track clues to discover what happened.",
+  banner:"assets/august-in-maplewood-poster.png",trailer:null,
+  contributions:["Contributed to the core game mechanics and investigative gameplay concept.","Worked on the narrative direction and mystery premise.","Designed user interface elements and overall player experience.","Helped shape the project's proof-of-concept design during university studies."],
+  gameplay:[["Investigation mechanics","Clue tracking and murder-mystery gameplay design. Add screenshots or footage when available.",null],["Narrative design","Small-town mystery and story structure. Add evidence when available.",null]],
+  technical:[["Interface design","UI planning and implementation details can be added here with screenshots.",null]],
+  meta:[["Genre","2.5D murder mystery"],["Platform","To confirm"],["Duration","To confirm"],["Team size","To confirm"],["Engine","To confirm"],["Tools","To confirm"]],link:null
+ },
+ {title:"Carlos The Penguin!",role:"Mechanics · Level Design",
+  short:"A 2D platformer where players must reach the igloo within ten seconds to unlock the next level.",
+  banner:"assets/carlos-the-penguin.png",trailer:null,
+  contributions:["Designed the core ten-second level-completion mechanic.","Contributed to platforming mechanics and gameplay pacing.","Designed levels around reaching the igloo before the timer expires.","Worked on an early university project exploring short, repeatable gameplay challenges."],
+  gameplay:[["Timed platforming","Ten-second timer and igloo goal mechanic. Add gameplay screenshots when available.",null],["Level design","Level layouts and pacing around the countdown challenge. Add evidence when available.",null]],
+  technical:[["Gameplay implementation","Add implementation footage or screenshots and specific tools when confirmed.",null]],
+  meta:[["Genre","2D platformer"],["Platform","To confirm"],["Duration","To confirm"],["Team size","To confirm"],["Engine","To confirm"],["Tools","To confirm"]],link:null
+ }
+];
+const root=document.getElementById('games-page'), track=root.querySelector('.game-track');
+const tabs=[...root.querySelectorAll('.game-index-btn')],progress=document.getElementById('game-progress'),count=root.querySelector('.game-index-count');
+const drawer=document.getElementById('game-drawer'),scrim=document.getElementById('game-drawer-scrim'),modal=document.getElementById('game-modal');
+let current=0,lastFocus=null;
+function go(i){current=(i+games.length)%games.length;track.style.transform=`translateX(-${current*100}%)`;tabs.forEach((t,j)=>{t.classList.toggle('active',j===current);t.setAttribute('aria-current',j===current?'true':'false')});const n=String(current+1).padStart(2,'0');progress.textContent=n+' — 03';count.textContent=n+' / 03'}
+tabs.forEach(t=>t.addEventListener('click',()=>go(+t.dataset.game)));
+document.getElementById('game-prev').addEventListener('click',()=>go(current-1));
+document.getElementById('game-next').addEventListener('click',()=>go(current+1));
+root.querySelector('.game-window').addEventListener('keydown',e=>{if(e.key==='ArrowRight'){go(current+1);e.preventDefault()}if(e.key==='ArrowLeft'){go(current-1);e.preventDefault()}});
+let touchX=null;root.querySelector('.game-window').addEventListener('touchstart',e=>{touchX=e.changedTouches[0].screenX},{passive:true});
+root.querySelector('.game-window').addEventListener('touchend',e=>{if(touchX===null)return;const delta=e.changedTouches[0].screenX-touchX;if(Math.abs(delta)>60)go(current+(delta<0?1:-1));touchX=null},{passive:true});
+const escapeHTML=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function openDrawer(i){
+ const g=games[i];lastFocus=document.activeElement;
+ document.getElementById('game-drawer-content').innerHTML=`
+ <div class="game-detail-banner"><img src="${g.banner}" alt=""><div class="game-detail-banner-content"><p>${escapeHTML(g.role)}</p><h2>${escapeHTML(g.title)}</h2><p>${escapeHTML(g.short)}</p>${g.trailer?'<button type="button" class="button game-trailer-btn" data-trailer>▶ Show Trailer</button>':''}</div></div>
+ <div class="game-detail-body"><h3>My Contributions</h3><ul>${g.contributions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul>
+ <div class="game-detail-actions"><button type="button" data-evidence="gameplay">Gameplay Design Contributions ↗</button><button type="button" data-evidence="technical">Technical Design Contributions ↗</button></div>
+ <h3>Project Details</h3><dl class="game-detail-meta">${g.meta.map(([a,b])=>`<div><dt>${escapeHTML(a)}</dt><dd>${escapeHTML(b)}</dd></div>`).join('')}</dl>${g.link?`<p style="margin-top:28px"><a class="button secondary" href="${g.link}" target="_blank" rel="noopener noreferrer">View playable project ↗</a></p>`:''}</div>`;
+ drawer.dataset.game=i;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');scrim.hidden=false;requestAnimationFrame(()=>scrim.classList.add('visible'));document.body.style.overflow='hidden';drawer.focus();
+}
+function closeDrawer(){if(!modal.hidden)closeModal();drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');scrim.classList.remove('visible');document.body.style.overflow='';setTimeout(()=>{if(!drawer.classList.contains('open'))scrim.hidden=true},420);lastFocus?.focus()}
+function openModal(kind){
+ const g=games[+drawer.dataset.game],items=g[kind],title=kind==='gameplay'?'Gameplay Design Contributions':'Technical Design Contributions';
+ document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img])=>`<section class="game-evidence"><h3>${escapeHTML(name)}</h3><p>${escapeHTML(desc)}</p>${img?`<img src="${img}" alt="${escapeHTML(name)} project evidence" loading="lazy">`:'<p><em>Media coming soon</em></p>'}</section>`).join('')}`;
+ modal.hidden=false;modal.setAttribute('aria-hidden','false');modal.querySelector('.game-modal-panel').focus();
+}
+function closeModal(){modal.hidden=true;modal.setAttribute('aria-hidden','true');drawer.focus()}
+root.querySelectorAll('.game-open').forEach(b=>b.addEventListener('click',()=>openDrawer(+b.dataset.game)));
+document.getElementById('game-drawer-close').addEventListener('click',closeDrawer);scrim.addEventListener('click',closeDrawer);
+drawer.addEventListener('click',e=>{const b=e.target.closest('[data-evidence]');if(b)openModal(b.dataset.evidence);if(e.target.closest('[data-trailer]')){const g=games[+drawer.dataset.game];if(g.trailer){openModal('gameplay');document.getElementById('game-modal-content').innerHTML=`<h2>${escapeHTML(g.title)} — Trailer</h2><video src="${g.trailer}" controls autoplay playsinline style="width:100%;max-height:65vh"></video>`}}});
+modal.querySelectorAll('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModal));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!modal.hidden)closeModal();else if(drawer.classList.contains('open'))closeDrawer()}});
+window.addEventListener('hashchange',()=>{if(drawer.classList.contains('open'))closeDrawer()});
+go(0);
+})();
+</script>
+
+<script>
+(()=>{
+ const root=document.getElementById('documents-page');if(!root)return;
+ const track=root.querySelector('.docs-track'),tabs=[...root.querySelectorAll('.docs-index-btn')],progress=document.getElementById('docs-progress'),count=root.querySelector('.docs-index-count');
+ const modal=document.getElementById('docs-modal'),content=document.getElementById('docs-modal-content');
+ const entries={
+  'bp-design':['Breaking Point','Game Design Document','Concept, mechanics and overall design direction for Breaking Point.'],
+  'bp-systems':['Breaking Point','Gameplay Systems','Dialogue, inventory, survival and progression systems.'],
+  'bp-ui':['Breaking Point','UI / UX Design','Menu, settings, journal and player-facing interface work.'],
+  'aug-concept':['August In Maplewood','Game Concept','Project premise, player experience and overall design direction.'],
+  'aug-narrative':['August In Maplewood','Mystery & Narrative','Story structure, investigation and clue-tracking concepts.'],
+  'aug-ui':['August In Maplewood','UI Design','Interface and investigation flow planning.'],
+  'car-mechanics':['Carlos The Penguin!','Core Mechanics','Timed platforming and the ten-second level objective.'],
+  'car-levels':['Carlos The Penguin!','Level Design','Level layouts, timing and platforming challenges.']
+ };
+ let active=0,focusBefore=null;
+ function go(i){active=(i+3)%3;track.style.transform=`translateX(-${active*100}%)`;tabs.forEach((b,j)=>{b.classList.toggle('active',j===active);b.setAttribute('aria-current',j===active?'true':'false')});const n=String(active+1).padStart(2,'0');progress.textContent=n+' — 03';count.textContent=n+' / 03'}
+ tabs.forEach(b=>b.addEventListener('click',()=>go(+b.dataset.docSlide)));
+ document.getElementById('docs-prev').addEventListener('click',()=>go(active-1));document.getElementById('docs-next').addEventListener('click',()=>go(active+1));
+ const win=root.querySelector('.docs-window');win.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){go(active+1);e.preventDefault()}else if(e.key==='ArrowLeft'){go(active-1);e.preventDefault()}});
+ let touch=null;win.addEventListener('touchstart',e=>touch=e.changedTouches[0].screenX,{passive:true});win.addEventListener('touchend',e=>{if(touch===null)return;const d=e.changedTouches[0].screenX-touch;if(Math.abs(d)>60)go(active+(d<0?1:-1));touch=null},{passive:true});
+ root.querySelectorAll('[data-doc]').forEach(b=>b.addEventListener('click',()=>{const [game,title,description]=entries[b.dataset.doc];focusBefore=b;content.replaceChildren();const label=document.createElement('span');label.className='docs-eyebrow';label.textContent=game.toUpperCase();const heading=document.createElement('h2');heading.textContent=title;const p=document.createElement('p');p.textContent=description;const pending=document.createElement('div');pending.className='docs-pending';pending.textContent='Document preview and PDF link coming soon. This is a planned collection entry, not an uploaded document.';content.append(label,heading,p,pending);modal.hidden=false;modal.querySelector('.docs-modal-panel').focus();document.body.style.overflow='hidden'}));
+ function close(){if(modal.hidden)return;modal.hidden=true;document.body.style.overflow='';focusBefore?.focus()}
+ modal.querySelectorAll('[data-close-doc]').forEach(b=>b.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});window.addEventListener('hashchange',close);
+ go(0);
 })();
 </script>
 </body>
