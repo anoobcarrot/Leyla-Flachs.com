@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Game Design Portfolio</title>
+<title>Leyla Flachs | Game Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --site-primary: #800f2f;
@@ -13,7 +16,7 @@
   --site-on-secondary: #f5f0f6;
   --site-on-background: #f4f0ed;
   --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --site-heading-scale: 1;
   --site-spacing-scale: 1;
   --site-radius-scale: 1;
@@ -195,6 +198,126 @@ h1 em { color: #d99aaa; font-weight: 400; }
   .case-layout { grid-template-columns: 1fr; }
   .project-hero { min-height: 300px; }
 }
+.hero-intro-center h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; letter-spacing: -.025em; font-size: clamp(74px, 12vw, 154px); line-height: .95; }
+.hero-role { font-family: Inter, sans-serif; letter-spacing: .34em; text-transform: uppercase; font-weight: 400; }
+.contact-page-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(35px,7vw,110px);align-items:start}.contact-form{display:flex;flex-direction:column;gap:12px;padding:30px;border:1px solid #603444;background:#1c0e15}.contact-form label{font-size:12px;color:#eed9df;letter-spacing:.04em}.contact-form input,.contact-form textarea{width:100%;box-sizing:border-box;border:1px solid #704252;border-radius:0;background:#140b0f;color:#fff4f5;padding:14px 16px;font:inherit;outline:none}.contact-form input:focus,.contact-form textarea:focus{border-color:#d99aaa}.contact-form button{cursor:pointer;align-self:flex-start;margin-top:8px}.form-note{font-size:12px;color:#cba7b4;line-height:1.6}@media(max-width:750px){.contact-page-layout{grid-template-columns:1fr}.contact-form{padding:22px}}
+
+/* Two-column My Work feature: fixed introduction on the left, 2x2 project grid on the right. */
+.work-layout{display:grid;grid-template-columns:minmax(230px,.82fr) minmax(0,1.7fr);gap:clamp(32px,5vw,78px);align-items:start}
+.work-copy{position:static;align-self:center;padding-top:0}
+.work-copy h2{margin:0 0 20px}
+.work-copy .section-copy{max-width:340px;margin:0 0 26px;line-height:1.7}
+.work-project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.work-project-grid .project{min-width:0}
+@media(max-width:900px){.work-layout{grid-template-columns:1fr}.work-copy{position:static;padding-top:0}.work-copy .section-copy{max-width:560px}}
+@media(max-width:560px){.work-project-grid{grid-template-columns:1fr}}
+
+/* A4 portrait thumbnails in the My Work grid */
+.work-project-grid { align-items: stretch; }
+.work-project-grid > .project { display:flex; flex-direction:column; min-height:0; }
+.work-project-grid .project-art { aspect-ratio: 1 / 1.4142; flex:none; background:#201522; }
+.work-project-grid .project-art img { width:100%; height:100%; object-fit:contain !important; object-position:center !important; }
+.work-project-grid .project:not(:has(.project-art)) { aspect-ratio:1 / 1.4142; justify-content:center; padding:clamp(14px,2vw,28px); }
+.work-project-grid .project-panel { position:relative; inset:auto; max-height:none; padding:14px 16px; border-top:1px solid rgba(217,154,170,.3); }
+.work-project-grid .project-reveal { display:none; }
+.work-project-grid .project-caption { position:relative; }
+.work-project-grid .project .project-tags { display:none; }
+.work-project-grid .project .project-title { font-size:clamp(18px,2vw,25px); }
+
+/* Fix cramped project descriptions in narrow A4 poster cards. */
+.work-project-grid .project:not(:last-child){display:flex;flex-direction:column}
+.work-project-grid .project-art{aspect-ratio:1 / 1.414;flex:0 0 auto}
+.work-project-grid .project-art img{object-fit:contain!important;object-position:center!important;background:#20151d}
+.work-project-grid .project-panel{position:static;inset:auto;max-height:none!important;overflow:visible;padding:14px 15px;background:#2b111b;border-top:1px solid #603245;cursor:pointer}
+.work-project-grid .project-heading{align-items:start}
+.work-project-grid .project-title{font-size:clamp(17px,1.6vw,21px);line-height:1.2}
+.work-project-grid .project-tags{font-size:10px;line-height:1.5;overflow-wrap:anywhere}
+.work-project-grid .project-reveal{display:none}
+.work-project-grid .project-icon{display:none}
+.work-project-grid .project-caption{padding:10px 15px 15px;line-height:1.5}
+.work-project-grid .project:hover .project-panel{background:#2b111b}
+
+/* Interactive portrait project card: full poster stays visible while details expand beneath it. */
+.work-project-grid .project:has(.project-toggle) .project-panel{
+  display:block;position:relative;inset:auto;box-sizing:border-box;width:100%;
+  padding:14px 16px;max-height:77px!important;overflow:hidden;
+  cursor:pointer;background:#2b111b;transition:max-height .35s ease,background .25s ease;
+}
+.work-project-grid .project:has(.project-toggle) .project-tags{display:block;font-size:10px;line-height:1.45;margin:5px 0 0}
+.work-project-grid .project:has(.project-toggle) .project-reveal{display:block;opacity:0;transform:translateY(-5px);transition:opacity .2s ease,transform .25s ease}
+.work-project-grid .project:has(.project-toggle) .project-icon{display:block}
+.work-project-grid .project:has(.project-toggle) .project-icon::before{content:'+'}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel{
+  max-height:320px!important;background:#411324;
+}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel .project-reveal{opacity:1;transform:none}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel .project-icon::before{content:'−'}
+@media(hover:hover) and (pointer:fine){
+ .work-project-grid .project:has(.project-toggle):hover .project-panel{max-height:320px!important;background:#411324}
+ .work-project-grid .project:has(.project-toggle):hover .project-reveal{opacity:1;transform:none}
+ .work-project-grid .project:has(.project-toggle):hover .project-icon::before{content:'−'}
+}
+
+/* Portrait poster overlay: description opens UP over artwork, never pushes cards down. */
+.work-project-grid .project:has(.project-toggle){position:relative;isolation:isolate}
+.work-project-grid .project:has(.project-toggle) .project-art{position:relative}
+.work-project-grid .project:has(.project-toggle) .project-panel{
+ position:absolute!important;left:0;right:0;bottom:40px;top:auto;z-index:3;
+ width:100%;max-height:82px!important;overflow:hidden;
+ padding:16px 18px!important;background:linear-gradient(0deg,rgba(30,8,19,.98),rgba(49,16,31,.94))!important;
+ border-top:1px solid rgba(239,173,192,.45);box-shadow:0 -12px 28px rgba(14,5,10,.3);
+ transition:max-height .35s ease,background .25s ease!important;
+}
+.work-project-grid .project:has(.project-toggle) .project-caption{position:relative;z-index:4;min-height:40px}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel{max-height:310px!important}
+@media(hover:hover) and (pointer:fine){.work-project-grid .project:has(.project-toggle):hover .project-panel{max-height:310px!important}}
+@media(max-width:560px){.work-project-grid .project:has(.project-toggle) .project-panel{max-height:76px!important}.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel{max-height:290px!important}}
+
+/* Keep category tags out of the collapsed title bar; reveal them with the description. */
+.work-project-grid .project:has(.project-toggle) .project-panel{max-height:66px!important;padding:16px 18px!important}
+.work-project-grid .project:has(.project-toggle) .project-heading{align-items:center}
+.work-project-grid .project:has(.project-toggle) .project-tags{display:none!important;margin:10px 0 0;line-height:1.55}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel,
+.work-project-grid .project:has(.project-toggle):focus-within .project-panel{max-height:340px!important}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel .project-tags,
+.work-project-grid .project:has(.project-toggle):focus-within .project-panel .project-tags{display:block!important}
+@media(hover:hover) and (pointer:fine){
+ .work-project-grid .project:has(.project-toggle):hover .project-panel{max-height:340px!important}
+ .work-project-grid .project:has(.project-toggle):hover .project-tags{display:block!important}
+}
+@media(max-width:560px){
+ .work-project-grid .project:has(.project-toggle) .project-panel{max-height:66px!important}
+ .work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel{max-height:340px!important}
+}
+
+/* Keep title and category subheading visible in the resting poster overlay. */
+.work-project-grid .project:has(.project-toggle) .project-panel{
+  max-height:112px!important;
+  padding:13px 16px 12px!important;
+  bottom:40px;
+}
+.work-project-grid .project:has(.project-toggle) .project-heading{align-items:flex-start}
+.work-project-grid .project:has(.project-toggle) .project-tags{
+  display:block!important;
+  margin:5px 0 0!important;
+  font-size:10px;
+  line-height:1.5;
+}
+.work-project-grid .project:has(.project-toggle) .project-title{margin:0}
+.work-project-grid .project:has(.project-toggle) .project-caption{background:#211018}
+@media(max-width:560px){
+ .work-project-grid .project:has(.project-toggle) .project-panel{max-height:112px!important}
+}
+
+/* Uniform project footer strips: same outer size and no overlay bleed. */
+.work-project-grid .project:has(.project-toggle) .project-caption{
+  box-sizing:border-box; flex:0 0 48px; height:48px; min-height:48px;
+  display:flex; align-items:center; width:100%;
+  padding:8px 14px; margin:0; line-height:1.35;
+  background:#211018; border-top:1px solid #603245;
+  position:relative; z-index:5;
+}
+.work-project-grid .project:has(.project-toggle) .project-panel{bottom:48px!important}
 </style>
 
 <style>
@@ -206,43 +329,78 @@ h1 em { color: #d99aaa; font-weight: 400; }
 @media(max-width:680px){.bp-gallery{grid-template-columns:1fr}}
 </style>
 
+
+<style>
+.hero.hero-intro{min-height:calc(100svh - 75px);min-height:calc(100vh - 75px);display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 20px 125px;position:relative}
+.hero.hero-intro::after{display:none}
+.hero-intro-center{width:100%}
+.hero.hero-intro h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(56px,7.6vw,112px);line-height:1.05;letter-spacing:-.025em;max-width:none;margin:0;font-weight:500}
+.hero-role{font-family:var(--site-font-body);font-size:clamp(27px,3.5vw,40px);letter-spacing:.015em;text-transform:none;color:#e7bdc9;margin:12px 0 0;font-weight:400}
+.scroll-cue{position:absolute!important;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:#e9c6d0;text-decoration:none}
+.mouse-outline{display:block;width:27px;height:43px;border:2px solid #e9c6d0;border-radius:17px;position:relative}
+.mouse-wheel{position:absolute;top:9px;left:50%;width:3px;height:8px;background:#e9c6d0;border-radius:4px;transform:translateX(-50%);animation:mouseWheel 1.65s infinite}
+.scroll-label{font:600 10px var(--site-font-body);letter-spacing:.22em;white-space:nowrap}
+.scroll-chevron{font-size:22px;line-height:12px;animation:cueBounce 1.65s infinite}
+@keyframes mouseWheel{0%{opacity:0;transform:translate(-50%,-2px)}35%{opacity:1}85%,100%{opacity:0;transform:translate(-50%,10px)}}
+@keyframes cueBounce{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){.mouse-wheel,.scroll-chevron{animation:none}}
+@media(max-width:600px){.hero.hero-intro{min-height:calc(100svh - 70px);padding-bottom:120px}.hero.hero-intro h1{font-size:clamp(48px,12vw,76px)}.hero-role{font-size:clamp(24px,5.5vw,32px);letter-spacing:.015em}}
+</style>
 </head>
 <body>
 <div class="site-root" data-sites-preview-theme>
   <header class="topbar">
-    <a class="wordmark" href="#home" style="text-decoration:none">Game Design Portfolio</a>
-    <nav class="nav" aria-label="Main navigation"><a href="#/home">Home</a><a href="#about">About</a><a href="#/portfolio">Portfolio</a><a href="#/showreel">Showreel</a><a href="#hobbies">Hobbies</a><a href="#contact">Contact</a></nav>
+    <a class="wordmark" href="#home" style="text-decoration:none">Leyla Flachs</a>
+    <nav class="nav" aria-label="Main navigation"><a href="#/home">Home</a><a href="#about">About</a><a href="#/portfolio">Portfolio</a><a href="#/showreel">Showreel</a><a href="#hobbies">Hobbies</a><a href="#/contact">Contact</a></nav>
   </header>
   <main>
-    <section class="hero" id="home">
-      <p class="eyebrow">Game Design · Systems · Storytelling</p>
-      <h1>YOUR NAME<small>Game Designer</small></h1>
-      <p class="hero-copy">I create meaningful player experiences through thoughtful mechanics, immersive worlds, and story-driven design.</p>
-      <div class="hero-actions"><a class="button" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="button secondary" href="#about">Get to know me</a></div>
+    <section class="hero hero-intro" id="home">
+      <div class="hero-intro-center"><h1>LEYLA FLACHS</h1><p class="hero-role">Game Designer</p></div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll down to About section"><span class="mouse-outline"><span class="mouse-wheel"></span></span><span class="scroll-label">SCROLL TO EXPLORE</span><span class="scroll-chevron">⌄</span></a>
     </section>
     <section class="section" id="about">
       <div class="about-layout">
         <div class="portrait" role="img" aria-label="Placeholder for your portrait or profile image"><div><span>Your photo</span><small>Replace with your image</small></div></div>
-        <div><p class="section-kicker">A little about me</p><h2>Designing worlds.<br>Creating experiences.</h2><p class="section-copy">I'm a game design graduate interested in the way mechanics, narrative, and player choice work together to create memorable experiences. I enjoy exploring ideas from the first concept through to prototypes, systems, and polished player-facing details. This portfolio is a home for the projects, skills, and experiments that represent my journey as a designer.</p><div class="button-row"><a class="button" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div></div>
+        <div><p class="section-kicker">A little about me</p><h2>Designing worlds.<br>Creating experiences.</h2><p class="section-copy">I specialise in UI design, level design, gameplay, and systems design. I graduated in 2025 with a Bachelor's degree in Game Development (Game Design), and I'm excited to keep learning and gaining experience in the industry. I primarily work in Unity, with previous experience using Unreal Engine as well.</p><p class="section-copy">Throughout my studies, I created a variety of games, but I'm especially drawn to narrative-driven experiences. I love interactive storytelling and designing worlds that players can connect with, understand, and feel part of.</p><p class="section-copy">Outside of making games, I love playing them! Some of my favourites include story-rich worlds like Baldur's Gate 3 and Cyberpunk 2077. I also enjoy competitive games like Marvel Rivals, particularly its creative, interactive level design.</p><div class="button-row"><a class="button" href="#/contact">Contact me <span aria-hidden="true">↗</span></a></div></div>
       </div>
     </section>
-    <section class="section" id="projects">
-      <div class="work-intro"><div><p class="section-kicker">Selected projects</p><h2>My work</h2><p class="section-copy">A selection of projects that show how I approach game mechanics, narrative, interface design, and collaboration. Explore a few highlights here, then head to the full portfolio for more detail.</p><div class="button-row"><a class="button secondary" href="#/portfolio">View full portfolio <span aria-hidden="true">↗</span></a></div></div><p class="section-copy">From university projects to personal experiments, each project is an opportunity to solve a design problem and make something players can connect with.</p></div>
-      <div class="project-grid">
-        <article class="project"><div class="project-art" aria-label="Breaking Point project artwork placeholder"><svg viewBox="0 0 800 600" role="img" aria-label="Illustrated snowy mountain peaks at dusk" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#211019"/><stop offset=".55" stop-color="#70253f"/><stop offset="1" stop-color="#c38b9b"/></linearGradient><linearGradient id="snow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2e8ee"/><stop offset="1" stop-color="#8d829c"/></linearGradient></defs><rect width="800" height="600" fill="url(#sky)"/><circle cx="590" cy="155" r="52" fill="#ead8d9" opacity=".85"/><path d="M0 460 L125 330 L205 395 L360 185 L475 350 L565 275 L800 475 L800 600 L0 600Z" fill="#39212d"/><path d="M160 600 L360 185 L475 350 L424 322 L391 344 L359 290 L329 360 L294 377 L250 475Z" fill="url(#snow)"/><path d="M360 185 L402 281 L378 267 L359 290 L340 258 L321 276Z" fill="#fff6f5"/><path d="M0 505 L170 405 L282 470 L430 362 L565 470 L674 390 L800 510 L800 600 L0 600Z" fill="#29141f" opacity=".9"/><path d="M0 545 Q200 490 380 540 T800 530 L800 600 L0 600Z" fill="#160b10"/><text x="42" y="65" fill="#f2e7ef" font-family="Arial,sans-serif" font-size="13" letter-spacing="5">A STORY-DRIVEN GAME</text><text x="42" y="115" fill="#fff5f6" font-family="Georgia,serif" font-size="46" letter-spacing="3">BREAKING POINT</text><text x="45" y="145" fill="#e4d2e0" font-family="Arial,sans-serif" font-size="12" letter-spacing="4">THE CLIMB IS ONLY THE BEGINNING</text></svg></div><input type="checkbox" class="project-toggle" id="breaking-point-toggle" aria-label="Expand Breaking Point project details"><label class="project-panel" for="breaking-point-toggle"><div class="project-heading"><div><h3 class="project-title">Breaking Point</h3><p class="project-tags">Mechanics · Narrative · UI · Team Management · Design</p></div><span class="project-icon" aria-hidden="true"></span></div><div class="project-reveal"><p>This was my final major project proof of concept for my Bachelor's Degree in Game Design.</p><p><em>Breaking Point</em> is a 3D story-driven game about climbing Mount Everest.</p></div></label><div class="project-caption">Final major project · Game design</div></article>
-        <article class="project"><div class="project-art"><div class="placeholder"><div><strong>Project two</strong><span>Replace with your project thumbnail</span></div></div></div><div class="project-caption">Project category · Add a short label</div></article>
-        <article class="project"><div class="project-art"><div class="placeholder"><div><strong>Project three</strong><span>Replace with your project thumbnail</span></div></div></div><div class="project-caption">Project category · Add a short label</div></article>
-        <article class="project"><div class="more-mark">And more<span style="color:#d99aaa">*</span></div><p>There is more to explore. Visit the full portfolio to discover additional projects, prototypes, and design work.</p><a class="button secondary" href="#portfolio">See more projects <span aria-hidden="true">↗</span></a></article>
+    <section class="section work-section" id="projects">
+      <div class="work-layout">
+        <div class="work-copy">
+          <h2>MY WORK</h2>
+          <p class="section-copy">Check out the games I have worked on throughout my studies!</p>
+          <div class="button-row"><a class="button secondary" href="#/portfolio">View Portfolio <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="project-grid work-project-grid">
+        <article class="project"><div class="project-art" aria-label="Breaking Point poster"><img src="assets/BP_poster_final.png" alt="Breaking Point illustrated mountain-climbing game poster" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 35%"></div><input type="checkbox" class="project-toggle" id="breaking-point-toggle" aria-label="Expand Breaking Point project details"><label class="project-panel" for="breaking-point-toggle"><div class="project-heading"><div><h3 class="project-title">Breaking Point</h3><p class="project-tags">Mechanics · Narrative · UI · Team Management · Design</p></div><span class="project-icon" aria-hidden="true"></span></div><div class="project-reveal"><p>This was my final major project proof of concept for my Bachelor's Degree in Game Design.</p><p><em>Breaking Point</em> is a 3D story-driven game about climbing Mount Everest.</p></div></label><div class="project-caption">Final major project · Game design</div></article>
+        <article class="project"><div class="project-art" aria-label="August In Maplewood poster"><img src="assets/august-in-maplewood-poster.png" alt="August In Maplewood illustrated murder mystery game poster showing two characters in a dark forest" loading="lazy" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div><input type="checkbox" class="project-toggle" id="august-maplewood-toggle" aria-label="Expand August In Maplewood project details"><label class="project-panel" for="august-maplewood-toggle"><div class="project-heading"><div><h3 class="project-title">August In Maplewood</h3><p class="project-tags">Mechanics · Narrative · UI · Design</p></div><span class="project-icon" aria-hidden="true"></span></div><div class="project-reveal"><p>This was a small project proof of concept during the course of my studies.</p><p><em>August In Maplewood</em> is a 2.5D murder mystery game where players keep track of clues to figure out what happened in their small town.</p></div></label><div class="project-caption">Study project · Murder mystery</div></article>
+        <article class="project"><div class="project-art" aria-label="Carlos The Penguin! poster"><img src="assets/carlos-the-penguin.png" alt="Carlos The Penguin! pixel-art poster featuring a blue penguin" loading="lazy" style="display:block;width:100%;height:100%;object-fit:contain;object-position:center"></div><input type="checkbox" class="project-toggle" id="carlos-penguin-toggle" aria-label="Expand Carlos The Penguin! project details"><label class="project-panel" for="carlos-penguin-toggle"><div class="project-heading"><div><h3 class="project-title">Carlos The Penguin!</h3><p class="project-tags">Mechanics · Level Design</p></div><span class="project-icon" aria-hidden="true"></span></div><div class="project-reveal"><p>This was one of my first projects during the course of my studies.</p><p><em>Carlos The Penguin!</em> is a 2D platformer where you must reach the igloo before the 10 second timer reaches 0 to go to the next level.</p></div></label><div class="project-caption">Study project · 2D platformer</div></article>
+        <article class="project"><div class="more-mark">And more<span style="color:#d99aaa">*</span></div><p>There is more to explore. Visit the full portfolio to discover additional projects, prototypes, and design work.</p><a class="button secondary" href="#/portfolio">See more projects <span aria-hidden="true">↗</span></a></article>
+        </div>
       </div>
     </section>
     <section class="section" id="skills"><p class="section-kicker">What I bring to a team</p><h2>Technical & design skills</h2><p class="section-copy">A growing toolkit for taking ideas from concept to playable experience. Replace or refine these examples to reflect your current skills.</p><div class="skills-grid"><div class="skill-card"><h3>Technical skills</h3><div class="skill-list"><span>Unity</span><span>C#</span><span>Prototyping</span><span>UI implementation</span><span>Version control</span><span>Documentation</span></div></div><div class="skill-card"><h3>Design skills</h3><div class="skill-list"><span>Game mechanics</span><span>Narrative design</span><span>Level design</span><span>UI/UX design</span><span>Player experience</span><span>Team collaboration</span></div></div></div></section>
     <section class="showreel-section" id="showreel"><p class="section-kicker">A look in motion</p><h2 class="section-title" style="font-family:var(--site-font-heading);font-size:clamp(36px,5vw,62px);font-weight:400;margin:0">Showreel</h2><p class="section-copy" style="margin:18px auto 0">A short showcase of my projects, process, and design work.</p><div class="showreel-frame"><div><div class="play-mark" aria-hidden="true">▶</div><p>Showreel video placeholder · Add your video here</p></div></div><a class="more-projects" href="#portfolio">More projects <span aria-hidden="true">↓</span></a></section>
     <section class="section portfolio-cta" id="portfolio-cta"><div><p class="section-kicker">Keep exploring</p><h2>There's more to discover.</h2><p class="section-copy">Take a closer look at my portfolio for more projects, design breakdowns, and the thinking behind each experience.</p></div><a class="button" href="#/portfolio">Explore the projects <span aria-hidden="true">↗</span></a></section>
     <section class="section" id="hobbies"><p class="section-kicker">Outside of game design</p><h2>Hobbies & inspirations</h2><p class="section-copy">The interests and creative rabbit holes that keep me curious and influence the way I think about games.</p><div class="hobbies-grid"><div class="hobby"><strong>Gaming</strong><span>Exploring different genres, systems, stories, and player experiences.</span></div><div class="hobby"><strong>Storytelling</strong><span>Enjoying character-driven stories, worldbuilding, and narrative choices.</span></div><div class="hobby"><strong>Creative projects</strong><span>Experimenting with ideas, learning new tools, and making things just for fun.</span></div></div></section>
-    <section class="section" id="contact"><div class="contact-layout"><div><p class="section-kicker">Let's connect</p><h2>Have a project in mind?</h2><p class="section-copy">I'd love to hear from you. Add your preferred email address here so studios and collaborators can get in touch.</p></div><a class="button" href="mailto:your.email@example.com">Email me <span aria-hidden="true">↗</span></a></div></section>
   </main>
+  <section class="section route-page" id="contact-page">
+    <a class="route-back" href="#/home">← Back to home</a>
+    <div class="contact-page-layout">
+      <div><p class="section-kicker">Let's connect</p><h2>Contact me.</h2><p class="section-copy">Have a project, collaboration, or opportunity in mind? I'd love to hear from you. Send me a message using the form.</p></div>
+      <form class="contact-form" id="portfolio-contact-form" aria-label="Contact Leyla" action="https://formsubmit.co/REPLACE_WITH_YOUR_EMAIL" method="POST">
+        <input type="hidden" name="_subject" value="New message from Leyla's game design portfolio">
+        <input type="hidden" name="_captcha" value="true">
+        <label for="contact-name">Your name</label><input id="contact-name" name="name" type="text" placeholder="Your name" autocomplete="name" required maxlength="120">
+        <label for="contact-email">Email address</label><input id="contact-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <label for="contact-message">Your message</label><textarea id="contact-message" name="message" rows="7" placeholder="Tell me a little about your project or opportunity…" required maxlength="5000"></textarea>
+        <button class="button" type="submit">Send message ↗</button>
+        <p class="form-note" id="contact-form-note">Form preview: email delivery will be enabled after Leyla connects a receiving email address.</p>
+      </form>
+    </div>
+  </section>
   <section class="section route-page" id="portfolio-page"><a class="route-back" href="#/home">← Back to home</a><div class="route-head"><p class="section-kicker">Portfolio archive</p><h2>Explore my work</h2><p class="section-copy">Choose a collection to explore. Each area can hold detailed project pages, images, documents, development notes, and links to playable builds or published games.</p></div><div class="poster-grid"><a class="poster-card" href="#/portfolio/games"><div class="poster-art"><div><strong>Games</strong><span>Projects · Prototypes · Releases</span></div></div><div class="poster-caption"><h3>Games I've worked on</h3><p>Game projects, your role and contributions, screenshots, trailers, and links to play or learn more.</p></div></a><a class="poster-card" href="#/portfolio/documents"><div class="poster-art documents"><div><strong>Documents</strong><span>Design · Systems · Process</span></div></div><div class="poster-caption"><h3>Design documents</h3><p>Game design documents, mechanics breakdowns, UI flows, level design work, and other selected documentation.</p></div></a></div></section>
-  <section class="section route-page" id="games-page"><a class="route-back" href="#/portfolio">← Back to portfolio</a><div class="route-head"><p class="section-kicker">Portfolio / Games</p><h2>Games & projects</h2><p class="section-copy">Each project can open a dedicated detail page with its poster, overview, your contribution, tools used, images, and relevant external links. These are starter entries to customise.</p></div><div class="detail-list"><article class="detail-card"><div class="detail-art">BREAKING POINT</div><div><p class="section-kicker">Final major project · 3D narrative game</p><h3>Breaking Point</h3><p>A story-driven game about climbing Mount Everest, created as the proof of concept for your Bachelor's Degree in Game Design. Add your responsibilities, design challenges, screenshots, trailer, and any playable build or project page.</p><a class="button secondary" href="#/project/breaking-point">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art">PROJECT TWO</div><div><p class="section-kicker">Add category / year</p><h3>Your second game</h3><p>Replace this entry with another game or prototype. Include a short overview and explain exactly what you designed, built, or contributed.</p><a class="button secondary" href="#/project/two">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art">PROJECT THREE</div><div><p class="section-kicker">Add category / year</p><h3>Your third game</h3><p>Add another project, with images and links to the game, trailer, or public build when available.</p><a class="button secondary" href="#/project/three">View project details ↗</a></div></article></div></section>
+  <section class="section route-page" id="games-page"><a class="route-back" href="#/portfolio">← Back to portfolio</a><div class="route-head"><p class="section-kicker">Portfolio / Games</p><h2>Games & projects</h2><p class="section-copy">Each project can open a dedicated detail page with its poster, overview, your contribution, tools used, images, and relevant external links. These are starter entries to customise.</p></div><div class="detail-list"><article class="detail-card"><div class="detail-art">BREAKING POINT</div><div><p class="section-kicker">Final major project · 3D narrative game</p><h3>Breaking Point</h3><p>A story-driven game about climbing Mount Everest, created as the proof of concept for your Bachelor's Degree in Game Design. Add your responsibilities, design challenges, screenshots, trailer, and any playable build or project page.</p><a class="button secondary" href="#/project/breaking-point">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art" style="padding:0;overflow:hidden;background:#171a19"><img src="assets/august-in-maplewood-poster.png" alt="August In Maplewood poster" loading="lazy" style="width:100%;height:100%;max-height:340px;object-fit:contain"></div><div><p class="section-kicker">Study project · 2.5D murder mystery</p><h3>August In Maplewood</h3><p>This was a small project proof of concept during the course of my studies. August In Maplewood is a 2.5D murder mystery game where players keep track of clues to figure out what happened in their small town.</p><a class="button secondary" href="#/project/two">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art" style="padding:0;overflow:hidden;background:#9eafc0"><img src="assets/carlos-the-penguin.png" alt="Carlos The Penguin! poster" loading="lazy" style="width:100%;height:100%;max-height:340px;object-fit:contain"></div><div><p class="section-kicker">Study project · 2D platformer</p><h3>Carlos The Penguin!</h3><p>This was one of my first projects during the course of my studies. Carlos The Penguin! is a 2D platformer where you must reach the igloo before the 10 second timer reaches 0 to go to the next level.</p></div></article></div></section>
   <section class="section route-page" id="documents-page"><a class="route-back" href="#/portfolio">← Back to portfolio</a><div class="route-head"><p class="section-kicker">Portfolio / Documents</p><h2>Design documents</h2><p class="section-copy">A curated collection of design work. For each item, you can add a cover image, document summary, your role, and a link to a public PDF or project file.</p></div><div class="detail-list"><article class="detail-card"><div class="detail-art">GAME DESIGN<br>DOCUMENT</div><div><p class="section-kicker">Document type · Add year</p><h3>Game Design Document</h3><p>Add a short description of the document, the game it supports, and the parts you authored. Link to a PDF or a public repository when you are ready.</p><a class="button secondary" href="#/contact">Add document link ↗</a></div></article><article class="detail-card"><div class="detail-art">SYSTEM DESIGN</div><div><p class="section-kicker">Mechanics · Systems</p><h3>Systems & mechanics breakdown</h3><p>Show how you communicate rules, player feedback, progression, balancing, or implementation details.</p><a class="button secondary" href="#/contact">Add document link ↗</a></div></article></div></section>
   <section class="section route-page" id="showreel-page"><a class="route-back" href="#/home">← Back to home</a><div class="route-head"><p class="section-kicker">Video showcase</p><h2>Showreel</h2><p class="section-copy">A dedicated page for your video reel, so visitors can watch your work without leaving the page. We can embed your YouTube, Vimeo, or hosted video once you have its link.</p></div><div class="showreel-frame"><div><div class="play-mark" aria-hidden="true">▶</div><p>Showreel video placeholder · Add your video link</p></div></div><div class="button-row" style="justify-content:center"><a class="button" href="#/portfolio">Explore my portfolio ↗</a></div></section>
   <section class="section route-page" id="project-page"><a class="route-back" href="#/portfolio/games">← Back to games</a><div class="project-hero"><div><p class="section-kicker">A story-driven climbing game · Unity</p><h2 id="project-title">Breaking Point</h2><p>Every step tests your strength. Every choice tests your trust.</p><a class="button" href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">Play on itch.io ↗</a></div></div><div class="case-layout"><article class="case-main"><p class="section-kicker">Overview</p><h2 style="font-size:clamp(32px,4vw,48px)">A promise at the top of the world.</h2><p>In <em>Breaking Point</em>, you step into the shoes of Alice, a serious, determined climber who wants to fulfill a promise with the person she loves most: her husband, Phillip, who is climbing alongside her. Witty and reassuring, Phillip brings lightness to even the harshest moments of their journey.</p><p>Together, they face the brutal beauty of the world's tallest mountain, where every step tests more than their physical limits.</p><p>As the altitude rises, so do the stakes. A past mistake has fractured Alice's confidence, leaving her dependent on Phillip's steady voice to guide her forward. Players must navigate both the treacherous path ahead and Alice's inner struggle with self-doubt and trust.</p><p><em>Breaking Point</em> is more than survival. It's a story about connection, resilience, and the unspoken battles we carry within us.</p><h3>Features & design focus</h3><ul class="case-list"><li>Story-driven 3D climbing experience set on Mount Everest</li><li>Character-focused narrative about connection, self-doubt, resilience, and trust</li><li>Gameplay and level design shaped around a dangerous mountain ascent</li><li>Player-facing interface and scripted narrative moments</li></ul><h3>My contributions</h3><p>I worked across design, implementation, UI, and team coordination, helping bring the game's mechanics and player-facing systems together into a cohesive experience.</p><h3>UI & interface design</h3><ul class="case-list"><li>Designed the game's UI, including the main menu and settings menus</li><li>Created dialogue UI, tips UI, keybinds, and settings for options such as volume</li><li>Designed UI animations and the journal / quest log</li><li>Built the oxygen and energy interface to communicate important player resources</li></ul><h3>Gameplay systems & programming</h3><ul class="case-list"><li>Worked on the dialogue system and branching dialogue trees</li><li>Implemented the quick-time event (QTE) system</li><li>Developed the inventory system, save/load mechanic, and level-loading flow</li><li>Worked on the day-and-night system and player-death flow</li><li>Helped connect the game's mechanics so the systems worked together</li><li>Synced player animations with movement</li></ul><h3>Audio, cinematics & level design</h3><ul class="case-list"><li>Implemented music and sound effects using FMOD</li><li>Worked on cinematic sequences and some level design</li><li>Contributed to bug fixing and overall polish</li></ul><h3>Writing & team collaboration</h3><ul class="case-list"><li>Contributed to script writing and narrative implementation</li><li>Helped manage the team and coordinate work across different areas of development</li></ul><p>These responsibilities span both creative design and technical implementation, from shaping the player experience through menus and feedback to connecting gameplay systems and supporting the final polish.</p>
@@ -259,11 +417,11 @@ h1 em { color: #d99aaa; font-weight: 400; }
   </div>
 </section>
 <div class="case-cta"><p class="section-kicker">Ready to take the climb?</p><h3 style="margin-top:0">Play Breaking Point</h3><p>Check out the project on itch.io.</p><a class="button" href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">View game on itch.io ↗</a></div></article><aside class="case-sidebar"><p class="section-kicker">Project details</p><dl><dt>Project type</dt><dd>Game</dd><dt>Role</dt><dd>UI Design, Level Design, Script Writing, Programming, Game Design</dd><dt>Collaborators</dt><dd>Nathan, Kevin, Reala, Bill, Dylan</dd><dt>Development time</dt><dd>6 months</dd><dt>Game engine</dt><dd>Unity</dd><dt>Project links</dt><dd><a href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">Breaking Point on itch.io ↗</a></dd></dl></aside></div><div class="button-row"><a class="button secondary" href="#/portfolio/games">← Back to games</a><a class="button secondary" href="#/portfolio/documents">Explore documents ↗</a><a class="button" href="#/contact">Contact me ↗</a></div></section>
-  <footer class="footer"><div class="footer-inner"><span>© Game Design Portfolio</span><div class="socials" aria-label="Social links"><a href="#contact" aria-label="Instagram — add your profile link">IG</a><a href="#contact" aria-label="LinkedIn — add your profile link">in</a><a href="#contact" aria-label="itch.io — add your profile link">it</a><a href="#contact" aria-label="YouTube — add your profile link">YT</a></div><span>Designed with care · Burgundy edition</span></div></footer>
+  <footer class="footer"><div class="footer-inner"><span>© Game Design Portfolio</span><div class="socials" aria-label="Social links"><a href="#/contact" aria-label="Instagram — add your profile link">IG</a><a href="#/contact" aria-label="LinkedIn — add your profile link">in</a><a href="#/contact" aria-label="itch.io — add your profile link">it</a><a href="#/contact" aria-label="YouTube — add your profile link">YT</a></div><span>Designed with care · Burgundy edition</span></div></footer>
 </div>
 <script>
 (() => {
-  const routeIds = { '/portfolio': 'portfolio-page', '/portfolio/games': 'games-page', '/portfolio/documents': 'documents-page', '/showreel': 'showreel-page', '/project/breaking-point': 'project-page', '/project/two': 'project-page', '/project/three': 'project-page' };
+  const routeIds = { '/contact': 'contact-page', '/portfolio': 'portfolio-page', '/portfolio/games': 'games-page', '/portfolio/documents': 'documents-page', '/showreel': 'showreel-page', '/project/breaking-point': 'project-page', '/project/two': 'project-page', '/project/three': 'project-page' };
   const homeSections = Array.from(document.querySelectorAll('main > section'));
   const pages = Array.from(document.querySelectorAll('.route-page'));
   function renderRoute() {
@@ -278,6 +436,13 @@ h1 em { color: #d99aaa; font-weight: 400; }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   window.addEventListener('hashchange', renderRoute);
+  const contactForm = document.getElementById('portfolio-contact-form');
+  contactForm.addEventListener('submit', event => {
+    if (contactForm.action.includes('REPLACE_WITH_YOUR_EMAIL')) {
+      event.preventDefault();
+      document.getElementById('contact-form-note').textContent = 'This form is not connected yet. Please add your receiving email address before publishing it.';
+    }
+  });
   renderRoute();
 })();
 </script>
