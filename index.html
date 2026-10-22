@@ -692,10 +692,14 @@ html{scroll-padding-top:100px}
 .floating-socials svg{display:block;width:23px;height:23px;fill:currentColor}
 @media(max-width:600px){.floating-socials{right:12px;bottom:12px;gap:5px;padding:6px;border-radius:12px}.floating-socials a{width:38px;height:38px}.floating-socials svg{width:21px;height:21px}}
 
-/* August In Maplewood: preserve the full illustrated title art while matching the Breaking Point drawer. */
-.game-detail-banner--maplewood{height:auto!important;aspect-ratio:auto!important;display:flex!important;flex-direction:column;overflow:visible!important;background:#100e10}
-.game-detail-banner--maplewood>img{position:relative!important;inset:auto!important;display:block;width:100%;height:auto!important;object-fit:contain!important}
-.game-detail-banner--maplewood .game-detail-intro{position:relative!important;inset:auto!important;bottom:auto!important;background:#21121b!important;padding:22px 25px 25px!important}
+/* Keep every Explore Project banner the same dimensions as Breaking Point. */
+.game-detail-banner{width:100%;height:auto!important;min-height:0!important;aspect-ratio:1447 / 850;overflow:hidden;background:#080808}
+.game-detail-banner--maplewood{display:block!important;aspect-ratio:1447 / 850!important;overflow:hidden!important;background:#080808}
+.game-detail-banner--maplewood>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;opacity:1!important;filter:none!important}
+.game-detail-banner--maplewood .game-detail-intro{position:absolute!important;left:0!important;right:0!important;bottom:2%!important;top:auto!important;background:transparent!important;padding:5px 22px!important}
+/* Carlos has a very wide illustrated title banner; display it without cropping. */
+.game-detail-banner:not(.game-detail-banner--artwork)>img{object-fit:contain;opacity:1;filter:none}
+.game-detail-banner:not(.game-detail-banner--artwork)::after{background:linear-gradient(0deg,rgba(0,0,0,.7),transparent 55%)}
 </style>
 </head>
 <body>
@@ -790,11 +794,11 @@ html{scroll-padding-top:100px}
             </div><div class="game-slide-visual"><img src="assets/august-in-maplewood-poster.png" alt="August In Maplewood poster"></div>
           </article>
           <article class="game-slide" aria-label="Carlos The Penguin!">
-            <div class="game-slide-copy"><span class="game-slide-num">03 / 03</span><h2>Carlos The Penguin!</h2><p class="game-date">Early university project · Date to confirm</p>
+            <div class="game-slide-copy"><span class="game-slide-num">03 / 03</span><h2>Carlos The Penguin!</h2><p class="game-date">Released 2023 · 2D platformer</p>
               <p class="game-blurb">A fast-paced 2D platformer where players race to reach an igloo. Every level must be completed before the ten-second timer runs out.</p>
-              <h3>My main contributions</h3><p>Core gameplay mechanics and level design, including the timed platforming challenge.</p>
+              <h3>My main contributions</h3><p>Initial concept, core gameplay mechanics, and level design.</p>
               <button class="button game-open" type="button" data-game="2">Explore project <span class="game-open-arrow" aria-hidden="true"><span class="arrow-default">↗</span><span class="arrow-hover">→</span></span></button>
-            </div><div class="game-slide-visual"><img src="assets/carlos-the-penguin.png" alt="Carlos The Penguin! thumbnail"></div>
+            </div><div class="game-slide-visual"><img src="assets/carlos-the-penguin-banner.png" alt="Carlos The Penguin! banner"></div>
           </article>
         </div>
         <div class="game-controls"><button type="button" id="game-prev" aria-label="Previous game">←</button><span id="game-progress">01 — 03</span><button type="button" id="game-next" aria-label="Next game">→</button></div>
@@ -1111,11 +1115,11 @@ const games = [
  },
  {title:"Carlos The Penguin!",role:"Mechanics · Level Design",
   short:"A 2D platformer where players must reach the igloo within ten seconds to unlock the next level.",
-  banner:"assets/carlos-the-penguin.png",trailer:null,
-  contributionGroups:[{title:"Core Gameplay Mechanics",items:["Designed the core ten-second level-completion mechanic.","Contributed to platforming mechanics and gameplay pacing."]},{title:"Level Design & Pacing",items:["Designed levels around reaching the igloo before the timer expires.","Worked on an early university project exploring short, repeatable gameplay challenges."]}],
+  banner:"assets/carlos-the-penguin-banner.png",trailer:null,
+  contributionGroups:[{title:"Initial Concept & Core Mechanics",items:["I developed the initial concept for the game.","I designed the core gameplay mechanics around reaching the igloo within ten seconds."]},{title:"Level Design & Testing",items:["I designed levels around the ten-second timer and platforming challenges.","I tested each level to make sure it was challenging but possible to complete."]}],
   gameplay:[["Timed platforming","Ten-second timer and igloo goal mechanic. Add gameplay screenshots when available.",null],["Level design","Level layouts and pacing around the countdown challenge. Add evidence when available.",null]],
   technical:[["Gameplay implementation","Add implementation footage or screenshots and specific tools when confirmed.",null]],
-  meta:[["Genre","2D platformer"],["Platform","To confirm"],["Duration","To confirm"],["Team size","To confirm"],["Engine","To confirm"],["Tools","To confirm"]],link:null
+  meta:[["Genre","2D platformer"],["Platform","WebGL"],["Duration","4 weeks"],["Team size","2"],["Engine","Unity"],["Tools","Unity · C#"]],link:null
  }
 ];
 const root=document.getElementById('games-page'), track=root.querySelector('.game-track');
