@@ -622,6 +622,8 @@ html{scroll-padding-top:100px}
 .game-proof-link:hover{color:white}
 .game-trailer-action{background:#1d1019;display:flex;justify-content:center;padding:22px 18px 26px;border-bottom:1px solid #573648}
 .game-trailer-action .game-trailer-btn{position:static!important;margin:0!important;cursor:pointer}
+/* Match the trailer section divider for projects without a trailer. */
+.game-no-trailer-divider{height:1px;background:#573648;width:100%;}
 #game-modal video{display:block;background:#000;border-radius:4px;margin-top:16px}
 
 /* Gameplay evidence: centered heading and inline visual, no descriptions or external links */
@@ -1140,7 +1142,7 @@ const escapeHTML=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>'
 function openDrawer(i){
  const g=games[i];lastFocus=document.activeElement;
  document.getElementById('game-drawer-content').innerHTML=`
- <div class="game-detail-banner ${'game-detail-banner--artwork'} ${i===1?'game-detail-banner--maplewood':i===2?'game-detail-banner--carlos':''}"><img src="${g.banner}" alt="${i===0?'Breaking Point illustrated mountain banner with the game title':i===1?'August In Maplewood illustrated forest banner with the game title':'Project banner'}">${i===0||i===1||i===2?`<div class="game-detail-intro"><p class="game-detail-role">${escapeHTML(g.role)}</p><p class="game-detail-tagline">${escapeHTML(g.short)}</p></div>`:`<div class="game-detail-banner-content"><p>${escapeHTML(g.role)}</p><h2>${escapeHTML(g.title)}</h2><p>${escapeHTML(g.short)}</p></div>`}</div>${g.trailer?'<div class="game-trailer-action"><button type="button" class="button game-trailer-btn" data-trailer>▶ View Trailer</button></div>':''}
+ <div class="game-detail-banner ${'game-detail-banner--artwork'} ${i===1?'game-detail-banner--maplewood':i===2?'game-detail-banner--carlos':''}"><img src="${g.banner}" alt="${i===0?'Breaking Point illustrated mountain banner with the game title':i===1?'August In Maplewood illustrated forest banner with the game title':'Project banner'}">${i===0||i===1||i===2?`<div class="game-detail-intro"><p class="game-detail-role">${escapeHTML(g.role)}</p><p class="game-detail-tagline">${escapeHTML(g.short)}</p></div>`:`<div class="game-detail-banner-content"><p>${escapeHTML(g.role)}</p><h2>${escapeHTML(g.title)}</h2><p>${escapeHTML(g.short)}</p></div>`}</div>${g.trailer?'<div class="game-trailer-action"><button type="button" class="button game-trailer-btn" data-trailer>▶ View Trailer</button></div>':'<div class="game-no-trailer-divider" aria-hidden="true"></div>'}
  <div class="game-detail-body"><h3>My Contributions</h3>${g.contributionGroups?`<div class="game-contrib-groups">${g.contributionGroups.map((group,i)=>`<section class="game-contrib-group"><div class="game-contrib-heading"><span>${String(i+1).padStart(2,'0')}</span><h4>${escapeHTML(group.title)}</h4></div><ul>${group.items.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></section>`).join('')}</div>`:`<ul>${g.contributions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul>`}
  <div class="game-detail-actions"><button type="button" data-evidence="gameplay">Gameplay Design Contributions ↗</button><button type="button" data-evidence="technical">Technical Design Contributions ↗</button></div>
  <h3>Project Details</h3><dl class="game-detail-meta">${g.meta.map(([a,b])=>`<div><dt>${escapeHTML(a)}</dt><dd>${escapeHTML(b)}</dd></div>`).join('')}</dl>${g.link?`<p style="margin-top:28px"><a class="button secondary" href="${g.link}" target="_blank" rel="noopener noreferrer">View playable project ↗</a></p>`:''}</div>`;
