@@ -1053,10 +1053,13 @@ const games = [
     ["Journal & Objectives","I created journal pages for diary entries and objectives.","assets/journal-mechanic.mp4","https://drive.google.com/file/d/1FI0RfzvWQkGporhpOQXsKHkTMcfHxsQ6/view?usp=sharing"],
     ["Inventory & Item Interactions","I created an inventory system for players to manage items.","assets/inventory-system.mp4","https://drive.google.com/file/d/1kQWBMCNIg0-7QZ8u0ix-XBqk23JRAdkj/view?usp=sharing"],
     ["Survival & Progression","Oxygen, stamina and sleep mechanics.",null,"https://drive.google.com/file/d/1CeVL4Z057KV0_OFsExfOEYbwJ3GNe9ct/view?usp=sharing"],
-    ["Onboarding & Player Experience","Tips, customisable keybinds and level progression.",null,null]
+    ["Onboarding & Player Experience","Tips, customisable keybinds and level progression.",null,null],
+    ["Menu & Settings","I added a dialogue speed option and worked on keybind settings.",null,"https://drive.google.com/file/d/1JpI4oQdFGcfGHNJ2Kz-zdhpOMWM2hjtX/view?usp=sharing"],
+    ["QTE","Quick-time event gameplay.","assets/qte-mechanic.mp4",null],
+    ["Player Death / Loading Last Checkpoint","Player death and checkpoint recovery.","assets/player-death-checkpoint.mp4",null],
+    ["Game Loop","Core gameplay loop.","assets/game-loop.mp4",null]
   ],
   technical:[
-    ["Menus & settings","I added a dialogue speed option and worked on keybind settings.","assets/settings.png","https://drive.google.com/file/d/1JpI4oQdFGcfGHNJ2Kz-zdhpOMWM2hjtX/view?usp=sharing"],
     ["Input & adaptive UI","I created a player input action asset where it has different action maps and actions in them. One for player movement, interactions, inventory and main menu.","assets/menu.png","https://drive.google.com/file/d/1azfbkJa5Hb_j0cuD7Zjh7O2bbF1Q3bLf/view?usp=sharing"],
     ["Scriptable Object architecture","I used scriptable objects again to have nodes which can be stored in a dialogue tree.",null,null],
     ["Save data & player lifecycle","I implemented save & load so players can keep their progress.",null,null],
@@ -1116,13 +1119,14 @@ function openModal(kind){
  };
  const galleries={
    "Survival & Progression":[["Oxygen & Stamina UI","assets/oxygen-stamina-ui.mp4"],["Oxygen Depletion","assets/oxygen-draining.mp4"],["Sleep Mechanic","assets/sleep-mechanic.mp4"]],
-   "Onboarding & Player Experience":[["Tips Mechanic","assets/tips-mechanic.mp4"],["Customisable Keybinds","assets/changing-keybinds.mp4"],["Level Progression","assets/level-progression.mp4"]]
+   "Onboarding & Player Experience":[["Tips Mechanic","assets/tips-mechanic.mp4"],["Customisable Keybinds","assets/changing-keybinds.mp4"],["Level Progression","assets/level-progression.mp4"]],
+   "Menu & Settings":[["Menu","assets/main-menu.mp4"],["Settings","assets/settings-ui.mp4"]]
  };
  const clipGallery=(name)=>{
    const clips=galleries[name];
    return `<div class="survival-tabs" role="tablist" aria-label="${escapeHTML(name)} videos">${clips.map(([label],i)=>`<button type="button" class="survival-tab" role="tab" aria-selected="${i===0}" data-clip-tab="${i}">${escapeHTML(label)}</button>`).join('')}</div><div class="survival-player"><video controls playsinline preload="metadata" src="${clips[0][1]}" aria-label="${clips[0][0]} footage"></video></div>`;
  };
- document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img],idx)=>`<section class="game-evidence game-evidence--visual"><div class="game-evidence-label"><span class="game-evidence-number">${String(idx+1).padStart(2,'0')}</span><h3>${escapeHTML(name)}</h3><span class="game-evidence-line" aria-hidden="true"></span></div>${kind === "gameplay" && g.title === "Breaking Point" && galleries[name] ? clipGallery(name) : mediaMarkup(name,img)}</section>`).join('')}`;
+ document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img],idx)=>`<section class="game-evidence game-evidence--visual"><div class="game-evidence-label"><span class="game-evidence-number">${String(idx+1).padStart(2,'0')}</span><h3>${escapeHTML(name)}</h3><span class="game-evidence-line" aria-hidden="true"></span></div>${g.title === "Breaking Point" && galleries[name] ? clipGallery(name) : mediaMarkup(name,img)}</section>`).join('')}`;
  modal.hidden=false;modal.setAttribute('aria-hidden','false');modal.querySelector('.game-modal-panel').focus();
 }
 document.getElementById('game-modal-content').addEventListener('click',e=>{
@@ -1130,7 +1134,8 @@ document.getElementById('game-modal-content').addEventListener('click',e=>{
  const section=tab.closest('.game-evidence'),heading=section.querySelector('h3')?.textContent;
  const sources={
    "Survival & Progression":[['Oxygen & Stamina UI','assets/oxygen-stamina-ui.mp4'],['Oxygen Depletion','assets/oxygen-draining.mp4'],['Sleep Mechanic','assets/sleep-mechanic.mp4']],
-   "Onboarding & Player Experience":[['Tips Mechanic','assets/tips-mechanic.mp4'],['Customisable Keybinds','assets/changing-keybinds.mp4'],['Level Progression','assets/level-progression.mp4']]
+   "Onboarding & Player Experience":[['Tips Mechanic','assets/tips-mechanic.mp4'],['Customisable Keybinds','assets/changing-keybinds.mp4'],['Level Progression','assets/level-progression.mp4']],
+   "Menu & Settings":[['Menu','assets/main-menu.mp4'],['Settings','assets/settings-ui.mp4']]
  }[heading];
  const i=Number(tab.dataset.clipTab),video=section.querySelector('.survival-player video');
  if(!video||!sources?.[i]||tab.getAttribute('aria-selected')==='true')return;
