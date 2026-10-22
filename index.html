@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Design Portfolio</title>
+<style>
+:root {
+  --site-primary: #800f2f;
+  --site-secondary: #2b111b;
+  --site-background: #140b0f;
+  --site-on-primary: #ffffff;
+  --site-on-secondary: #f5f0f6;
+  --site-on-background: #f4f0ed;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--site-background); color: var(--site-on-background); font-family: var(--site-font-body); }
+.site-root { min-height: 100vh; width: 100%; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; }
+a { color: inherit; }
+.topbar { max-width: 1160px; margin: 0 auto; padding: 26px 6vw; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.wordmark { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: #e4c4cc; font-weight: 700; }
+.nav { display: flex; gap: 24px; font-size: 13px; color: #cbb6bb; }
+.nav a { text-decoration: none; }
+.nav a:hover { color: #fff; }
+.hero { max-width: 1160px; margin: 0 auto; padding: 92px 6vw 84px; position: relative; }
+.eyebrow { color: #d99aaa; text-transform: uppercase; letter-spacing: .22em; font-size: 11px; font-weight: 700; margin: 0 0 22px; }
+h1 { font-family: var(--site-font-heading); font-weight: 400; font-size: clamp(46px, 8vw, 94px); line-height: .98; letter-spacing: -.045em; max-width: 800px; margin: 0; }
+h1 em { color: #d99aaa; font-weight: 400; }
+.hero-copy { color: #c8b8bc; font-size: 16px; line-height: 1.8; max-width: 550px; margin: 28px 0 0; }
+.hero-rule { height: 1px; background: linear-gradient(90deg, #800f2f, transparent); margin-top: 64px; }
+.projects { max-width: 1160px; margin: 0 auto; padding: 8px 6vw 110px; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 28px; }
+.section-head h2 { font-family: var(--site-font-heading); font-size: clamp(28px, 4vw, 42px); font-weight: 400; margin: 0; }
+.section-head p { color: #ad969d; font-size: 12px; margin: 0; letter-spacing: .08em; text-transform: uppercase; }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.project { position: relative; min-width: 0; border: 1px solid #4b2632; border-radius: calc(10px * var(--site-radius-scale)); overflow: hidden; background: #24131a; }
+.project-art { display: block; width: 100%; aspect-ratio: 4 / 3; position: relative; overflow: hidden; background: #43202d; }
+.project-art svg { display: block; width: 100%; height: 100%; }
+.project-toggle { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.project-panel { position: absolute; inset: auto 0 0; z-index: 2; padding: 24px; color: #f7eeec; background: rgba(43, 17, 27, .97); border-top: 1px solid rgba(217, 154, 170, .3); max-height: 122px; overflow: hidden; transition: max-height .45s ease, background-color .3s ease; }
+.project-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.project-title { margin: 0; color: #f0dce0; font-size: 23px; font-weight: 600; letter-spacing: -.02em; }
+.project-tags { margin: 7px 0 0; color: #d8b8c1; font-size: 11px; line-height: 1.6; letter-spacing: .025em; }
+.project-icon { flex: 0 0 auto; font-size: 25px; color: #e4a7b6; }
+.project-icon::before { content: "+"; }
+.project-reveal { opacity: 0; transform: translateY(-7px); transition: opacity .28s ease .05s, transform .35s ease; }
+.project-reveal p { margin: 18px 0 0; font-size: 14px; line-height: 1.75; color: #f0e3e4; }
+.project-reveal p + p { margin-top: 10px; }
+.project:hover .project-panel, .project-toggle:checked + .project-panel, .project:focus-within .project-panel { max-height: 380px; background: rgba(65, 19, 36, .99); }
+.project:hover .project-reveal, .project-toggle:checked + .project-panel .project-reveal, .project:focus-within .project-reveal { opacity: 1; transform: translateY(0); }
+.project:hover .project-icon::before, .project-toggle:checked + .project-panel .project-icon::before, .project:focus-within .project-icon::before { content: "−"; }
+.project-caption { padding: 15px 18px; font-size: 11px; color: #b59da4; letter-spacing: .08em; text-transform: uppercase; }
+.project-art .art-label { position: absolute; top: 20px; left: 20px; color: #f3e8f4; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; }
+.project-art .art-number { position: absolute; right: 20px; bottom: 18px; font-family: var(--site-font-heading); color: #f4e9f1; font-size: 12px; letter-spacing: .12em; }
+.placeholder { min-height: 100%; display: grid; place-items: center; text-align: center; padding: 24px; background: radial-gradient(ellipse at 50% 45%, #713044 0, #3d1d2a 47%, #24131a 100%); color: #e0c2ca; }
+.placeholder strong { display: block; font-family: var(--site-font-heading); font-size: 28px; font-weight: 400; color: #eee5ef; }
+.placeholder span { display: block; margin-top: 9px; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+.footer { border-top: 1px solid #4b2632; padding: 28px 6vw; color: #a58b93; font-size: 12px; }
+.footer-inner { max-width: 1160px; margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; }
+@media (max-width: 680px) {
+  .topbar { padding-top: 22px; padding-bottom: 22px; }
+  .nav { gap: 14px; font-size: 12px; }
+  .hero { padding-top: 68px; padding-bottom: 54px; }
+  .hero-rule { margin-top: 44px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .section-head { align-items: start; flex-direction: column; }
+  .project-panel { padding: 20px; max-height: 125px; }
+  .project-title { font-size: 21px; }
+  .project:hover .project-panel { max-height: 380px; }
+  .footer-inner { flex-direction: column; }
+}
+@media (hover: none) {
+  .project:hover .project-panel { max-height: 125px; background: rgba(43, 17, 27, .97); }
+  .project:hover .project-reveal { opacity: 0; transform: translateY(-7px); }
+  .project:hover .project-icon::before { content: "+"; }
+  .project-toggle:checked + .project-panel { max-height: 380px; background: rgba(65, 19, 36, .99); }
+  .project-toggle:checked + .project-panel .project-reveal { opacity: 1; transform: translateY(0); }
+  .project-toggle:checked + .project-panel .project-icon::before { content: "−"; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+.topbar { max-width: 1320px; position: relative; z-index: 5; }
+.nav { flex-wrap: wrap; justify-content: flex-end; }
+.nav a { padding: 8px 0; transition: color .2s ease; }
+.nav a:hover { color: #f0b8c5; }
+.hero { max-width: none; min-height: min(760px, 88vh); padding: 140px 8vw 100px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; border-bottom: 1px solid #4b2632; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 72% 38%, rgba(128,15,47,.56), transparent 45%), radial-gradient(ellipse at 20% 90%, rgba(217,154,170,.12), transparent 40%), linear-gradient(125deg, #140b0f 10%, #26101a 55%, #140b0f); animation: heroGlow 12s ease-in-out infinite alternate; }
+.hero::after { content: "GAME DESIGN · NARRATIVE · PLAYER EXPERIENCE"; position: absolute; right: 8vw; bottom: 54px; color: rgba(240,220,225,.55); font-size: 10px; letter-spacing: .24em; writing-mode: vertical-rl; }
+@keyframes heroGlow { from { transform: scale(1); opacity: .78; } to { transform: scale(1.08); opacity: 1; } }
+.hero > * { position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(56px, 10vw, 132px); max-width: 980px; }
+.hero h1 small { display: block; font-family: var(--site-font-body); font-size: clamp(16px, 2vw, 24px); font-weight: 500; letter-spacing: .22em; text-transform: uppercase; margin-top: 28px; color: #f0dce0; }
+.hero-copy { max-width: 620px; }
+.hero-actions, .button-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 30px; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 0 20px; border: 1px solid #b75b75; background: #800f2f; color: #fff7f8; text-decoration: none; text-transform: uppercase; font-size: 11px; letter-spacing: .12em; font-weight: 700; transition: transform .2s ease, background .2s ease; }
+.button:hover { transform: translateY(-2px); background: #9c2144; }
+.button.secondary { background: transparent; border-color: #69404c; color: #f0dce0; }
+.button.secondary:hover { background: #2b111b; }
+.section { max-width: 1320px; margin: 0 auto; padding: 100px 8vw; scroll-margin-top: 24px; }
+.section-kicker { margin: 0 0 14px; color: #d99aaa; text-transform: uppercase; letter-spacing: .2em; font-size: 10px; font-weight: 700; }
+.section h2 { font-family: var(--site-font-heading); font-size: clamp(36px, 5vw, 62px); line-height: 1.05; font-weight: 400; letter-spacing: -.035em; margin: 0 0 20px; }
+.section-copy { color: #c8b8bc; font-size: 15px; line-height: 1.9; max-width: 650px; }
+.about-layout { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr); align-items: center; gap: clamp(32px, 7vw, 90px); }
+.portrait { min-height: 360px; aspect-ratio: 4 / 5; border: 1px solid #613040; background: radial-gradient(ellipse at 45% 35%, #8c3a53 0, #46202e 40%, #1b0e14 80%); display: grid; place-items: center; text-align: center; padding: 24px; color: #e4c4cc; }
+.portrait span { display: block; font-family: var(--site-font-heading); font-size: 28px; color: #f4e7ea; }
+.portrait small { display: block; margin-top: 12px; text-transform: uppercase; letter-spacing: .14em; font-size: 10px; }
+.work-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: end; margin-bottom: 36px; }
+.work-intro .section-copy { margin: 0; }
+.project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.project { border-radius: 0; }
+.project-art { aspect-ratio: 5 / 4; }
+.project:last-child { display: flex; flex-direction: column; justify-content: center; min-height: 240px; padding: 30px; border: 1px dashed #815062; background: linear-gradient(135deg, #211018, #351522); color: #e4c4cc; }
+.project:last-child .more-mark { font-family: var(--site-font-heading); font-size: clamp(38px, 5vw, 62px); color: #f4e7ea; }
+.project:last-child p { color: #c8b8bc; line-height: 1.7; }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 35px; }
+.skill-card { border: 1px solid #4b2632; padding: 28px; background: #1d0e14; }
+.skill-card h3 { margin: 0 0 18px; font-size: 17px; font-weight: 600; color: #f0dce0; }
+.skill-list { display: flex; flex-wrap: wrap; gap: 9px; }
+.skill-list span { border: 1px solid #613040; padding: 8px 11px; color: #d9c2c8; font-size: 12px; }
+.showreel-section { max-width: none; background: linear-gradient(130deg, #2b111b, #170b10 65%); border-top: 1px solid #4b2632; border-bottom: 1px solid #4b2632; text-align: center; padding: 110px 8vw; }
+.showreel-frame { max-width: 1000px; margin: 35px auto 0; aspect-ratio: 16 / 9; border: 1px solid #704051; background: radial-gradient(ellipse at 50% 40%, #63243a, #211018 68%); display: grid; place-items: center; padding: 25px; }
+.play-mark { width: 72px; height: 72px; border: 1px solid #d99aaa; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 20px; color: #f4dbe1; font-size: 24px; }
+.showreel-frame p { color: #d9c2c8; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; }
+.more-projects { margin: 28px auto 0; display: inline-flex; align-items: center; gap: 12px; color: #e4c4cc; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; }
+.more-projects span { font-size: 20px; transition: transform .2s ease; }
+.more-projects:hover span { transform: translateY(4px); }
+.portfolio-cta { display: flex; align-items: center; justify-content: space-between; gap: 32px; border-bottom: 1px solid #4b2632; }
+.hobbies-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.hobby { padding: 24px; border: 1px solid #4b2632; background: #1d0e14; }
+.hobby strong { display: block; color: #f0dce0; font-family: var(--site-font-heading); font-size: 23px; font-weight: 400; margin-bottom: 8px; }
+.hobby span { color: #bfa7af; font-size: 12px; line-height: 1.7; }
+.contact-layout { display: flex; align-items: end; justify-content: space-between; gap: 30px; }
+.footer { padding: 30px 8vw; }
+.footer-inner { flex-wrap: wrap; align-items: center; }
+.socials { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.socials a { display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; border: 1px solid #613040; color: #e4c4cc; text-decoration: none; font-size: 10px; font-weight: 700; letter-spacing: .03em; transition: background .2s ease, color .2s ease; }
+.socials a:hover { background: #800f2f; color: white; }
+.route-page { display: none; min-height: 65vh; }
+.route-page.active { display: block; }
+.route-head { max-width: 900px; margin-bottom: 42px; }
+.route-back { display: inline-flex; margin-bottom: 26px; color: #d99aaa; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; }
+.poster-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.poster-card { display: block; text-decoration: none; border: 1px solid #4b2632; background: #1d0e14; overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
+.poster-card:hover { transform: translateY(-5px); border-color: #b75b75; }
+.poster-art { min-height: 260px; aspect-ratio: 4 / 3; display: grid; place-items: center; text-align: center; padding: 24px; background: radial-gradient(ellipse at 50% 35%, #8a304d, #3a1725 58%, #1a0d12); }
+.poster-art.documents { background: radial-gradient(ellipse at 50% 35%, #6b4355, #30202b 58%, #170d12); }
+.poster-art strong { display: block; font-family: var(--site-font-heading); font-size: clamp(32px, 4vw, 52px); font-weight: 400; color: #fff0f3; }
+.poster-art span { display: block; margin-top: 12px; color: #e0c2ca; font-size: 10px; text-transform: uppercase; letter-spacing: .2em; }
+.poster-caption { padding: 20px 22px 24px; }
+.poster-caption h3 { margin: 0 0 8px; color: #f0dce0; font-size: 20px; }
+.poster-caption p { margin: 0; color: #c8b8bc; font-size: 13px; line-height: 1.7; }
+.detail-list { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.detail-card { display: grid; grid-template-columns: minmax(180px, .65fr) minmax(0, 1.35fr); gap: 24px; border: 1px solid #4b2632; padding: 20px; background: #1d0e14; }
+.detail-art { min-height: 180px; display: grid; place-items: center; text-align: center; padding: 18px; background: radial-gradient(ellipse at 50% 35%, #8a304d, #25111a 75%); font-family: var(--site-font-heading); font-size: 27px; color: #fff0f3; }
+.detail-card h3 { margin: 4px 0 10px; font-family: var(--site-font-heading); font-size: 30px; font-weight: 400; }
+.detail-card p { color: #c8b8bc; font-size: 14px; line-height: 1.8; }
+.breaking-poster { width: 100%; max-height: 620px; object-fit: contain; display: block; background: #1a0d12; }
+.project-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 28px; }
+.project-fact { padding: 18px; border: 1px solid #4b2632; background: #1d0e14; }
+.project-fact strong { display: block; margin-bottom: 8px; color: #e4c4cc; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; }
+.project-fact span { color: #c8b8bc; font-size: 13px; line-height: 1.7; }
+.project-hero { position: relative; min-height: 360px; display: grid; align-items: end; padding: clamp(28px, 6vw, 72px); margin: 0 0 46px; overflow: hidden; background: linear-gradient(90deg, rgba(20,11,15,.94), rgba(20,11,15,.2)), url('assets/BP_poster_final.png') center 38% / cover no-repeat, #2b111b; border: 1px solid #613040; }
+.project-hero h2 { max-width: 800px; margin: 0; font-size: clamp(48px, 9vw, 100px); }
+.project-hero p { max-width: 650px; color: #f0dce0; font-size: 15px; line-height: 1.8; }
+.case-layout { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(240px, .7fr); gap: clamp(28px, 6vw, 76px); align-items: start; }
+.case-main h3 { margin: 36px 0 12px; font-family: var(--site-font-heading); font-size: clamp(26px, 3vw, 38px); font-weight: 400; }
+.case-main p { color: #c8b8bc; font-size: 15px; line-height: 1.95; }
+.case-sidebar { border-top: 2px solid #800f2f; background: #1d0e14; padding: 24px; }
+.case-sidebar dl { margin: 0; }
+.case-sidebar dt { color: #d99aaa; margin-top: 20px; font-size: 10px; text-transform: uppercase; letter-spacing: .16em; }
+.case-sidebar dt:first-child { margin-top: 0; }
+.case-sidebar dd { margin: 7px 0 0; color: #f0dce0; font-size: 13px; line-height: 1.7; }
+.case-list { padding-left: 20px; color: #c8b8bc; line-height: 1.9; font-size: 14px; }
+.case-cta { margin-top: 42px; padding: 28px; border: 1px solid #4b2632; background: linear-gradient(120deg, #2b111b, #1d0e14); }
+@media (max-width: 680px) { .poster-grid, .detail-card { grid-template-columns: 1fr; } .poster-art { min-height: 210px; } }
+@media (max-width: 680px) {
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .nav { justify-content: flex-start; gap: 16px; }
+  .hero { min-height: 650px; padding: 95px 7vw 75px; }
+  .hero::after { right: 5vw; bottom: 25px; }
+  .section { padding: 72px 7vw; }
+  .about-layout, .work-intro, .skills-grid { grid-template-columns: 1fr; }
+  .portrait { min-height: 280px; max-width: 420px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .project:last-child { min-height: 180px; }
+  .hobbies-grid { grid-template-columns: 1fr; }
+  .portfolio-cta, .contact-layout { align-items: flex-start; flex-direction: column; }
+  .case-layout { grid-template-columns: 1fr; }
+  .project-hero { min-height: 300px; }
+}
+</style>
+
+<style>
+.bp-showcase{margin:48px 0 28px}.bp-showcase h2{font-size:clamp(26px,3.4vw,42px);margin:8px 0 12px}.bp-showcase>p:not(.section-kicker){color:#d8bec8;max-width:720px;line-height:1.7}
+.bp-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:26px}
+.bp-gallery figure{margin:0;border:1px solid rgba(217,154,170,.28);border-radius:16px;overflow:hidden;background:#211219}
+.bp-gallery a{display:block;overflow:hidden}.bp-gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .25s}.bp-gallery a:hover img{transform:scale(1.025)}
+.bp-gallery figcaption{padding:15px 17px;color:#ead9df;font-size:14px;line-height:1.6}.bp-gallery figcaption strong{color:#f2afc2}
+@media(max-width:680px){.bp-gallery{grid-template-columns:1fr}}
+</style>
+
+</head>
+<body>
+<div class="site-root" data-sites-preview-theme>
+  <header class="topbar">
+    <a class="wordmark" href="#home" style="text-decoration:none">Game Design Portfolio</a>
+    <nav class="nav" aria-label="Main navigation"><a href="#/home">Home</a><a href="#about">About</a><a href="#/portfolio">Portfolio</a><a href="#/showreel">Showreel</a><a href="#hobbies">Hobbies</a><a href="#contact">Contact</a></nav>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <p class="eyebrow">Game Design · Systems · Storytelling</p>
+      <h1>YOUR NAME<small>Game Designer</small></h1>
+      <p class="hero-copy">I create meaningful player experiences through thoughtful mechanics, immersive worlds, and story-driven design.</p>
+      <div class="hero-actions"><a class="button" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="button secondary" href="#about">Get to know me</a></div>
+    </section>
+    <section class="section" id="about">
+      <div class="about-layout">
+        <div class="portrait" role="img" aria-label="Placeholder for your portrait or profile image"><div><span>Your photo</span><small>Replace with your image</small></div></div>
+        <div><p class="section-kicker">A little about me</p><h2>Designing worlds.<br>Creating experiences.</h2><p class="section-copy">I'm a game design graduate interested in the way mechanics, narrative, and player choice work together to create memorable experiences. I enjoy exploring ideas from the first concept through to prototypes, systems, and polished player-facing details. This portfolio is a home for the projects, skills, and experiments that represent my journey as a designer.</p><div class="button-row"><a class="button" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div></div>
+      </div>
+    </section>
+    <section class="section" id="projects">
+      <div class="work-intro"><div><p class="section-kicker">Selected projects</p><h2>My work</h2><p class="section-copy">A selection of projects that show how I approach game mechanics, narrative, interface design, and collaboration. Explore a few highlights here, then head to the full portfolio for more detail.</p><div class="button-row"><a class="button secondary" href="#/portfolio">View full portfolio <span aria-hidden="true">↗</span></a></div></div><p class="section-copy">From university projects to personal experiments, each project is an opportunity to solve a design problem and make something players can connect with.</p></div>
+      <div class="project-grid">
+        <article class="project"><div class="project-art" aria-label="Breaking Point project artwork placeholder"><svg viewBox="0 0 800 600" role="img" aria-label="Illustrated snowy mountain peaks at dusk" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#211019"/><stop offset=".55" stop-color="#70253f"/><stop offset="1" stop-color="#c38b9b"/></linearGradient><linearGradient id="snow" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2e8ee"/><stop offset="1" stop-color="#8d829c"/></linearGradient></defs><rect width="800" height="600" fill="url(#sky)"/><circle cx="590" cy="155" r="52" fill="#ead8d9" opacity=".85"/><path d="M0 460 L125 330 L205 395 L360 185 L475 350 L565 275 L800 475 L800 600 L0 600Z" fill="#39212d"/><path d="M160 600 L360 185 L475 350 L424 322 L391 344 L359 290 L329 360 L294 377 L250 475Z" fill="url(#snow)"/><path d="M360 185 L402 281 L378 267 L359 290 L340 258 L321 276Z" fill="#fff6f5"/><path d="M0 505 L170 405 L282 470 L430 362 L565 470 L674 390 L800 510 L800 600 L0 600Z" fill="#29141f" opacity=".9"/><path d="M0 545 Q200 490 380 540 T800 530 L800 600 L0 600Z" fill="#160b10"/><text x="42" y="65" fill="#f2e7ef" font-family="Arial,sans-serif" font-size="13" letter-spacing="5">A STORY-DRIVEN GAME</text><text x="42" y="115" fill="#fff5f6" font-family="Georgia,serif" font-size="46" letter-spacing="3">BREAKING POINT</text><text x="45" y="145" fill="#e4d2e0" font-family="Arial,sans-serif" font-size="12" letter-spacing="4">THE CLIMB IS ONLY THE BEGINNING</text></svg></div><input type="checkbox" class="project-toggle" id="breaking-point-toggle" aria-label="Expand Breaking Point project details"><label class="project-panel" for="breaking-point-toggle"><div class="project-heading"><div><h3 class="project-title">Breaking Point</h3><p class="project-tags">Mechanics · Narrative · UI · Team Management · Design</p></div><span class="project-icon" aria-hidden="true"></span></div><div class="project-reveal"><p>This was my final major project proof of concept for my Bachelor's Degree in Game Design.</p><p><em>Breaking Point</em> is a 3D story-driven game about climbing Mount Everest.</p></div></label><div class="project-caption">Final major project · Game design</div></article>
+        <article class="project"><div class="project-art"><div class="placeholder"><div><strong>Project two</strong><span>Replace with your project thumbnail</span></div></div></div><div class="project-caption">Project category · Add a short label</div></article>
+        <article class="project"><div class="project-art"><div class="placeholder"><div><strong>Project three</strong><span>Replace with your project thumbnail</span></div></div></div><div class="project-caption">Project category · Add a short label</div></article>
+        <article class="project"><div class="more-mark">And more<span style="color:#d99aaa">*</span></div><p>There is more to explore. Visit the full portfolio to discover additional projects, prototypes, and design work.</p><a class="button secondary" href="#portfolio">See more projects <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section>
+    <section class="section" id="skills"><p class="section-kicker">What I bring to a team</p><h2>Technical & design skills</h2><p class="section-copy">A growing toolkit for taking ideas from concept to playable experience. Replace or refine these examples to reflect your current skills.</p><div class="skills-grid"><div class="skill-card"><h3>Technical skills</h3><div class="skill-list"><span>Unity</span><span>C#</span><span>Prototyping</span><span>UI implementation</span><span>Version control</span><span>Documentation</span></div></div><div class="skill-card"><h3>Design skills</h3><div class="skill-list"><span>Game mechanics</span><span>Narrative design</span><span>Level design</span><span>UI/UX design</span><span>Player experience</span><span>Team collaboration</span></div></div></div></section>
+    <section class="showreel-section" id="showreel"><p class="section-kicker">A look in motion</p><h2 class="section-title" style="font-family:var(--site-font-heading);font-size:clamp(36px,5vw,62px);font-weight:400;margin:0">Showreel</h2><p class="section-copy" style="margin:18px auto 0">A short showcase of my projects, process, and design work.</p><div class="showreel-frame"><div><div class="play-mark" aria-hidden="true">▶</div><p>Showreel video placeholder · Add your video here</p></div></div><a class="more-projects" href="#portfolio">More projects <span aria-hidden="true">↓</span></a></section>
+    <section class="section portfolio-cta" id="portfolio-cta"><div><p class="section-kicker">Keep exploring</p><h2>There's more to discover.</h2><p class="section-copy">Take a closer look at my portfolio for more projects, design breakdowns, and the thinking behind each experience.</p></div><a class="button" href="#/portfolio">Explore the projects <span aria-hidden="true">↗</span></a></section>
+    <section class="section" id="hobbies"><p class="section-kicker">Outside of game design</p><h2>Hobbies & inspirations</h2><p class="section-copy">The interests and creative rabbit holes that keep me curious and influence the way I think about games.</p><div class="hobbies-grid"><div class="hobby"><strong>Gaming</strong><span>Exploring different genres, systems, stories, and player experiences.</span></div><div class="hobby"><strong>Storytelling</strong><span>Enjoying character-driven stories, worldbuilding, and narrative choices.</span></div><div class="hobby"><strong>Creative projects</strong><span>Experimenting with ideas, learning new tools, and making things just for fun.</span></div></div></section>
+    <section class="section" id="contact"><div class="contact-layout"><div><p class="section-kicker">Let's connect</p><h2>Have a project in mind?</h2><p class="section-copy">I'd love to hear from you. Add your preferred email address here so studios and collaborators can get in touch.</p></div><a class="button" href="mailto:your.email@example.com">Email me <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <section class="section route-page" id="portfolio-page"><a class="route-back" href="#/home">← Back to home</a><div class="route-head"><p class="section-kicker">Portfolio archive</p><h2>Explore my work</h2><p class="section-copy">Choose a collection to explore. Each area can hold detailed project pages, images, documents, development notes, and links to playable builds or published games.</p></div><div class="poster-grid"><a class="poster-card" href="#/portfolio/games"><div class="poster-art"><div><strong>Games</strong><span>Projects · Prototypes · Releases</span></div></div><div class="poster-caption"><h3>Games I've worked on</h3><p>Game projects, your role and contributions, screenshots, trailers, and links to play or learn more.</p></div></a><a class="poster-card" href="#/portfolio/documents"><div class="poster-art documents"><div><strong>Documents</strong><span>Design · Systems · Process</span></div></div><div class="poster-caption"><h3>Design documents</h3><p>Game design documents, mechanics breakdowns, UI flows, level design work, and other selected documentation.</p></div></a></div></section>
+  <section class="section route-page" id="games-page"><a class="route-back" href="#/portfolio">← Back to portfolio</a><div class="route-head"><p class="section-kicker">Portfolio / Games</p><h2>Games & projects</h2><p class="section-copy">Each project can open a dedicated detail page with its poster, overview, your contribution, tools used, images, and relevant external links. These are starter entries to customise.</p></div><div class="detail-list"><article class="detail-card"><div class="detail-art">BREAKING POINT</div><div><p class="section-kicker">Final major project · 3D narrative game</p><h3>Breaking Point</h3><p>A story-driven game about climbing Mount Everest, created as the proof of concept for your Bachelor's Degree in Game Design. Add your responsibilities, design challenges, screenshots, trailer, and any playable build or project page.</p><a class="button secondary" href="#/project/breaking-point">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art">PROJECT TWO</div><div><p class="section-kicker">Add category / year</p><h3>Your second game</h3><p>Replace this entry with another game or prototype. Include a short overview and explain exactly what you designed, built, or contributed.</p><a class="button secondary" href="#/project/two">View project details ↗</a></div></article><article class="detail-card"><div class="detail-art">PROJECT THREE</div><div><p class="section-kicker">Add category / year</p><h3>Your third game</h3><p>Add another project, with images and links to the game, trailer, or public build when available.</p><a class="button secondary" href="#/project/three">View project details ↗</a></div></article></div></section>
+  <section class="section route-page" id="documents-page"><a class="route-back" href="#/portfolio">← Back to portfolio</a><div class="route-head"><p class="section-kicker">Portfolio / Documents</p><h2>Design documents</h2><p class="section-copy">A curated collection of design work. For each item, you can add a cover image, document summary, your role, and a link to a public PDF or project file.</p></div><div class="detail-list"><article class="detail-card"><div class="detail-art">GAME DESIGN<br>DOCUMENT</div><div><p class="section-kicker">Document type · Add year</p><h3>Game Design Document</h3><p>Add a short description of the document, the game it supports, and the parts you authored. Link to a PDF or a public repository when you are ready.</p><a class="button secondary" href="#/contact">Add document link ↗</a></div></article><article class="detail-card"><div class="detail-art">SYSTEM DESIGN</div><div><p class="section-kicker">Mechanics · Systems</p><h3>Systems & mechanics breakdown</h3><p>Show how you communicate rules, player feedback, progression, balancing, or implementation details.</p><a class="button secondary" href="#/contact">Add document link ↗</a></div></article></div></section>
+  <section class="section route-page" id="showreel-page"><a class="route-back" href="#/home">← Back to home</a><div class="route-head"><p class="section-kicker">Video showcase</p><h2>Showreel</h2><p class="section-copy">A dedicated page for your video reel, so visitors can watch your work without leaving the page. We can embed your YouTube, Vimeo, or hosted video once you have its link.</p></div><div class="showreel-frame"><div><div class="play-mark" aria-hidden="true">▶</div><p>Showreel video placeholder · Add your video link</p></div></div><div class="button-row" style="justify-content:center"><a class="button" href="#/portfolio">Explore my portfolio ↗</a></div></section>
+  <section class="section route-page" id="project-page"><a class="route-back" href="#/portfolio/games">← Back to games</a><div class="project-hero"><div><p class="section-kicker">A story-driven climbing game · Unity</p><h2 id="project-title">Breaking Point</h2><p>Every step tests your strength. Every choice tests your trust.</p><a class="button" href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">Play on itch.io ↗</a></div></div><div class="case-layout"><article class="case-main"><p class="section-kicker">Overview</p><h2 style="font-size:clamp(32px,4vw,48px)">A promise at the top of the world.</h2><p>In <em>Breaking Point</em>, you step into the shoes of Alice, a serious, determined climber who wants to fulfill a promise with the person she loves most: her husband, Phillip, who is climbing alongside her. Witty and reassuring, Phillip brings lightness to even the harshest moments of their journey.</p><p>Together, they face the brutal beauty of the world's tallest mountain, where every step tests more than their physical limits.</p><p>As the altitude rises, so do the stakes. A past mistake has fractured Alice's confidence, leaving her dependent on Phillip's steady voice to guide her forward. Players must navigate both the treacherous path ahead and Alice's inner struggle with self-doubt and trust.</p><p><em>Breaking Point</em> is more than survival. It's a story about connection, resilience, and the unspoken battles we carry within us.</p><h3>Features & design focus</h3><ul class="case-list"><li>Story-driven 3D climbing experience set on Mount Everest</li><li>Character-focused narrative about connection, self-doubt, resilience, and trust</li><li>Gameplay and level design shaped around a dangerous mountain ascent</li><li>Player-facing interface and scripted narrative moments</li></ul><h3>My contributions</h3><p>I worked across design, implementation, UI, and team coordination, helping bring the game's mechanics and player-facing systems together into a cohesive experience.</p><h3>UI & interface design</h3><ul class="case-list"><li>Designed the game's UI, including the main menu and settings menus</li><li>Created dialogue UI, tips UI, keybinds, and settings for options such as volume</li><li>Designed UI animations and the journal / quest log</li><li>Built the oxygen and energy interface to communicate important player resources</li></ul><h3>Gameplay systems & programming</h3><ul class="case-list"><li>Worked on the dialogue system and branching dialogue trees</li><li>Implemented the quick-time event (QTE) system</li><li>Developed the inventory system, save/load mechanic, and level-loading flow</li><li>Worked on the day-and-night system and player-death flow</li><li>Helped connect the game's mechanics so the systems worked together</li><li>Synced player animations with movement</li></ul><h3>Audio, cinematics & level design</h3><ul class="case-list"><li>Implemented music and sound effects using FMOD</li><li>Worked on cinematic sequences and some level design</li><li>Contributed to bug fixing and overall polish</li></ul><h3>Writing & team collaboration</h3><ul class="case-list"><li>Contributed to script writing and narrative implementation</li><li>Helped manage the team and coordinate work across different areas of development</li></ul><p>These responsibilities span both creative design and technical implementation, from shaping the player experience through menus and feedback to connecting gameplay systems and supporting the final polish.</p>
+<section class="bp-showcase" aria-label="Breaking Point design and development showcase">
+  <p class="section-kicker">Design &amp; development showcase</p>
+  <h2>From interface design to gameplay systems</h2>
+  <p>Selected in-game screenshots highlighting the interfaces and systems I designed and implemented for <em>Breaking Point</em>. Select an image to view it at full size.</p>
+  <div class="bp-gallery">
+    <figure><a href="assets/menu.png" target="_blank" rel="noopener"><img src="assets/menu.png" alt="Breaking Point main menu with mountain campsite" loading="lazy"></a><figcaption><strong>Main menu</strong> — Menu layout, navigation and presentation.</figcaption></figure>
+    <figure><a href="assets/settings.png" target="_blank" rel="noopener"><img src="assets/settings.png" alt="Breaking Point settings menu" loading="lazy"></a><figcaption><strong>Settings</strong> — Settings interface and navigation for controls, brightness and audio.</figcaption></figure>
+    <figure><a href="assets/dialogue.png" target="_blank" rel="noopener"><img src="assets/dialogue.png" alt="Phillip speaking through the dialogue interface" loading="lazy"></a><figcaption><strong>Dialogue system</strong> — Character dialogue UI and narrative implementation.</figcaption></figure>
+    <figure><a href="assets/journal.png" target="_blank" rel="noopener"><img src="assets/journal.png" alt="Open journal with narrative text and quest objective" loading="lazy"></a><figcaption><strong>Journal &amp; quest log</strong> — Story presentation and objective tracking.</figcaption></figure>
+    <figure><a href="assets/inventory.png" target="_blank" rel="noopener"><img src="assets/inventory.png" alt="Inventory slots over mountain environment" loading="lazy"></a><figcaption><strong>Inventory</strong> — Item slots and gameplay UI integration.</figcaption></figure>
+  </div>
+</section>
+<div class="case-cta"><p class="section-kicker">Ready to take the climb?</p><h3 style="margin-top:0">Play Breaking Point</h3><p>Check out the project on itch.io.</p><a class="button" href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">View game on itch.io ↗</a></div></article><aside class="case-sidebar"><p class="section-kicker">Project details</p><dl><dt>Project type</dt><dd>Game</dd><dt>Role</dt><dd>UI Design, Level Design, Script Writing, Programming, Game Design</dd><dt>Collaborators</dt><dd>Nathan, Kevin, Reala, Bill, Dylan</dd><dt>Development time</dt><dd>6 months</dd><dt>Game engine</dt><dd>Unity</dd><dt>Project links</dt><dd><a href="https://bun-bao.itch.io/breaking-point" target="_blank" rel="noopener noreferrer">Breaking Point on itch.io ↗</a></dd></dl></aside></div><div class="button-row"><a class="button secondary" href="#/portfolio/games">← Back to games</a><a class="button secondary" href="#/portfolio/documents">Explore documents ↗</a><a class="button" href="#/contact">Contact me ↗</a></div></section>
+  <footer class="footer"><div class="footer-inner"><span>© Game Design Portfolio</span><div class="socials" aria-label="Social links"><a href="#contact" aria-label="Instagram — add your profile link">IG</a><a href="#contact" aria-label="LinkedIn — add your profile link">in</a><a href="#contact" aria-label="itch.io — add your profile link">it</a><a href="#contact" aria-label="YouTube — add your profile link">YT</a></div><span>Designed with care · Burgundy edition</span></div></footer>
+</div>
+<script>
+(() => {
+  const routeIds = { '/portfolio': 'portfolio-page', '/portfolio/games': 'games-page', '/portfolio/documents': 'documents-page', '/showreel': 'showreel-page', '/project/breaking-point': 'project-page', '/project/two': 'project-page', '/project/three': 'project-page' };
+  const homeSections = Array.from(document.querySelectorAll('main > section'));
+  const pages = Array.from(document.querySelectorAll('.route-page'));
+  function renderRoute() {
+    const route = location.hash.startsWith('#/') ? location.hash.slice(1) : '/home';
+    const targetId = routeIds[route];
+    homeSections.forEach(section => section.style.display = targetId ? 'none' : '');
+    pages.forEach(page => page.classList.toggle('active', page.id === targetId));
+    if (route.startsWith('/project/')) {
+      const title = route.endsWith('breaking-point') ? 'Breaking Point' : route.endsWith('/two') ? 'Your second game' : 'Your third game';
+      document.getElementById('project-title').textContent = title;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  window.addEventListener('hashchange', renderRoute);
+  renderRoute();
+})();
+</script>
+</body>
+</html>
