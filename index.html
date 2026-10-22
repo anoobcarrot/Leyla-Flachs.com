@@ -629,6 +629,21 @@ html{scroll-padding-top:100px}
 .game-evidence--visual h3{text-align:center;margin:0 0 18px;font-size:clamp(18px,2.6vw,24px)}
 .game-evidence--visual img,.game-evidence--visual video{display:block;width:auto;max-width:100%;max-height:65vh;height:auto;object-fit:contain;margin:0 auto;border:1px solid #593a4b;border-radius:5px}
 .game-evidence--visual video{width:100%;max-width:850px;background:#100c10}
+
+/* Compact editorial media showcase for gameplay and technical contributions */
+#game-modal .game-modal-panel{width:min(820px,calc(100vw - 30px));padding:clamp(20px,3vw,38px);background:radial-gradient(ellipse at 90% 0%,rgba(130,65,96,.2),transparent 48%),#21121c;border:1px solid #8e5971;border-radius:14px;box-shadow:0 32px 100px #000c}
+#game-modal #game-modal-content>h2{font-size:clamp(30px,4vw,44px);text-align:center;margin:14px 35px 32px;line-height:1.1}
+#game-modal .game-modal-close{border-radius:50%;background:#5a2b43;transition:background .2s,transform .2s}
+#game-modal .game-modal-close:hover{background:#9b5575;transform:rotate(90deg)}
+#game-modal .game-evidence--visual{width:100%;box-sizing:border-box;margin:0 auto 19px;padding:23px 22px 26px;background:linear-gradient(150deg,#36202e,#261722);border:1px solid #654055;border-radius:12px;box-shadow:0 8px 24px #10081144;transition:border-color .25s}
+#game-modal .game-evidence--visual:hover{border-color:#ad708c}
+#game-modal .game-evidence-label{display:flex;align-items:center;justify-content:center;gap:15px;margin:0 0 18px}
+#game-modal .game-evidence-number{color:#d69bb5;font-size:11px;letter-spacing:.16em}
+#game-modal .game-evidence-line{height:1px;width:32px;background:linear-gradient(90deg,#a96e89,transparent)}
+#game-modal .game-evidence--visual h3{margin:0;font:500 clamp(22px,3vw,30px)/1.2 "Cormorant Garamond",Georgia,serif;color:#ffe5ef}
+#game-modal .game-evidence--visual img,#game-modal .game-evidence--visual video{display:block;width:auto;max-width:min(100%,570px);max-height:320px;height:auto;object-fit:contain;margin:0 auto;border:1px solid #684657;border-radius:8px;box-shadow:0 10px 26px #09050988}
+#game-modal .game-evidence--visual video{width:100%;background:#0e0b0e}
+@media(max-width:540px){#game-modal .game-evidence--visual{padding:17px 12px 20px}#game-modal .game-evidence--visual img,#game-modal .game-evidence--visual video{max-height:240px}#game-modal .game-evidence-label{gap:9px}}
 </style>
 
 <style>
@@ -1026,7 +1041,7 @@ const games = [
   ],
   gameplay:[
     ["Narrative & Dialogue","Implemented level 1 dialogues into the game so players understand the game and for each personality of NPCs to shine out.","assets/dialogue-system.mp4","https://drive.google.com/file/d/1w3Nq71xvjK2Ptk-WyV6E-S4zerZ9GpyH/view?usp=drive_link"],
-    ["Journal & objectives","I created journal pages for diary entries and objectives.","assets/journal.png","https://drive.google.com/file/d/1FI0RfzvWQkGporhpOQXsKHkTMcfHxsQ6/view?usp=sharing"],
+    ["Journal & Objectives","I created journal pages for diary entries and objectives.","assets/journal-mechanic.mp4","https://drive.google.com/file/d/1FI0RfzvWQkGporhpOQXsKHkTMcfHxsQ6/view?usp=sharing"],
     ["Inventory & item interactions","I created an inventory system for players to manage items.","assets/inventory.png","https://drive.google.com/file/d/1kQWBMCNIg0-7QZ8u0ix-XBqk23JRAdkj/view?usp=sharing"],
     ["Survival & progression","I added a similar function for the energy where it will also drain depending if it is in a certain tagged trigger.",null,"https://drive.google.com/file/d/1CeVL4Z057KV0_OFsExfOEYbwJ3GNe9ct/view?usp=sharing"],
     ["Onboarding & playtesting","Added a tips function where it showcases what button to press, text and a video so it’s right in their face on what to do.",null,null]
@@ -1090,7 +1105,7 @@ function openModal(kind){
      ?`<video src="${safe}" controls playsinline preload="metadata" aria-label="${alt} footage"></video>`
      :`<img src="${safe}" alt="${alt}" loading="lazy">`;
  };
- document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img])=>`<section class="game-evidence game-evidence--visual"><h3>${escapeHTML(name)}</h3>${mediaMarkup(name,img)}</section>`).join('')}`;
+ document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img],idx)=>`<section class="game-evidence game-evidence--visual"><div class="game-evidence-label"><span class="game-evidence-number">${String(idx+1).padStart(2,'0')}</span><h3>${escapeHTML(name)}</h3><span class="game-evidence-line" aria-hidden="true"></span></div>${mediaMarkup(name,img)}</section>`).join('')}`;
  modal.hidden=false;modal.setAttribute('aria-hidden','false');modal.querySelector('.game-modal-panel').focus();
 }
 function closeModal(){const video=modal.querySelector("video");if(video){video.pause();video.removeAttribute("src");video.load()}modal.hidden=true;modal.setAttribute('aria-hidden','true');drawer.focus()}
