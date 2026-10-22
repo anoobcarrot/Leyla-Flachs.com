@@ -1053,7 +1053,7 @@ const games = [
     ["Journal & Objectives","I created journal pages for diary entries and objectives.","assets/journal-mechanic.mp4","https://drive.google.com/file/d/1FI0RfzvWQkGporhpOQXsKHkTMcfHxsQ6/view?usp=sharing"],
     ["Inventory & Item Interactions","I created an inventory system for players to manage items.","assets/inventory-system.mp4","https://drive.google.com/file/d/1kQWBMCNIg0-7QZ8u0ix-XBqk23JRAdkj/view?usp=sharing"],
     ["Survival & Progression","Oxygen, stamina and sleep mechanics.",null,"https://drive.google.com/file/d/1CeVL4Z057KV0_OFsExfOEYbwJ3GNe9ct/view?usp=sharing"],
-    ["Onboarding & playtesting","Added a tips function where it showcases what button to press, text and a video so it’s right in their face on what to do.",null,null]
+    ["Onboarding & Player Experience","Tips, customizable keybinds and level progression.",null,null]
   ],
   technical:[
     ["Menus & settings","I added a dialogue speed option and worked on keybind settings.","assets/settings.png","https://drive.google.com/file/d/1JpI4oQdFGcfGHNJ2Kz-zdhpOMWM2hjtX/view?usp=sharing"],
@@ -1114,20 +1114,28 @@ function openModal(kind){
      ?`<video src="${safe}" controls playsinline preload="metadata" aria-label="${alt} footage"></video>`
      :`<img src="${safe}" alt="${alt}" loading="lazy">`;
  };
- const survivalGallery=()=>{
-   const clips=[["Oxygen & Stamina UI","assets/oxygen-stamina-ui.mp4"],["Oxygen Depletion","assets/oxygen-draining.mp4"],["Sleep Mechanic","assets/sleep-mechanic.mp4"]];
-   return `<div class="survival-tabs" role="tablist" aria-label="Survival mechanics">${clips.map(([label],i)=>`<button type="button" class="survival-tab" role="tab" aria-selected="${i===0}" data-survival-tab="${i}">${escapeHTML(label)}</button>`).join('')}</div><div class="survival-player"><video controls playsinline preload="metadata" src="${clips[0][1]}" aria-label="${clips[0][0]} footage"></video></div>`;
+ const galleries={
+   "Survival & Progression":[["Oxygen & Stamina UI","assets/oxygen-stamina-ui.mp4"],["Oxygen Depletion","assets/oxygen-draining.mp4"],["Sleep Mechanic","assets/sleep-mechanic.mp4"]],
+   "Onboarding & Player Experience":[["Tips Mechanic","assets/tips-mechanic.mp4"],["Customizable Keybinds","assets/changing-keybinds.mp4"],["Level Progression","assets/level-progression.mp4"]]
  };
- document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img],idx)=>`<section class="game-evidence game-evidence--visual"><div class="game-evidence-label"><span class="game-evidence-number">${String(idx+1).padStart(2,'0')}</span><h3>${escapeHTML(name)}</h3><span class="game-evidence-line" aria-hidden="true"></span></div>${name === "Survival & Progression" && kind === "gameplay" && g.title === "Breaking Point" ? survivalGallery() : mediaMarkup(name,img)}</section>`).join('')}`;
+ const clipGallery=(name)=>{
+   const clips=galleries[name];
+   return `<div class="survival-tabs" role="tablist" aria-label="${escapeHTML(name)} videos">${clips.map(([label],i)=>`<button type="button" class="survival-tab" role="tab" aria-selected="${i===0}" data-clip-tab="${i}">${escapeHTML(label)}</button>`).join('')}</div><div class="survival-player"><video controls playsinline preload="metadata" src="${clips[0][1]}" aria-label="${clips[0][0]} footage"></video></div>`;
+ };
+ document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img],idx)=>`<section class="game-evidence game-evidence--visual"><div class="game-evidence-label"><span class="game-evidence-number">${String(idx+1).padStart(2,'0')}</span><h3>${escapeHTML(name)}</h3><span class="game-evidence-line" aria-hidden="true"></span></div>${kind === "gameplay" && g.title === "Breaking Point" && galleries[name] ? clipGallery(name) : mediaMarkup(name,img)}</section>`).join('')}`;
  modal.hidden=false;modal.setAttribute('aria-hidden','false');modal.querySelector('.game-modal-panel').focus();
 }
 document.getElementById('game-modal-content').addEventListener('click',e=>{
- const tab=e.target.closest('[data-survival-tab]');if(!tab)return;
- const sources=[['Oxygen & Stamina UI','assets/oxygen-stamina-ui.mp4'],['Oxygen Depletion','assets/oxygen-draining.mp4'],['Sleep Mechanic','assets/sleep-mechanic.mp4']];
- const i=Number(tab.dataset.survivalTab),section=tab.closest('.game-evidence'),video=section.querySelector('.survival-player video');
- if(!video||!sources[i]||tab.getAttribute('aria-selected')==='true')return;
+ const tab=e.target.closest('[data-clip-tab]');if(!tab)return;
+ const section=tab.closest('.game-evidence'),heading=section.querySelector('h3')?.textContent;
+ const sources={
+   "Survival & Progression":[['Oxygen & Stamina UI','assets/oxygen-stamina-ui.mp4'],['Oxygen Depletion','assets/oxygen-draining.mp4'],['Sleep Mechanic','assets/sleep-mechanic.mp4']],
+   "Onboarding & Player Experience":[['Tips Mechanic','assets/tips-mechanic.mp4'],['Customizable Keybinds','assets/changing-keybinds.mp4'],['Level Progression','assets/level-progression.mp4']]
+ }[heading];
+ const i=Number(tab.dataset.clipTab),video=section.querySelector('.survival-player video');
+ if(!video||!sources?.[i]||tab.getAttribute('aria-selected')==='true')return;
  video.pause();video.src=sources[i][1];video.setAttribute('aria-label',sources[i][0]+' footage');video.load();
- section.querySelectorAll('[data-survival-tab]').forEach(b=>b.setAttribute('aria-selected',String(b===tab)));
+ section.querySelectorAll('[data-clip-tab]').forEach(b=>b.setAttribute('aria-selected',String(b===tab)));
 });
 function closeModal(){const video=modal.querySelector("video");if(video){video.pause();video.removeAttribute("src");video.load()}modal.hidden=true;modal.setAttribute('aria-hidden','true');drawer.focus()}
 root.querySelectorAll('.game-open').forEach(b=>b.addEventListener('click',()=>openDrawer(+b.dataset.game)));
