@@ -501,8 +501,8 @@ html{scroll-padding-top:100px}
 .game-controls button:hover{background:#72364d}
 .game-drawer-scrim{position:fixed;inset:0;background:#0a0509b9;z-index:1090;opacity:0;transition:opacity .4s}
 .game-drawer-scrim.visible{opacity:1}
-.game-drawer{position:fixed;inset:0 auto 0 0;width:min(900px,92vw);background:#1e1019;z-index:1100;overflow-y:auto;box-shadow:20px 0 65px #0009;transform:translateX(-105%);transition:transform .55s cubic-bezier(.22,1,.36,1);visibility:hidden}
-.game-drawer.open{transform:translateX(0);visibility:visible}
+.game-drawer{position:fixed;inset:0 auto 0 0;width:min(900px,92vw);background:#1e1019;z-index:1100;overflow-y:auto;box-shadow:20px 0 65px #0009;transform:translateX(-105%);transition:transform .55s cubic-bezier(.22,1,.36,1),visibility 0s linear .55s;visibility:hidden}
+.game-drawer.open{transform:translateX(0);visibility:visible;transition:transform .55s cubic-bezier(.22,1,.36,1),visibility 0s}
 .game-drawer-close{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;width:100%;padding:19px 35px;background:#291420;color:#f6d9e4;border:0;border-bottom:1px solid #573040;cursor:pointer;text-align:left;letter-spacing:.15em;font-size:11px}
 .game-detail-banner{min-height:315px;position:relative;display:grid;place-items:center;isolation:isolate;overflow:hidden;background:#422539}
 .game-detail-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.37;z-index:-1;filter:brightness(.65)}
@@ -581,6 +581,54 @@ html{scroll-padding-top:100px}
 .game-open .arrow-hover{opacity:0;transform:translateX(-5px)}
 .game-open:hover .arrow-default,.game-open:focus-visible .arrow-default{opacity:0;transform:translateX(5px)}
 .game-open:hover .arrow-hover,.game-open:focus-visible .arrow-hover{opacity:1;transform:translateX(0)}
+
+/* Breaking Point artwork includes the title; place role and tagline in the lower banner area. */
+.game-detail-banner--artwork{height:clamp(440px,59vw,600px);min-height:0;display:flex;flex-direction:column;justify-content:flex-end;background:#100b12}
+.game-detail-banner--artwork img{opacity:1;filter:none;object-fit:cover;object-position:center 50%;height:69%;bottom:auto}
+.game-detail-banner--artwork::after{display:none}
+.game-detail-banner--artwork .game-detail-intro{position:relative;z-index:1;width:100%;box-sizing:border-box;min-height:31%;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,#21121b,#1e1019);padding:18px 26px 20px;border-bottom:0}
+.game-detail-intro{padding:27px clamp(24px,5vw,55px) 8px;text-align:center;border-bottom:1px solid #4b2c3d}
+.game-detail-role{font-size:11px!important;line-height:1.8!important;letter-spacing:.11em;text-transform:uppercase;color:#d6a1b7!important;margin:0 auto 12px!important;max-width:680px}
+.game-detail-tagline{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(21px,3vw,30px)!important;line-height:1.4!important;color:#f4dce5!important;max-width:690px;margin:0 auto 20px!important}
+@media(max-width:600px){.game-detail-banner--artwork{height:clamp(410px,90vw,510px)}.game-detail-banner--artwork img{height:61%}.game-detail-banner--artwork .game-detail-intro{min-height:39%;padding:16px 18px}.game-detail-tagline{font-size:clamp(19px,5vw,24px)!important}}
+
+/* Breaking Point: role and tagline overlaid INSIDE the actual artwork, not in a separate panel. */
+.game-detail-banner--artwork{position:relative;display:block;height:clamp(500px,75vw,780px);min-height:0;overflow:hidden;background:#000}
+.game-detail-banner--artwork>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;opacity:1;filter:none;z-index:0}
+.game-detail-banner--artwork::after{display:none}
+.game-detail-banner--artwork .game-detail-intro{position:absolute;left:0;right:0;bottom:5%;z-index:1;min-height:0;width:100%;box-sizing:border-box;padding:12px clamp(22px,5vw,60px);background:transparent;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.game-detail-banner--artwork .game-detail-role{font-size:clamp(10px,1.5vw,12px)!important;letter-spacing:.11em;line-height:1.7!important;color:#e7b9ca!important;margin:0 auto 10px!important}
+.game-detail-banner--artwork .game-detail-tagline{font-size:clamp(20px,3vw,29px)!important;line-height:1.3!important;color:#fff1f5!important;max-width:680px;margin:0 auto!important;text-shadow:0 2px 12px #000}
+@media(max-width:600px){.game-detail-banner--artwork{height:clamp(440px,110vw,650px)}.game-detail-banner--artwork>img{object-position:center 62%}.game-detail-banner--artwork .game-detail-intro{bottom:4%;padding:10px 17px}.game-detail-banner--artwork .game-detail-tagline{font-size:clamp(18px,4.5vw,23px)!important}}
+
+/* Compact banner: crop the large black margins from the uploaded portrait artwork. */
+.game-detail-banner--artwork{height:auto!important;aspect-ratio:1447 / 850;min-height:0!important}
+.game-detail-banner--artwork>img{object-fit:fill!important;object-position:center!important}
+.game-detail-banner--artwork .game-detail-intro{bottom:2%!important;padding:5px 22px!important}
+.game-detail-banner--artwork .game-detail-role{font-size:clamp(9px,1.3vw,11px)!important;margin-bottom:5px!important}
+.game-detail-banner--artwork .game-detail-tagline{font-size:clamp(16px,2.3vw,23px)!important;line-height:1.2!important;max-width:650px}
+@media(max-width:600px){.game-detail-banner--artwork{aspect-ratio:1.25}.game-detail-banner--artwork>img{object-fit:cover!important;object-position:center!important}.game-detail-banner--artwork .game-detail-intro{bottom:3%!important;padding:4px 12px!important}.game-detail-banner--artwork .game-detail-role{font-size:9px!important;line-height:1.3!important}.game-detail-banner--artwork .game-detail-tagline{font-size:clamp(14px,3.3vw,18px)!important}}
+
+/* Grouped, readable Breaking Point case study */
+.game-contrib-lead{color:#cbaab9;line-height:1.7;margin:-4px 0 24px}
+.game-contrib-groups{display:grid;gap:14px}
+.game-contrib-group{background:#2b1925;border:1px solid #573648;border-radius:8px;padding:clamp(17px,3vw,27px)}
+.game-contrib-heading{display:flex;align-items:baseline;gap:15px;border-bottom:1px solid #654053;padding-bottom:12px}
+.game-contrib-heading span{font-size:11px;letter-spacing:.14em;color:#d69ab2}
+.game-contrib-heading h4{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(24px,3vw,32px);font-weight:500;color:#f5dce7;margin:0}
+.game-contrib-group ul{margin:15px 0 0;padding-left:20px}
+.game-contrib-group li{margin:0 0 9px;line-height:1.75;color:#ddc4ce}
+.game-proof-link{color:#f0b6cc;text-decoration:underline;text-underline-offset:4px}
+.game-proof-link:hover{color:white}
+.game-trailer-action{background:#1d1019;display:flex;justify-content:center;padding:22px 18px 26px;border-bottom:1px solid #573648}
+.game-trailer-action .game-trailer-btn{position:static!important;margin:0!important;cursor:pointer}
+#game-modal video{display:block;background:#000;border-radius:4px;margin-top:16px}
+
+/* Gameplay evidence: centered heading and inline visual, no descriptions or external links */
+.game-evidence--visual{text-align:center;padding:12px 0 30px;margin:20px auto 30px}
+.game-evidence--visual h3{text-align:center;margin:0 0 18px;font-size:clamp(18px,2.6vw,24px)}
+.game-evidence--visual img,.game-evidence--visual video{display:block;width:auto;max-width:100%;max-height:65vh;height:auto;object-fit:contain;margin:0 auto;border:1px solid #593a4b;border-radius:5px}
+.game-evidence--visual video{width:100%;max-width:850px;background:#100c10}
 </style>
 
 <style>
@@ -938,28 +986,60 @@ document.querySelectorAll('.category-expand').forEach(button => {
 const games = [
  {title:"Breaking Point",role:"UI Design · Level Design · Narrative · Programming · Team Management",
   short:"Breaking Point is more than just survival. It's about connection, resilience & the unspoken battles we carry within us.",
-  banner:"assets/BP_poster_final.png", trailer:null,
-  contributions:[
-   "Designed and implemented the main menu, settings menus, keybind interface and player-facing UI animations.",
-   "Created the dialogue UI and worked on branching dialogue trees and narrative implementation.",
-   "Implemented quick-time events, player tips and interaction feedback.",
-   "Worked on inventory, journal and quest-log systems, save/load functionality and level loading.",
-   "Developed or integrated oxygen and energy indicators, day/night progression and player-death flow.",
-   "Synced movement animations and implemented music and sound effects using FMOD.",
-   "Contributed to level design, cinematic sequences, bug fixes and overall game polish.",
-   "Supported team management and coordinated tasks across the project."
+  banner:"assets/breaking-point-contributions-banner-cropped.png", trailer:"assets/breaking-point-trailer.mp4",
+  contributionGroups:[
+    {title:"Story / Narrative & Dialogue",items:[
+      "I created / edited the story / narrative document, including character design, narrative structure and dialogue lines.",
+      "I created dialogue trees using Scriptable Objects with different dialogue options.",
+      "I implemented Level 1, 2 and 3 dialogues, NPC triggers and the necessary checks and events."
+    ]},
+    {title:"UI, Settings & Player Inputs",items:[
+      "I created initial UI design concepts in Canva.",
+      "I updated the dialogue UI and added interact text so players know what button to press.",
+      "I created player input actions for movement, interactions, inventory and the main menu.",
+      "I made the UI icons change between keyboard / mouse and controller.",
+      "I added keybinding, dialogue speed and brightness settings."
+    ]},
+    {title:"Inventory, Journal & Survival Mechanics",items:[
+      "I created an inventory system using Scriptable Objects.",
+      "I created journal pages for diary entries and objectives.",
+      "I fixed the oxygen drain logic and created the energy logic.",
+      "I created oxygen and energy radial fill UI elements.",
+      "I added oxygen tank logic to work with the inventory.",
+      "I implemented the bed sleeping mechanic and day & night cycle."
+    ]},
+    {title:"Level Set Up, Audio & Polish",items:[
+      "I set up and polished Level 1, 2 and 3 with dialogue triggers, checks and assets.",
+      "I created a cel shading lit material and added companion animations.",
+      "I implemented music and SFX into FMOD.",
+      "I worked on spatial audio and dialogue audio.",
+      "I updated the lighting and fog for better visibility at night.",
+      "I implemented save & load with a JSON file and player death logic."
+    ]},
+    {title:"Documents, Scheduling & Playtesting",items:[
+      "I edited the schedule layout and colour coordination.",
+      "I worked on my role and risk assessment strategies in the project plan.",
+      "I created / edited the Breaking Point survey questions and sections.",
+      "I edited the asset list format for the animators.",
+      "I added a tips function with button prompts, text and video after playtesting feedback."
+    ]}
   ],
   gameplay:[
-   ["Dialogue and narrative","Branching dialogue trees and character conversations.","assets/dialogue.png"],
-   ["Journal and quest tracking","Player-facing journal and quest-log design.","assets/journal.png"],
-   ["Inventory and survival feedback","Inventory, oxygen and energy systems.","assets/inventory.png"]
+    ["Narrative & Dialogue","Implemented level 1 dialogues into the game so players understand the game and for each personality of NPCs to shine out.","assets/dialogue-system.mp4","https://drive.google.com/file/d/1w3Nq71xvjK2Ptk-WyV6E-S4zerZ9GpyH/view?usp=drive_link"],
+    ["Journal & objectives","I created journal pages for diary entries and objectives.","assets/journal.png","https://drive.google.com/file/d/1FI0RfzvWQkGporhpOQXsKHkTMcfHxsQ6/view?usp=sharing"],
+    ["Inventory & item interactions","I created an inventory system for players to manage items.","assets/inventory.png","https://drive.google.com/file/d/1kQWBMCNIg0-7QZ8u0ix-XBqk23JRAdkj/view?usp=sharing"],
+    ["Survival & progression","I added a similar function for the energy where it will also drain depending if it is in a certain tagged trigger.",null,"https://drive.google.com/file/d/1CeVL4Z057KV0_OFsExfOEYbwJ3GNe9ct/view?usp=sharing"],
+    ["Onboarding & playtesting","Added a tips function where it showcases what button to press, text and a video so it’s right in their face on what to do.",null,null]
   ],
   technical:[
-   ["Main menu","Menu implementation and navigation.","assets/menu.png"],
-   ["Settings and controls","Settings UI, audio controls and keybind presentation.","assets/settings.png"],
-   ["Gameplay systems","Quick-time events, save/load, level transitions, day/night and player death.",null]
+    ["Menus & settings","I added a dialogue speed option and worked on keybind settings.","assets/settings.png","https://drive.google.com/file/d/1JpI4oQdFGcfGHNJ2Kz-zdhpOMWM2hjtX/view?usp=sharing"],
+    ["Input & adaptive UI","I created a player input action asset where it has different action maps and actions in them. One for player movement, interactions, inventory and main menu.","assets/menu.png","https://drive.google.com/file/d/1azfbkJa5Hb_j0cuD7Zjh7O2bbF1Q3bLf/view?usp=sharing"],
+    ["Scriptable Object architecture","I used scriptable objects again to have nodes which can be stored in a dialogue tree.",null,null],
+    ["Save data & player lifecycle","I implemented save & load so players can keep their progress.",null,null],
+    ["FMOD audio integration","I wanted to make certain audio spatial so that it happens in a 3D space as I feel like that would add to immersion, especially for dialogue audio.",null,null],
+    ["Scene & lighting systems","I also made changes to the day and night cycle as I wanted the skybox to change based on the time as it would be weird if the skybox still showcases day time when it’s night.",null,"https://drive.google.com/file/d/1vv6I6QThAXl9QrRYcBvU18i3LeiAjZG1/view?usp=sharing"]
   ],
-  meta:[["Genre","3D narrative adventure / climbing"],["Platform","PC (confirm final build)"],["Duration","6 months"],["Team size","6 (including me)"],["Engine","Unity"],["Tools","Unity · C# · FMOD"]],
+  meta:[["Genre","3D narrative adventure / climbing"],["Platform","Windows · macOS (Apple Silicon)"],["Duration","6 months"],["Team size","6 (including me)"],["Engine","Unity"],["Tools","Unity · C# · FMOD"]],
   link:"https://bun-bao.itch.io/breaking-point"
  },
  {title:"August In Maplewood",role:"Mechanics · Narrative · UI · Design",
@@ -994,22 +1074,29 @@ const escapeHTML=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>'
 function openDrawer(i){
  const g=games[i];lastFocus=document.activeElement;
  document.getElementById('game-drawer-content').innerHTML=`
- <div class="game-detail-banner"><img src="${g.banner}" alt=""><div class="game-detail-banner-content"><p>${escapeHTML(g.role)}</p><h2>${escapeHTML(g.title)}</h2><p>${escapeHTML(g.short)}</p>${g.trailer?'<button type="button" class="button game-trailer-btn" data-trailer>▶ Show Trailer</button>':''}</div></div>
- <div class="game-detail-body"><h3>My Contributions</h3><ul>${g.contributions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul>
+ <div class="game-detail-banner ${i===0?'game-detail-banner--artwork':''}"><img src="${g.banner}" alt="${i===0?'Breaking Point illustrated mountain banner with the game title':'Project banner'}">${i===0?`<div class="game-detail-intro"><p class="game-detail-role">${escapeHTML(g.role)}</p><p class="game-detail-tagline">${escapeHTML(g.short)}</p></div>`:`<div class="game-detail-banner-content"><p>${escapeHTML(g.role)}</p><h2>${escapeHTML(g.title)}</h2><p>${escapeHTML(g.short)}</p></div>`}</div>${g.trailer?'<div class="game-trailer-action"><button type="button" class="button game-trailer-btn" data-trailer>▶ View Trailer</button></div>':''}
+ <div class="game-detail-body"><h3>My Contributions</h3>${g.contributionGroups?`<div class="game-contrib-groups">${g.contributionGroups.map((group,i)=>`<section class="game-contrib-group"><div class="game-contrib-heading"><span>${String(i+1).padStart(2,'0')}</span><h4>${escapeHTML(group.title)}</h4></div><ul>${group.items.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></section>`).join('')}</div>`:`<ul>${g.contributions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul>`}
  <div class="game-detail-actions"><button type="button" data-evidence="gameplay">Gameplay Design Contributions ↗</button><button type="button" data-evidence="technical">Technical Design Contributions ↗</button></div>
  <h3>Project Details</h3><dl class="game-detail-meta">${g.meta.map(([a,b])=>`<div><dt>${escapeHTML(a)}</dt><dd>${escapeHTML(b)}</dd></div>`).join('')}</dl>${g.link?`<p style="margin-top:28px"><a class="button secondary" href="${g.link}" target="_blank" rel="noopener noreferrer">View playable project ↗</a></p>`:''}</div>`;
  drawer.dataset.game=i;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');scrim.hidden=false;requestAnimationFrame(()=>scrim.classList.add('visible'));document.body.style.overflow='hidden';drawer.focus();
 }
-function closeDrawer(){if(!modal.hidden)closeModal();drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');scrim.classList.remove('visible');document.body.style.overflow='';setTimeout(()=>{if(!drawer.classList.contains('open'))scrim.hidden=true},420);lastFocus?.focus()}
+function closeDrawer(){if(!modal.hidden)closeModal();drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');scrim.classList.remove('visible');document.body.style.overflow='';setTimeout(()=>{if(!drawer.classList.contains('open'))scrim.hidden=true},570);lastFocus?.focus()}
 function openModal(kind){
  const g=games[+drawer.dataset.game],items=g[kind],title=kind==='gameplay'?'Gameplay Design Contributions':'Technical Design Contributions';
- document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img])=>`<section class="game-evidence"><h3>${escapeHTML(name)}</h3><p>${escapeHTML(desc)}</p>${img?`<img src="${img}" alt="${escapeHTML(name)} project evidence" loading="lazy">`:'<p><em>Media coming soon</em></p>'}</section>`).join('')}`;
+ const mediaMarkup=(name,src)=>{
+   if(!src)return '';
+   const safe=escapeHTML(src),alt=escapeHTML(name);
+   return /\.(mp4|webm|ogg)(?:[?#]|$)/i.test(src)
+     ?`<video src="${safe}" controls playsinline preload="metadata" aria-label="${alt} footage"></video>`
+     :`<img src="${safe}" alt="${alt}" loading="lazy">`;
+ };
+ document.getElementById('game-modal-content').innerHTML=`<h2>${title}</h2>${items.map(([name,desc,img])=>`<section class="game-evidence game-evidence--visual"><h3>${escapeHTML(name)}</h3>${mediaMarkup(name,img)}</section>`).join('')}`;
  modal.hidden=false;modal.setAttribute('aria-hidden','false');modal.querySelector('.game-modal-panel').focus();
 }
-function closeModal(){modal.hidden=true;modal.setAttribute('aria-hidden','true');drawer.focus()}
+function closeModal(){const video=modal.querySelector("video");if(video){video.pause();video.removeAttribute("src");video.load()}modal.hidden=true;modal.setAttribute('aria-hidden','true');drawer.focus()}
 root.querySelectorAll('.game-open').forEach(b=>b.addEventListener('click',()=>openDrawer(+b.dataset.game)));
 document.getElementById('game-drawer-close').addEventListener('click',closeDrawer);scrim.addEventListener('click',closeDrawer);
-drawer.addEventListener('click',e=>{const b=e.target.closest('[data-evidence]');if(b)openModal(b.dataset.evidence);if(e.target.closest('[data-trailer]')){const g=games[+drawer.dataset.game];if(g.trailer){openModal('gameplay');document.getElementById('game-modal-content').innerHTML=`<h2>${escapeHTML(g.title)} — Trailer</h2><video src="${g.trailer}" controls autoplay playsinline style="width:100%;max-height:65vh"></video>`}}});
+drawer.addEventListener('click',e=>{const b=e.target.closest('[data-evidence]');if(b)openModal(b.dataset.evidence);if(e.target.closest('[data-trailer]')){const g=games[+drawer.dataset.game];if(g.trailer){document.getElementById('game-modal-content').innerHTML=`<h2>${escapeHTML(g.title)} — Trailer</h2><video src="${g.trailer}" controls autoplay playsinline preload="metadata" style="width:100%;max-height:65vh"></video>`;modal.hidden=false;modal.setAttribute("aria-hidden","false");modal.querySelector(".game-modal-panel").focus()}}});
 modal.querySelectorAll('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModal));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!modal.hidden)closeModal();else if(drawer.classList.contains('open'))closeDrawer()}});
 window.addEventListener('hashchange',()=>{if(drawer.classList.contains('open'))closeDrawer()});
