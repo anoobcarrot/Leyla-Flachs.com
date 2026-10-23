@@ -2640,7 +2640,24 @@ footer.footer .footer-inner .footer-extras > button.pixel-heart.is-loved svg {
 .contact-strip .contact-strip-link:focus-visible::before{
   background-color:transparent!important;filter:brightness(1.32)!important;
 }
-</style></head>
+</style>
+<style id="work-card-toggle-final-repair">
+.work-project-grid .project:has(.project-toggle) .project-panel,
+.work-project-grid .project:has(.project-toggle).hover-dismissed .project-panel {max-height:104px!important;background:#2b111b!important}
+.work-project-grid .project:has(.project-toggle) .project-reveal,
+.work-project-grid .project:has(.project-toggle).hover-dismissed .project-reveal {opacity:0!important;transform:translateY(-5px)!important}
+.work-project-grid .project:has(.project-toggle) .project-icon::before,
+.work-project-grid .project:has(.project-toggle).hover-dismissed .project-icon::before {content:"+"!important}
+@media(hover:hover) and (pointer:fine){
+.work-project-grid .project:has(.project-toggle):hover:not(.hover-dismissed) .project-panel {max-height:340px!important;background:#411324!important}
+.work-project-grid .project:has(.project-toggle):hover:not(.hover-dismissed) .project-reveal {opacity:1!important;transform:translateY(0)!important}
+.work-project-grid .project:has(.project-toggle):hover:not(.hover-dismissed) .project-icon::before {content:"−"!important}
+}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel {max-height:340px!important;background:#411324!important}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel .project-reveal {opacity:1!important;transform:translateY(0)!important}
+.work-project-grid .project:has(.project-toggle) .project-toggle:checked + .project-panel .project-icon::before {content:"−"!important}
+</style>
+</head>
 <body>
 <svg aria-hidden="true" height="0" style="position:absolute;pointer-events:none" width="0" xmlns="http://www.w3.org/2000/svg"><filter height="120%" id="hand-ink-filter" width="120%" x="-10%" y="-10%"><feturbulence basefrequency="0.035" numoctaves="2" result="noise" seed="7" type="fractalNoise"></feturbulence><fedisplacementmap in="SourceGraphic" in2="noise" scale="1.4" xchannelselector="R" ychannelselector="G"></fedisplacementmap></filter></svg>
 <div class="site-root" data-sites-preview-theme="">
@@ -3135,7 +3152,7 @@ function openDrawer(i){
  <div class="game-detail-body"><h3>My Contributions</h3>${g.contributionGroups?`<div class="game-contrib-groups">${g.contributionGroups.map((group,i)=>`<section class="game-contrib-group"><div class="game-contrib-heading"><span>${String(i+1).padStart(2,'0')}</span><h4>${escapeHTML(group.title)}</h4></div><ul>${group.items.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></section>`).join('')}</div>`:`<ul>${g.contributions.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul>`}
  <div class="game-detail-actions"><button type="button" class="button game-trailer-btn contribution-action" data-evidence="gameplay">Gameplay Design Contributions <svg class="handdrawn-arrow" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><path d="M8 28 Q18 18 29 8 M17 8 Q23 7 30 7 L30 20"/><path class="pencil-echo" d="M10 30 Q20 20 28 12"/></svg></button><button type="button" class="button game-trailer-btn contribution-action" data-evidence="technical">Technical Design Contributions <svg class="handdrawn-arrow" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><path d="M8 28 Q18 18 29 8 M17 8 Q23 7 30 7 L30 20"/><path class="pencil-echo" d="M10 30 Q20 20 28 12"/></svg></button></div>
  <h3>Project Details</h3><dl class="game-detail-meta">${g.meta.map(([a,b])=>`<div><dt>${escapeHTML(a)}</dt><dd>${escapeHTML(b)}</dd></div>`).join('')}</dl>${g.link?`<p style="margin-top:28px"><a class="button secondary" href="${g.link}" target="_blank" rel="noopener noreferrer">View playable project ↗</a></p>`:''}</div>`;
- drawer.dataset.game=i;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');scrim.hidden=false;requestAnimationFrame(()=>scrim.classList.add('visible'));document.body.style.overflow='hidden';drawer.focus();
+ drawer.scrollTop=0;drawer.dataset.game=i;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');scrim.hidden=false;requestAnimationFrame(()=>scrim.classList.add('visible'));document.body.style.overflow='hidden';drawer.scrollTop=0;drawer.focus({preventScroll:true});
 }
 function closeDrawer(){if(!modal.hidden)closeModal();drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');scrim.classList.remove('visible');document.body.style.overflow='';setTimeout(()=>{if(!drawer.classList.contains('open'))scrim.hidden=true},570);lastFocus?.focus()}
 function openModal(kind){
@@ -3216,7 +3233,7 @@ go(0);
    var toggle=card.querySelector('.project-toggle');
    if(!toggle || card.dataset.hoverStateReady)return;
    card.dataset.hoverStateReady='true';
-   toggle.addEventListener('change',function(){card.classList.toggle('hover-dismissed',!toggle.checked);});
+   toggle.addEventListener('change',function(){card.classList.toggle('hover-dismissed',!toggle.checked);if(!toggle.checked && document.activeElement === toggle) toggle.blur();});
    card.addEventListener('mouseenter',function(){if(!toggle.checked)card.classList.remove('hover-dismissed');});
    card.addEventListener('mouseleave',function(){
     // Preserve a click-pinned card. Only the temporary hover preview ends.
